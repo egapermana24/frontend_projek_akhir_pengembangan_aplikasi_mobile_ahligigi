@@ -1,4 +1,5 @@
 import 'package:ahli_gigi/pages/dashboard.dart';
+import 'package:ahli_gigi/pages/register.dart';
 import 'package:ahli_gigi/pages/login.dart';
 import 'package:flutter/material.dart';
 
@@ -16,8 +17,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: const Login(),
       routes: {
-        'login': (context) => const Login(),
-        'dashboard': (context) => const Dashboard(),
+        'Login': (context) => Login(),
+        'dashboard': (context) => Dashboard(),
+        'register': (context) => Register(),
       },
     );
   }

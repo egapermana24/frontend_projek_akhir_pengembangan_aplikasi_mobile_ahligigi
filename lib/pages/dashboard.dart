@@ -12,7 +12,7 @@ class Dashboard extends StatelessWidget {
               icon: const Icon(Icons.logout),
               onPressed: () {
                 Navigator.pushReplacementNamed(
-                    context, 'login'); // kembali ke halaman login
+                    context, 'Login'); // kembali ke halaman login
               },
             ),
           ],
