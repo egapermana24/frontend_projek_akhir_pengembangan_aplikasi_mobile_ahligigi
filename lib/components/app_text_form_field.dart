@@ -2,29 +2,29 @@ import 'package:flutter/material.dart';
 
 class AppTextFormField extends StatelessWidget {
   const AppTextFormField({
+    Key? key,
     required this.textInputAction,
     required this.labelText,
     required this.keyboardType,
     required this.controller,
-    super.key,
     this.onChanged,
     this.validator,
-    this.obscureText,
+    this.obscureText = false,
     this.suffixIcon,
     this.onEditingComplete,
-    this.autofocus,
+    this.autofocus = false,
     this.focusNode,
-  });
+  }) : super(key: key);
 
   final void Function(String)? onChanged;
   final String? Function(String?)? validator;
   final TextInputAction textInputAction;
   final TextInputType keyboardType;
   final TextEditingController controller;
-  final bool? obscureText;
+  final bool obscureText;
   final Widget? suffixIcon;
   final String labelText;
-  final bool? autofocus;
+  final bool autofocus;
   final FocusNode? focusNode;
   final void Function()? onEditingComplete;
 
@@ -38,9 +38,9 @@ class AppTextFormField extends StatelessWidget {
         textInputAction: textInputAction,
         focusNode: focusNode,
         onChanged: onChanged,
-        autofocus: autofocus ?? false,
+        autofocus: autofocus,
         validator: validator,
-        obscureText: obscureText ?? false,
+        obscureText: obscureText,
         obscuringCharacter: '*',
         onEditingComplete: onEditingComplete,
         decoration: InputDecoration(

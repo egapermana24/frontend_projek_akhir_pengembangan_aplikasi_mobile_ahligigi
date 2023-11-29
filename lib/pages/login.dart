@@ -166,7 +166,7 @@ class _LoginState extends State<Login> {
           child: Column(
             children: [
               Container(
-                height: size.height * 0.24,
+                height: 250,
                 width: double.infinity,
                 padding: const EdgeInsets.all(20),
                 decoration: const BoxDecoration(
@@ -248,7 +248,10 @@ class _LoginState extends State<Login> {
                     ),
                     Center(
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushReplacementNamed(context, 'forgot');
+                          // Tambahkan logika untuk tombol login di sini
+                        },
                         style: Theme.of(context).textButtonTheme.style,
                         child: Text(
                           'Forgot Password?',
@@ -270,14 +273,23 @@ class _LoginState extends State<Login> {
                           // Tambahkan logika untuk tombol login di sini
                         },
                         style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(Colors
-                              .black), // Ganti warna latar belakang tombol
-                          foregroundColor: MaterialStateProperty.all(
-                              Colors.white), // Ganti warna teks tombol
+                          backgroundColor:
+                              MaterialStateProperty.all(Color(0xFF505050)),
+                          foregroundColor:
+                              MaterialStateProperty.all(Colors.white),
                           textStyle: MaterialStateProperty.all(TextStyle(
-                              fontSize: 13,
-                              fontWeight:
-                                  FontWeight.bold)), // Ganti ukuran teks
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                          )),
+                          fixedSize: MaterialStateProperty.all(
+                              Size(500, 35)), // Atur ukuran di sini
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                  13.0), // Atur sudut di sini
+                            ),
+                          ),
                         ),
                         child: Text('Login'),
                       ),

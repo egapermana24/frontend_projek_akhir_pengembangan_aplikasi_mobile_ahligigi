@@ -1,6 +1,7 @@
 import 'package:ahli_gigi/pages/dashboard.dart';
 import 'package:ahli_gigi/pages/register.dart';
 import 'package:ahli_gigi/pages/login.dart';
+import 'package:ahli_gigi/pages/forgot_pw.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
         'Login': (context) => Login(),
         'dashboard': (context) => Dashboard(),
         'register': (context) => Register(),
+        'forgot': (context) => Forgot(),
       },
     );
   }
