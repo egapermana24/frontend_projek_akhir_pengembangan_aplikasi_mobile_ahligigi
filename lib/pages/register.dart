@@ -35,7 +35,7 @@ class _RegisterState extends State<Register> {
           child: Column(
             children: [
               Container(
-                height: 200,
+                height: 180,
                 width: double.infinity,
                 padding: const EdgeInsets.all(20),
                 decoration: const BoxDecoration(
@@ -71,7 +71,7 @@ class _RegisterState extends State<Register> {
               ),
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisSize: MainAxisSize.min,
@@ -186,15 +186,12 @@ class _RegisterState extends State<Register> {
                         ],
                       ),
                     ),
-                    const SizedBox(
-                      height: 20,
-                    ),
                   ],
                 ),
               ),
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+                    const EdgeInsets.symmetric(vertical: 5, horizontal: 25),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

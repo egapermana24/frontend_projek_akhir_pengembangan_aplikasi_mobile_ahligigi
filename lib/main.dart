@@ -1,4 +1,4 @@
-import 'package:ahli_gigi/pages/dashboard.dart';
+import 'package:ahli_gigi/pages/dashboard/dashboard.dart';
 import 'package:ahli_gigi/pages/register.dart';
 import 'package:ahli_gigi/pages/login.dart';
 import 'package:ahli_gigi/pages/forgot_pw.dart';

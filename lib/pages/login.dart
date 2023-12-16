@@ -141,9 +141,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../components/app_text_form_field.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Login extends StatefulWidget {
-  const Login({super.key});
+  const Login({Key? key}) : super(key: key);
 
   @override
   State<Login> createState() => _LoginState();
@@ -166,7 +167,7 @@ class _LoginState extends State<Login> {
           child: Column(
             children: [
               Container(
-                height: 250,
+                height: 240,
                 width: double.infinity,
                 padding: const EdgeInsets.all(20),
                 decoration: const BoxDecoration(
@@ -201,7 +202,7 @@ class _LoginState extends State<Login> {
               ),
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisSize: MainAxisSize.min,
@@ -336,8 +337,10 @@ class _LoginState extends State<Login> {
                               'Google',
                               style: TextStyle(color: Colors.black),
                             ),
-                            icon: Icon(Icons
-                                .ac_unit), // Gantilah dengan ikon yang sesuai jika diperlukan
+                            icon: FaIcon(
+                              FontAwesomeIcons.google,
+                              color: Colors.black,
+                            ),
                           ),
                         ),
                         const SizedBox(
@@ -351,8 +354,10 @@ class _LoginState extends State<Login> {
                               'Facebook',
                               style: TextStyle(color: Colors.black),
                             ),
-                            icon: Icon(Icons
-                                .access_alarm), // Gantilah dengan ikon yang sesuai jika diperlukan
+                            icon: FaIcon(
+                              FontAwesomeIcons.facebook,
+                              color: Colors.blueAccent,
+                            ), // Gantilah dengan ikon yang sesuai jika diperlukan
                           ),
                         ),
                       ],
@@ -362,7 +367,7 @@ class _LoginState extends State<Login> {
               ),
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+                    const EdgeInsets.symmetric(vertical: 3, horizontal: 25),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
