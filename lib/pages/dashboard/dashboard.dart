@@ -1,8 +1,8 @@
-import 'package:ahli_gigi/pages/dashboard/widget/list_doctor.dart';
+import 'package:ahli_gigi/pages/dashboard/widget/daftar_layanan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ahli_gigi/aturan/constants/warna_apps.dart';
-import 'package:ahli_gigi/pages/dashboard/widget/doctor_card.dart';
+import 'package:ahli_gigi/pages/dashboard/widget/popular_card.dart';
 import 'package:ahli_gigi/pages/dashboard/widget/service_card.dart';
 
 class Dashboard extends StatelessWidget {
@@ -100,11 +100,10 @@ class Dashboard extends StatelessWidget {
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
-                  ServiceCard('Service 1', 'assets/img/service1.jpg'),
-                  ServiceCard('Service 2', 'assets/img/service2.jpg'),
-                  ServiceCard('Service 3', 'assets/img/service3.jpg'),
-                  ServiceCard('Service 4', 'assets/img/service4.jpg'),
-                  ServiceCard('Service 5', 'assets/img/service5.jpg'),
+                  ServiceCard('Pembuatan', 'assets/icons/google.png'),
+                  ServiceCard('Pemasangan', 'assets/img/google.png'),
+                  ServiceCard('Konsultasi', 'assets/img/google.png'),
+                  ServiceCard('Garansi', 'assets/img/google.png'),
                   // Tambahkan layanan lainnya di sini
                 ],
               ),
@@ -116,7 +115,7 @@ class Dashboard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Popular',
+                    'Yang Dicari',
                     style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
                   ),
                 ],
@@ -128,16 +127,16 @@ class Dashboard extends StatelessWidget {
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
-                  DoctorCard(
-                    'Dr. John Doe',
-                    'Cardiologist',
+                  PopularCard(
+                    'Gigi Palsu',
+                    'Lorem ipsum',
                     'assets/doctor1.jpg',
                     'Excellent doctor, highly recommended!',
                     4,
                   ),
-                  DoctorCard(
-                    'Dr. Jane',
-                    'Pediatrician',
+                  PopularCard(
+                    'Pasang Behel',
+                    'Lorem ipsum',
                     'assets/doctor2.jpg',
                     'Great with kids, very patient and understanding.',
                     5,
@@ -146,6 +145,7 @@ class Dashboard extends StatelessWidget {
                 ],
               ),
             ),
+            SizedBox(height: 13),
             // Popular
             Padding(
               padding: const EdgeInsets.all(16.0),
@@ -153,24 +153,26 @@ class Dashboard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'List of Doctor',
+                    'Daftar Layanan',
                     style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
             ),
-            DoctorListCard(
-              doctorName: 'Dr. John Doe',
-              specialization: 'Cardiologist',
+            DaftarLayananCard(
+              doctorName: 'Tambal Gigi',
+              specialization: 'Lorem ipsum',
               biography:
                   'Lorem ipsum dolor sit amet,consectetur adipiscing elit.',
               isAvailable:
                   true, // Ganti dengan nilai sesuai dengan status dokter
             ),
             // Konten dashboard lainnya dapat ditambahkan di sini
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text('Selamat datang di dashboard Anda!'),
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text('Selamat datang di dashboard Anda!'),
+              ),
             ),
           ],
         ),

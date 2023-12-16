@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class DoctorCard extends StatelessWidget {
+class PopularCard extends StatelessWidget {
   final String doctorName;
   final String specialization;
   final String imagePath;
   final String review;
   final int rating;
 
-  DoctorCard(
+  PopularCard(
     this.doctorName,
     this.specialization,
     this.imagePath,
