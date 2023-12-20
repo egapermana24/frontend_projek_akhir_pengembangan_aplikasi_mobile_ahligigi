@@ -1,3 +1,4 @@
+import 'package:ahli_gigi/pages/categories/categories.dart';
 import 'package:ahli_gigi/pages/dashboard/widget/daftar_layanan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -56,7 +57,8 @@ class Dashboard extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 30,
-                    backgroundImage: AssetImage('assets/profile_picture.jpg'),
+                    backgroundImage:
+                        AssetImage('assets/img/profile_picture.jpg'),
                   ),
                   SizedBox(width: 16),
                   Text(
@@ -87,9 +89,19 @@ class Dashboard extends StatelessWidget {
                     'Layanan',
                     style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
                   ),
-                  Text(
-                    'More',
-                    style: TextStyle(fontSize: 15, color: Colors.blue),
+                  InkWell(
+                    onTap: () {
+                      // Tambahkan logika untuk navigasi ke halaman lain di sini
+                      // Misalnya, Navigator.push ke halaman baru.
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Categories()),
+                      );
+                    },
+                    child: Text(
+                      'More',
+                      style: TextStyle(fontSize: 15, color: Colors.blue),
+                    ),
                   ),
                 ],
               ),
@@ -101,9 +113,9 @@ class Dashboard extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 children: [
                   ServiceCard('Pembuatan', 'assets/icons/google.png'),
-                  ServiceCard('Pemasangan', 'assets/img/google.png'),
-                  ServiceCard('Konsultasi', 'assets/img/google.png'),
-                  ServiceCard('Garansi', 'assets/img/google.png'),
+                  ServiceCard('Pemasangan', 'assets/icons/google.png'),
+                  ServiceCard('Konsultasi', 'assets/icons/google.png'),
+                  ServiceCard('Garansi', 'assets/icons/google.png'),
                   // Tambahkan layanan lainnya di sini
                 ],
               ),

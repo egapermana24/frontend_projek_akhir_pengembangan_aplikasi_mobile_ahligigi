@@ -30,7 +30,7 @@ class DaftarLayananCard extends StatelessWidget {
           // Foto Layanan
           CircleAvatar(
             radius: 40,
-            backgroundImage: AssetImage('assets/doctor_photo.jpg'),
+            backgroundImage: AssetImage('assets/img/profile_picture.jpg'),
           ),
           SizedBox(width: 16),
           // Informasi dokter
