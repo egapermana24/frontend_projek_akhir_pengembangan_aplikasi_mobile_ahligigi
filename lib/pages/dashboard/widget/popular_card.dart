@@ -33,8 +33,7 @@ class PopularCard extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 20,
-                    backgroundImage:
-                        AssetImage('assets/img/profile_picture.jpg'),
+                    backgroundImage: AssetImage('assets/img/'),
                   ),
                   SizedBox(width: 8),
                   Column(

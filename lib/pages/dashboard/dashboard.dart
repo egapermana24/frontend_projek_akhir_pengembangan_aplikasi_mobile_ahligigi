@@ -179,6 +179,30 @@ class Dashboard extends StatelessWidget {
               isAvailable:
                   true, // Ganti dengan nilai sesuai dengan status dokter
             ),
+            DaftarLayananCard(
+              doctorName: 'Gigi Palsu',
+              specialization: 'Lorem ipsum',
+              biography:
+                  'Lorem ipsum dolor sit amet,consectetur adipiscing elit.',
+              isAvailable:
+                  true, // Ganti dengan nilai sesuai dengan status dokter
+            ),
+            DaftarLayananCard(
+              doctorName: 'Pasang Behel',
+              specialization: 'Lorem ipsum',
+              biography:
+                  'Lorem ipsum dolor sit amet,consectetur adipiscing elit.',
+              isAvailable:
+                  true, // Ganti dengan nilai sesuai dengan status dokter
+            ),
+            DaftarLayananCard(
+              doctorName: 'Venner Scaling',
+              specialization: 'Lorem ipsum',
+              biography:
+                  'Lorem ipsum dolor sit amet,consectetur adipiscing elit.',
+              isAvailable:
+                  true, // Ganti dengan nilai sesuai dengan status dokter
+            ),
             // Konten dashboard lainnya dapat ditambahkan di sini
             Center(
               child: Padding(
