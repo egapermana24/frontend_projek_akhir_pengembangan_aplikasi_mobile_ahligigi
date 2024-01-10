@@ -14,8 +14,7 @@ class DetailsPage extends StatelessWidget {
         'assets/icons/google.png',
         'Tambal Gigi',
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fringilla ex at leo hendrerit, id condimentum arcu pharetra.',
-        '',
-        '',
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fringilla ex at leo hendrerit, id condimentum arcu pharetra. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fringilla ex at leo hendrerit, id condimentum arcu pharetraLorem ipsum dolor sit amet, consectetur adipiscing elit. In fringilla ex at leo hendrerit, id condimentum arcu pharetra',
       ),
     );
   }
