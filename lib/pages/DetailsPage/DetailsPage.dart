@@ -8,7 +8,8 @@ class DetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Janji Temu'),
+        title:
+            Text('Janji Temu', style: TextStyle(fontWeight: FontWeight.bold)),
       ),
       body: DetailsPageWidget(
         'assets/icons/google.png',

@@ -28,7 +28,7 @@ class Dashboard extends StatelessWidget {
           ],
           title: Text(
             'Welcome!',
-            style: TextStyle(
+            style: const TextStyle(
                 fontSize: 23,
                 color: Color.fromARGB(255, 0, 0, 0),
                 fontWeight: FontWeight.w500),
@@ -51,7 +51,7 @@ class Dashboard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Bagian atas dengan foto profil dan username
-            Padding(
+            const Padding(
               padding: const EdgeInsets.all(16.0),
               child: Row(
                 children: [
@@ -69,7 +69,7 @@ class Dashboard extends StatelessWidget {
               ),
             ),
             // Konten dashboard lainnya dapat ditambahkan di sini
-            Padding(
+            const Padding(
               padding: const EdgeInsets.all(16.0),
               child: TextField(
                 decoration: InputDecoration(
@@ -85,7 +85,7 @@ class Dashboard extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  const Text(
                     'Layanan',
                     style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
                   ),
@@ -98,7 +98,7 @@ class Dashboard extends StatelessWidget {
                         MaterialPageRoute(builder: (context) => Categories()),
                       );
                     },
-                    child: Text(
+                    child: const Text(
                       'More',
                       style: TextStyle(fontSize: 15, color: Colors.blue),
                     ),
@@ -121,8 +121,8 @@ class Dashboard extends StatelessWidget {
               ),
             ),
             // Popular
-            Padding(
-              padding: const EdgeInsets.all(16.0),
+            const Padding(
+              padding: EdgeInsets.all(16.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -157,11 +157,11 @@ class Dashboard extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 13),
+            const SizedBox(height: 13),
             // Popular
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
+            const Padding(
+              padding: EdgeInsets.all(16.0),
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
@@ -204,9 +204,9 @@ class Dashboard extends StatelessWidget {
                   true, // Ganti dengan nilai sesuai dengan status dokter
             ),
             // Konten dashboard lainnya dapat ditambahkan di sini
-            Center(
+            const Center(
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: EdgeInsets.all(16.0),
                 child: Text('Selamat datang di dashboard Anda!'),
               ),
             ),
