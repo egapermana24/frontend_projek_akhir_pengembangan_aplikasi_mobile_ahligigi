@@ -1,3 +1,4 @@
+import 'package:ahli_gigi/pages/appointment/appointment.dart';
 import 'package:flutter/material.dart';
 
 class DetailsPageWidget extends StatelessWidget {
@@ -26,8 +27,8 @@ class DetailsPageWidget extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 13.0, right: 13.0),
                 child: Container(
-                  width: 170,
-                  height: 170,
+                  width: 120,
+                  height: 120,
                   // decoration: BoxDecoration(
                   //     border: Border.all(color: Colors.black, width: 2),
                   //     borderRadius: BorderRadius.circular(7)),
@@ -44,7 +45,7 @@ class DetailsPageWidget extends StatelessWidget {
                         child: Text(
                           layanan,
                           style: const TextStyle(
-                            fontSize: 25.0,
+                            fontSize: 20.0,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -54,7 +55,7 @@ class DetailsPageWidget extends StatelessWidget {
                         child: Text(
                           details,
                           style: const TextStyle(
-                            fontSize: 15.0,
+                            fontSize: 13.0,
                           ),
                         ),
                       ),
@@ -109,7 +110,7 @@ class DetailsPageWidget extends StatelessWidget {
         Stack(
           children: <Widget>[
             Container(
-              height: 515,
+              height: 423,
               child: Column(
                 children: <Widget>[
                   const Padding(
@@ -119,7 +120,7 @@ class DetailsPageWidget extends StatelessWidget {
                         Text(
                           'Details',
                           style: TextStyle(
-                            fontSize: 25.0,
+                            fontSize: 20.0,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -131,7 +132,7 @@ class DetailsPageWidget extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 13, right: 13),
                     child: Text(
                       penjelasan,
-                      style: const TextStyle(fontSize: 15.0),
+                      style: const TextStyle(fontSize: 13.0),
                     ),
                   ),
                 ],
@@ -144,7 +145,7 @@ class DetailsPageWidget extends StatelessWidget {
               child: Center(
                 child: Container(
                   width: 400,
-                  height: 70,
+                  height: 60,
                   decoration: BoxDecoration(
                       color: const Color.fromARGB(111, 130, 130, 130),
                       // border: Border.all(color: Colors.black),
@@ -152,13 +153,13 @@ class DetailsPageWidget extends StatelessWidget {
                   child: Row(
                     children: <Widget>[
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.only(left: 8, right: 2),
                         child: IconButton(
                           icon: const Icon(
                             Icons.favorite,
                             color: Colors.redAccent,
                           ),
-                          iconSize: 38.0,
+                          iconSize: 37.0,
                           tooltip: 'Add to Bookmark',
                           onPressed: () {
                             // Aksi ketika button diklik
@@ -172,16 +173,20 @@ class DetailsPageWidget extends StatelessWidget {
                           style: ElevatedButton.styleFrom(
                             // Atur ukuran ElevatedButton di sini
                             fixedSize: const Size(
-                                0, 50), // Sesuaikan ukuran sesuai kebutuhan
+                                0, 40), // Sesuaikan ukuran sesuai kebutuhan
                             // atau
                             // minimumSize: Size(120, 40),
                           ),
                           child: const Text(
                             "Book an Appointment",
-                            style: TextStyle(fontSize: 16),
+                            style: TextStyle(fontSize: 15),
                           ),
                           onPressed: () {
                             // Aksi ketika button diklik
+                            Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => appointmentPage()),
+                      );
                           },
                         ),
                       )),

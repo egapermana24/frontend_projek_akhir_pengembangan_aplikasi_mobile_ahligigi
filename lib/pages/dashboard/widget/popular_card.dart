@@ -17,79 +17,99 @@ class PopularCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 280,
-      margin: EdgeInsets.only(right: 16),
-      child: Card(
-        elevation: 4,
-        color: Colors.grey,
-        margin: EdgeInsets.only(left: 15),
-        child: Padding(
-          padding: const EdgeInsets.all(13.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  CircleAvatar(
-                    radius: 20,
-                    backgroundImage: AssetImage('assets/img/'),
-                  ),
-                  SizedBox(width: 8),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        doctorName,
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
+    return Padding(
+      padding: const EdgeInsets.only(left: 16, right: 16),
+      child: Container(
+        width: 280,
+        child: Card(
+          elevation: 15,
+          color: Colors.grey,
+          margin: EdgeInsets.only(
+            left: 0,
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(13.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    CircleAvatar(
+                      radius: 20,
+                      backgroundImage: AssetImage('assets/img/'),
+                    ),
+                    SizedBox(width: 8),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          doctorName,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          specialization,
+                          style: TextStyle(
+                              fontSize: 12,
+                              color: Color.fromARGB(255, 255, 255, 255)),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                SizedBox(height: 5),
+                // Kontainer untuk teks "Review"
+                Column(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                          color: Color.fromARGB(146, 255, 255, 255),
+                          borderRadius: BorderRadius.circular(10)),
+                      padding: EdgeInsets.all(5),
+                      height:
+                          70, // Sesuaikan tinggi container dengan kebutuhan Anda
+                      width: double.infinity,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.vertical,
+                        child: Text(
+                          review,
+                          style: TextStyle(fontSize: 12, color: Colors.black),
                         ),
                       ),
-                      Text(
-                        specialization,
-                        style: TextStyle(
-                            fontSize: 12,
-                            color: Color.fromARGB(255, 235, 235, 235)),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              SizedBox(height: 8),
-              // Kontainer untuk teks "Review"
-              Container(
-                padding: EdgeInsets.all(8),
-                height: 70,
-                width: double.infinity,
-                child: Text(
-                  review,
-                  style: TextStyle(fontSize: 12, color: Colors.white),
+                    ),
+                  ],
                 ),
-              ),
-              SizedBox(height: 8),
-              Row(
-                children: [
-                  Row(
-                    children: List.generate(
-                      rating,
-                      (index) => Icon(
-                        Icons.star,
-                        color: Colors.yellow,
-                        size: 16,
+                const SizedBox(
+                  height: 5,
+                ),
+                Row(
+                  children: [
+                    Row(
+                      children: List.generate(
+                        rating,
+                        (index) => Icon(
+                          Icons.star,
+                          color: Colors.yellow,
+                          size: 16,
+                        ),
                       ),
                     ),
-                  ),
-                  Spacer(),
-                  ElevatedButton(
-                    onPressed: () {
-                      // Tambahkan logika untuk tombol "Book" di sini
-                    },
-                    child: Text('Book'),
-                  ),
-                ],
-              ),
-            ],
+                    Spacer(),
+                    ElevatedButton(
+                      onPressed: () {
+                        // Tambahkan logika untuk tombol "Book" di sini
+                      },
+                      child: Text(
+                        'Book',
+                        style: TextStyle(color: Colors.black, fontSize: 10),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

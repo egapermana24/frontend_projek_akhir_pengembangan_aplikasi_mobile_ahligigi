@@ -16,10 +16,10 @@ class Categories extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: SearchBar(),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.all(16.0),
+            //   child: SearchBar(),
+            // ),
             CategoryCard(
               categoryName: 'Pembuatan',
               imagePath: 'assets/img/1.jpg',

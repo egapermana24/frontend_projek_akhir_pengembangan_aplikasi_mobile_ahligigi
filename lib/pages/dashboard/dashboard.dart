@@ -143,21 +143,21 @@ class Dashboard extends StatelessWidget {
                     'Gigi Palsu',
                     'Lorem ipsum',
                     'assets/doctor1.jpg',
-                    'Excellent doctor, highly recommended!',
+                    'Excellent doctor, highly recommended!, Thank You So Muchhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh',
                     4,
                   ),
                   PopularCard(
                     'Pasang Behel',
                     'Lorem ipsum',
                     'assets/doctor2.jpg',
-                    'Great with kids, very patient and understanding.',
+                    'Great with kids, very patient and understanding. Thank You So Muchhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh',
                     5,
                   ),
                   // Tambahkan DoctorCard lainnya di sini
                 ],
               ),
             ),
-            const SizedBox(height: 13),
+            const SizedBox(height: 5),
             // Popular
             const Padding(
               padding: EdgeInsets.all(16.0),
@@ -172,7 +172,7 @@ class Dashboard extends StatelessWidget {
               ),
             ),
             DaftarLayananCard(
-              doctorName: 'Tambal Gigi',
+              layanan: 'Tambal Gigi',
               specialization: 'Lorem ipsum',
               biography:
                   'Lorem ipsum dolor sit amet,consectetur adipiscing elit.',
@@ -180,7 +180,7 @@ class Dashboard extends StatelessWidget {
                   true, // Ganti dengan nilai sesuai dengan status dokter
             ),
             DaftarLayananCard(
-              doctorName: 'Gigi Palsu',
+              layanan: 'Gigi Palsu',
               specialization: 'Lorem ipsum',
               biography:
                   'Lorem ipsum dolor sit amet,consectetur adipiscing elit.',
@@ -188,7 +188,7 @@ class Dashboard extends StatelessWidget {
                   true, // Ganti dengan nilai sesuai dengan status dokter
             ),
             DaftarLayananCard(
-              doctorName: 'Pasang Behel',
+              layanan: 'Pasang Behel',
               specialization: 'Lorem ipsum',
               biography:
                   'Lorem ipsum dolor sit amet,consectetur adipiscing elit.',
@@ -196,7 +196,7 @@ class Dashboard extends StatelessWidget {
                   true, // Ganti dengan nilai sesuai dengan status dokter
             ),
             DaftarLayananCard(
-              doctorName: 'Venner Scaling',
+              layanan: 'Venner Scaling',
               specialization: 'Lorem ipsum',
               biography:
                   'Lorem ipsum dolor sit amet,consectetur adipiscing elit.',

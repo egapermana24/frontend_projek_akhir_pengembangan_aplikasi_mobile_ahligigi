@@ -10,6 +10,7 @@ class DetailsPage extends StatelessWidget {
       appBar: AppBar(
         title:
             Text('Janji Temu', style: TextStyle(fontWeight: FontWeight.bold)),
+        centerTitle: true,
       ),
       body: DetailsPageWidget(
         'assets/icons/google.png',

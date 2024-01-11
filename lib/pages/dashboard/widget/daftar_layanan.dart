@@ -2,13 +2,13 @@ import 'package:ahli_gigi/pages/DetailsPage/DetailsPage.dart';
 import 'package:flutter/material.dart';
 
 class DaftarLayananCard extends StatelessWidget {
-  final String doctorName;
+  final String layanan;
   final String specialization;
   final String biography;
   final bool isAvailable;
 
   DaftarLayananCard({
-    required this.doctorName,
+    required this.layanan,
     required this.specialization,
     required this.biography,
     required this.isAvailable,
@@ -30,11 +30,14 @@ class DaftarLayananCard extends StatelessWidget {
         children: [
           // Foto Layanan
           Container(
+            height: 150,
             decoration: BoxDecoration(
                 border: Border.all(color: Colors.black, width: 2),
                 borderRadius: BorderRadius.circular(7)),
-            child: Image.asset('assets/img/profile_picture.jpg',
-                width: 110, height: 160),
+            child: Image.asset(
+              'assets/img/profile_picture.jpg',
+              width: 100,
+            ),
           ),
           SizedBox(width: 16),
           // Informasi dokter
@@ -43,7 +46,7 @@ class DaftarLayananCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  doctorName,
+                  layanan,
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 Text(
@@ -56,7 +59,7 @@ class DaftarLayananCard extends StatelessWidget {
                 Text(
                   biography,
                   style: TextStyle(
-                      fontSize: 14,
+                      fontSize: 10,
                       color: const Color.fromARGB(255, 255, 255, 255)),
                 ),
                 SizedBox(height: 20),
@@ -74,6 +77,7 @@ class DaftarLayananCard extends StatelessWidget {
                       child: Text(
                         isAvailable ? 'Available' : 'Booked',
                         style: TextStyle(
+                            fontSize: 10,
                             color:
                                 Colors.white), // Ubah warna teks menjadi putih
                       ),
@@ -94,6 +98,7 @@ class DaftarLayananCard extends StatelessWidget {
                       child: Text(
                         'Book',
                         style: TextStyle(
+                            fontSize: 10,
                             color:
                                 Colors.black), // Ubah warna teks menjadi hitam
                       ),

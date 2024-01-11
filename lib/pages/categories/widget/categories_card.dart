@@ -23,7 +23,7 @@ class CategoryCard extends StatelessWidget {
           // Nama kategori
           Container(
             padding: EdgeInsets.all(8),
-            color: Colors.black
+            color: Color.fromARGB(255, 44, 44, 44)
                 .withOpacity(0.7), // Warna background teks dengan opasitas
             child: Text(
               categoryName,
