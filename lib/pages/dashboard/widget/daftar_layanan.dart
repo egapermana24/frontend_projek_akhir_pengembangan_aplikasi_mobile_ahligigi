@@ -2,12 +2,14 @@ import 'package:ahli_gigi/pages/DetailsPage/DetailsPage.dart';
 import 'package:flutter/material.dart';
 
 class DaftarLayananCard extends StatelessWidget {
+  final String imagePath;
   final String layanan;
   final String specialization;
   final String biography;
   final bool isAvailable;
 
   DaftarLayananCard({
+    required this.imagePath,
     required this.layanan,
     required this.specialization,
     required this.biography,
@@ -29,14 +31,19 @@ class DaftarLayananCard extends StatelessWidget {
             .start, // Mengubah alignment agar tombol berada di atas
         children: [
           // Foto Layanan
-          Container(
-            height: 150,
-            decoration: BoxDecoration(
-                border: Border.all(color: Colors.black, width: 2),
-                borderRadius: BorderRadius.circular(7)),
-            child: Image.asset(
-              'assets/img/profile_picture.jpg',
+          Padding(
+            padding: const EdgeInsets.only(top: 25.0),
+            child: Container(
+              height: 100,
               width: 100,
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black, width: 2),
+                  borderRadius: BorderRadius.circular(7)),
+              child: Center(
+                child: Image.asset(
+                  imagePath,
+                ),
+              ),
             ),
           ),
           SizedBox(width: 16),

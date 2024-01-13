@@ -110,7 +110,7 @@ class DetailsPageWidget extends StatelessWidget {
         Stack(
           children: <Widget>[
             Container(
-              height: 423,
+              height: 400,
               child: Column(
                 children: <Widget>[
                   const Padding(
@@ -184,9 +184,10 @@ class DetailsPageWidget extends StatelessWidget {
                           onPressed: () {
                             // Aksi ketika button diklik
                             Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => appointmentPage()),
-                      );
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => appointmentPage()),
+                            );
                           },
                         ),
                       )),

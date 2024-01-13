@@ -112,10 +112,10 @@ class Dashboard extends StatelessWidget {
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
-                  ServiceCard('Pembuatan', 'assets/icons/google.png'),
-                  ServiceCard('Pemasangan', 'assets/icons/google.png'),
-                  ServiceCard('Konsultasi', 'assets/icons/google.png'),
-                  ServiceCard('Garansi', 'assets/icons/google.png'),
+                  ServiceCard('Pembuatan', 'assets/icons/image.png'),
+                  ServiceCard('Pemasangan', 'assets/icons/image.png'),
+                  ServiceCard('Konsultasi', 'assets/icons/image.png'),
+                  ServiceCard('Garansi', 'assets/icons/image.png'),
                   // Tambahkan layanan lainnya di sini
                 ],
               ),
@@ -172,6 +172,7 @@ class Dashboard extends StatelessWidget {
               ),
             ),
             DaftarLayananCard(
+              imagePath: 'assets/icons/image2.png',
               layanan: 'Tambal Gigi',
               specialization: 'Lorem ipsum',
               biography:
@@ -180,6 +181,7 @@ class Dashboard extends StatelessWidget {
                   true, // Ganti dengan nilai sesuai dengan status dokter
             ),
             DaftarLayananCard(
+              imagePath: 'assets/icons/image2.png',
               layanan: 'Gigi Palsu',
               specialization: 'Lorem ipsum',
               biography:
@@ -188,6 +190,7 @@ class Dashboard extends StatelessWidget {
                   true, // Ganti dengan nilai sesuai dengan status dokter
             ),
             DaftarLayananCard(
+              imagePath: 'assets/icons/image2.png',
               layanan: 'Pasang Behel',
               specialization: 'Lorem ipsum',
               biography:
@@ -196,6 +199,7 @@ class Dashboard extends StatelessWidget {
                   true, // Ganti dengan nilai sesuai dengan status dokter
             ),
             DaftarLayananCard(
+              imagePath: 'assets/icons/image2.png',
               layanan: 'Venner Scaling',
               specialization: 'Lorem ipsum',
               biography:

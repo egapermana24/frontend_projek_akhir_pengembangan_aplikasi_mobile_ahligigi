@@ -22,7 +22,7 @@ class PopularCard extends StatelessWidget {
       child: Container(
         width: 280,
         child: Card(
-          elevation: 15,
+          elevation: 4,
           color: Colors.grey,
           margin: EdgeInsets.only(
             left: 0,
@@ -59,8 +59,8 @@ class PopularCard extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 5),
-                // Kontainer untuk teks "Review"
+                SizedBox(height: 10),
+                // Teks "Review"
                 Column(
                   children: [
                     Container(
@@ -69,13 +69,13 @@ class PopularCard extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10)),
                       padding: EdgeInsets.all(5),
                       height:
-                          70, // Sesuaikan tinggi container dengan kebutuhan Anda
+                          65, // Sesuaikan tinggi container dengan kebutuhan Anda
                       width: double.infinity,
                       child: SingleChildScrollView(
                         scrollDirection: Axis.vertical,
                         child: Text(
                           review,
-                          style: TextStyle(fontSize: 12, color: Colors.black),
+                          style: TextStyle(fontSize: 11, color: Colors.black),
                         ),
                       ),
                     ),
