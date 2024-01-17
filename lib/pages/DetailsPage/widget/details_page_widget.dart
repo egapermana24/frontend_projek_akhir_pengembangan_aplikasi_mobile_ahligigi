@@ -110,7 +110,7 @@ class DetailsPageWidget extends StatelessWidget {
         Stack(
           children: <Widget>[
             Container(
-              height: 400,
+              height: 435,
               child: Column(
                 children: <Widget>[
                   const Padding(
@@ -139,7 +139,7 @@ class DetailsPageWidget extends StatelessWidget {
               ),
             ),
             Positioned(
-              bottom: 7,
+              bottom: 5,
               left: 7,
               right: 7,
               child: Center(
@@ -153,22 +153,29 @@ class DetailsPageWidget extends StatelessWidget {
                   child: Row(
                     children: <Widget>[
                       Padding(
-                        padding: const EdgeInsets.only(left: 8, right: 2),
+                        padding: const EdgeInsets.only(left: 5, right: 1),
                         child: IconButton(
                           icon: const Icon(
                             Icons.favorite,
                             color: Colors.redAccent,
                           ),
-                          iconSize: 37.0,
+                          iconSize: 35.0,
                           tooltip: 'Add to Bookmark',
                           onPressed: () {
                             // Aksi ketika button diklik
                           },
                         ),
                       ),
+                      Container(
+                        width: 1,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                                color: Color.fromARGB(255, 142, 142, 142))),
+                      ),
                       Expanded(
                           child: Padding(
-                        padding: const EdgeInsets.only(right: 13.0),
+                        padding: const EdgeInsets.only(left: 8, right: 13.0),
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             // Atur ukuran ElevatedButton di sini

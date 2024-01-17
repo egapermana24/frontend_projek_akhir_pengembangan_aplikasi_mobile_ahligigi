@@ -1,14 +1,20 @@
 import 'package:ahli_gigi/pages/categories/categories.dart';
 import 'package:ahli_gigi/pages/dashboard/widget/daftar_layanan.dart';
+import 'package:ahli_gigi/pages/navbar/navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ahli_gigi/aturan/constants/warna_apps.dart';
 import 'package:ahli_gigi/pages/dashboard/widget/popular_card.dart';
 import 'package:ahli_gigi/pages/dashboard/widget/service_card.dart';
 
-class Dashboard extends StatelessWidget {
+class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
 
+  @override
+  State<Dashboard> createState() => _DashboardState();
+}
+
+class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -51,21 +57,27 @@ class Dashboard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Bagian atas dengan foto profil dan username
-            const Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                children: [
-                  CircleAvatar(
-                    radius: 30,
-                    backgroundImage:
-                        AssetImage('assets/img/profile_picture.jpg'),
-                  ),
-                  SizedBox(width: 16),
-                  Text(
-                    'Username',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                ],
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Container(
+                decoration: BoxDecoration(
+                    border:
+                        Border.all(color: const Color.fromARGB(0, 0, 0, 0))),
+                child: Row(
+                  children: [
+                    CircleAvatar(
+                      radius: 30,
+                      backgroundImage:
+                          AssetImage('assets/img/profile_picture.jpg'),
+                    ),
+                    SizedBox(width: 16),
+                    Text(
+                      'Username',
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
               ),
             ),
             // Konten dashboard lainnya dapat ditambahkan di sini
@@ -178,7 +190,7 @@ class Dashboard extends StatelessWidget {
               biography:
                   'Lorem ipsum dolor sit amet,consectetur adipiscing elit.',
               isAvailable:
-                  true, // Ganti dengan nilai sesuai dengan status dokter
+                  false, // Ganti dengan nilai sesuai dengan status dokter
             ),
             DaftarLayananCard(
               imagePath: 'assets/icons/image2.png',
@@ -196,7 +208,7 @@ class Dashboard extends StatelessWidget {
               biography:
                   'Lorem ipsum dolor sit amet,consectetur adipiscing elit.',
               isAvailable:
-                  true, // Ganti dengan nilai sesuai dengan status dokter
+                  false, // Ganti dengan nilai sesuai dengan status dokter
             ),
             DaftarLayananCard(
               imagePath: 'assets/icons/image2.png',

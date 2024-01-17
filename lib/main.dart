@@ -1,4 +1,6 @@
 import 'package:ahli_gigi/pages/dashboard/dashboard.dart';
+import 'package:ahli_gigi/pages/dashboard/dashboard.dart';
+import 'package:ahli_gigi/pages/navbar/navbar.dart';
 import 'package:ahli_gigi/pages/register.dart';
 import 'package:ahli_gigi/pages/login.dart';
 import 'package:ahli_gigi/pages/forgot_pw.dart';
@@ -9,16 +11,15 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const Login(),
+      initialRoute: 'Login',
       routes: {
-        'Login': (context) => Login(),
+        'Login': (context) => const Login(),
         'dashboard': (context) => Dashboard(),
         'register': (context) => Register(),
         'forgot': (context) => Forgot(),

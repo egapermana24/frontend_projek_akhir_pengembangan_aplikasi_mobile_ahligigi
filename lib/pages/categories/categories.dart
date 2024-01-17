@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'widget/categories_card.dart';
+import 'package:ahli_gigi/pages/navbar/navbar.dart';
 
 class Categories extends StatelessWidget {
   const Categories({super.key});

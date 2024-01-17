@@ -1,5 +1,6 @@
 import 'package:ahli_gigi/pages/appointment/widget/table_calendar.dart';
 import 'package:flutter/material.dart';
+import 'package:ahli_gigi/pages/appointment/widget/table_jam.dart';
 
 class appointmentPage extends StatefulWidget {
   const appointmentPage({super.key});
@@ -40,100 +41,7 @@ class _appointmentPageState extends State<appointmentPage> {
           const SizedBox(
             height: 10,
           ),
-          Container(
-            child: Row(children: [
-              Column(
-                children: [
-                  Row(
-                    children: [
-                      Radio(
-                          value: 1,
-                          groupValue: groupValue,
-                          onChanged: (value) {
-                            setState(() {
-                              groupValue = value!;
-                            });
-                          }),
-                      const Text('09.00'),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Radio(
-                          value: 2,
-                          groupValue: groupValue,
-                          onChanged: (value) {
-                            setState(() {
-                              groupValue = value!;
-                            });
-                          }),
-                      const Text('11.00'),
-                    ],
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  Row(
-                    children: [
-                      Radio(
-                          value: 3,
-                          groupValue: groupValue,
-                          onChanged: (value) {
-                            setState(() {
-                              groupValue = value!;
-                            });
-                          }),
-                      const Text('13.00'),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Radio(
-                          value: 4,
-                          groupValue: groupValue,
-                          onChanged: (value) {
-                            setState(() {
-                              groupValue = value!;
-                            });
-                          }),
-                      const Text('15.00'),
-                    ],
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  Row(
-                    children: [
-                      Radio(
-                          value: 5,
-                          groupValue: groupValue,
-                          onChanged: (value) {
-                            setState(() {
-                              groupValue = value!;
-                            });
-                          }),
-                      const Text('17.00'),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Radio(
-                          value: 6,
-                          groupValue: groupValue,
-                          onChanged: (value) {
-                            setState(() {
-                              groupValue = value!;
-                            });
-                          }),
-                      const Text('19.00'),
-                    ],
-                  ),
-                ],
-              ),
-            ]),
-          )
+          tableJam(),
         ],
       ),
     );
