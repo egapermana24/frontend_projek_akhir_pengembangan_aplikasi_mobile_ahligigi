@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter/gestures.dart';
-import '../components/app_text_form_field.dart';
+import '/components/app_text_form_field.dart';
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);

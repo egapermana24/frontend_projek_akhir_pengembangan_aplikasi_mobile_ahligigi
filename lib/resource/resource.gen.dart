@@ -28,6 +28,8 @@ class $ResourcesIconGen {
   //     const ResourceGenImage('assets/icons/ic_selected_search_normal.png');
 
   /// File path: assets/icons/ic_selected_user.png
+  ResourceGenImage get icSelectedCategory =>
+      const ResourceGenImage('assets/icons/ic_selected_category.png');
   ResourceGenImage get icSelectedUser =>
       const ResourceGenImage('assets/icons/ic_selected_user.png');
 
@@ -42,7 +44,6 @@ class $ResourcesIconGen {
   // /// File path: assets/icons/ic_selected_charging.png
   // ResourceGenImage get icSelectedCharging =>
   //     const ResourceGenImage('assets/icons/ic_selected_charging.png');
-  
 
   // /// File path: assets/icons/ic_setting-5.png
   // ResourceGenImage get icSetting5 =>
@@ -61,6 +62,8 @@ class $ResourcesIconGen {
   //     const ResourceGenImage('assets/icons/ic_unselected_search_normal.png');
 
   /// File path: assets/icons/ic_unselected_user.png
+  ResourceGenImage get icUnselectedCategory =>
+      const ResourceGenImage('assets/icons/ic_unselected_category.png');
   ResourceGenImage get icUnselectedUser =>
       const ResourceGenImage('assets/icons/ic_unselected_user.png');
 
@@ -75,7 +78,7 @@ class $ResourcesIconGen {
   // /// File path: assets/icons/ic_unselected_charging.png
   // ResourceGenImage get icUnselectedCharging =>
   //     const ResourceGenImage('assets/icons/ic_unselected_charging.png');
-  
+
   // /// File path: assets/icons/ic_vuesax-linear-send.png
   // ResourceGenImage get icVuesaxLinearSend =>
   //     const ResourceGenImage('assets/icons/ic_vuesax-linear-send.png');
@@ -88,6 +91,7 @@ class $ResourcesIconGen {
         // icSelectedArchive,
         icSelectedHome,
         // icSelectedSearchNormal,
+        icSelectedCategory,
         icSelectedUser,
         // icSelectedHistory,
         // icSelectedAchive,
@@ -96,6 +100,7 @@ class $ResourcesIconGen {
         // icUnselectedArchive,
         icUnselectedHome,
         // icUnselectedSearchNormal,
+        icUnselectedCategory,
         icUnselectedUser,
         // icUnselectedHistory,
         // icUnselectedAchive,

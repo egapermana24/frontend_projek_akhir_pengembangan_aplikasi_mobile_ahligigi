@@ -2,6 +2,7 @@ import 'package:ahli_gigi/aturan/constants/warna_apps.dart';
 import 'package:ahli_gigi/pages/categories/categories.dart';
 import 'package:ahli_gigi/pages/dashboard/dashboard.dart';
 import 'package:ahli_gigi/pages/navbar/widget/bottom_icon_widget.dart';
+import 'package:ahli_gigi/pages/profile/profile.dart';
 import 'package:ahli_gigi/resource/resource.gen.dart';
 import 'package:flutter/material.dart';
 
@@ -28,6 +29,7 @@ class _NavBarState extends State<NavBar> {
     pages = [
       const Dashboard(),
       const Categories(),
+      const Profile(),
     ];
   }
 
@@ -82,8 +84,8 @@ class _NavBarState extends State<NavBar> {
                   ? Theme.of(context).primaryColor
                   : AppColors.gray,
               iconName: pageIndex == 1
-                  ? Assets.icons.icSelectedUser.path
-                  : Assets.icons.icUnselectedUser.path,
+                  ? Assets.icons.icSelectedCategory.path
+                  : Assets.icons.icUnselectedCategory.path,
               iconColor: pageIndex == 1
                   ? Theme.of(context).primaryColor
                   : AppColors.gray,
@@ -91,6 +93,24 @@ class _NavBarState extends State<NavBar> {
               tap: () {
                 setState(() {
                   pageIndex = 1;
+                });
+              },
+            ),
+            BottomIconWidget(
+              title: 'Profil',
+              titleColor: pageIndex == 2
+                  ? Theme.of(context).primaryColor
+                  : AppColors.gray,
+              iconName: pageIndex == 2
+                  ? Assets.icons.icSelectedUser.path
+                  : Assets.icons.icUnselectedUser.path,
+              iconColor: pageIndex == 2
+                  ? Theme.of(context).primaryColor
+                  : AppColors.gray,
+              pageIndex: 2,
+              tap: () {
+                setState(() {
+                  pageIndex = 2;
                 });
               },
             ),

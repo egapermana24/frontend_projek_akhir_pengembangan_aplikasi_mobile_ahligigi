@@ -21,7 +21,7 @@ class BottomIconWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return pageIndex == 2 ? _buildFloatingButton() : _buildNormalButton();
+    return pageIndex == 2 ? _buildNormalButton() : _buildNormalButton();
   }
 
   Widget _buildFloatingButton() {

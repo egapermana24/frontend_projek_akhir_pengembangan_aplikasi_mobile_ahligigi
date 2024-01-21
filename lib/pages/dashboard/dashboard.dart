@@ -1,11 +1,13 @@
 import 'package:ahli_gigi/pages/categories/categories.dart';
 import 'package:ahli_gigi/pages/dashboard/widget/daftar_layanan.dart';
 import 'package:ahli_gigi/pages/navbar/navbar.dart';
+import 'package:ahli_gigi/pages/profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ahli_gigi/aturan/constants/warna_apps.dart';
 import 'package:ahli_gigi/pages/dashboard/widget/popular_card.dart';
 import 'package:ahli_gigi/pages/dashboard/widget/service_card.dart';
+import 'package:ahli_gigi/pages/login/login.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -27,8 +29,10 @@ class _DashboardState extends State<Dashboard> {
             IconButton(
               icon: const Icon(Icons.logout),
               onPressed: () {
-                Navigator.pushReplacementNamed(
-                    context, 'Login'); // kembali ke halaman login
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => Login()),
+                );
               },
             ),
           ],
@@ -59,24 +63,32 @@ class _DashboardState extends State<Dashboard> {
             // Bagian atas dengan foto profil dan username
             Padding(
               padding: const EdgeInsets.all(10.0),
-              child: Container(
-                decoration: BoxDecoration(
-                    border:
-                        Border.all(color: const Color.fromARGB(0, 0, 0, 0))),
-                child: Row(
-                  children: [
-                    CircleAvatar(
-                      radius: 30,
-                      backgroundImage:
-                          AssetImage('assets/img/profile_picture.jpg'),
-                    ),
-                    SizedBox(width: 16),
-                    Text(
-                      'Username',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                  ],
+              child: InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Profile()),
+                  );
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                      border:
+                          Border.all(color: const Color.fromARGB(0, 0, 0, 0))),
+                  child: Row(
+                    children: [
+                      CircleAvatar(
+                        radius: 30,
+                        backgroundImage:
+                            AssetImage('assets/img/profile_picture.jpg'),
+                      ),
+                      SizedBox(width: 16),
+                      Text(
+                        'Username',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -223,7 +235,7 @@ class _DashboardState extends State<Dashboard> {
             const Center(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: Text('Selamat datang di dashboard Anda!'),
+                child: Text('Selamat datang di dashboard!'),
               ),
             ),
           ],

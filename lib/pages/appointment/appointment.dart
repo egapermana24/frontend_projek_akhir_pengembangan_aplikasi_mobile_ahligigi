@@ -41,7 +41,7 @@ class _appointmentPageState extends State<appointmentPage> {
           const SizedBox(
             height: 10,
           ),
-          tableJam(),
+          TableJam(),
         ],
       ),
     );

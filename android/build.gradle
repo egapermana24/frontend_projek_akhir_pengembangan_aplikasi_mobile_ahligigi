@@ -6,6 +6,10 @@ buildscript {
     }
 
     dependencies {
+    // def appcompat_version = "1.6.1"
+
+    //     classpath "androidx.appcompat:appcompat:$appcompat_version"
+    //     classpath "androidx.appcompat:appcompat-resources:$appcompat_version"
         classpath 'com.android.tools.build:gradle:7.2.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }

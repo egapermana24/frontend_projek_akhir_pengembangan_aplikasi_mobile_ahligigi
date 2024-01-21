@@ -138,9 +138,11 @@
 //   }
 // }
 
+import 'package:ahli_gigi/pages/dashboard/dashboard.dart';
+import 'package:ahli_gigi/pages/navbar/navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../components/app_text_form_field.dart';
+import '/components/app_text_form_field.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Login extends StatefulWidget {
@@ -270,7 +272,12 @@ class _LoginState extends State<Login> {
                     Center(
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.pushReplacementNamed(context, 'dashboard');
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    NavBar(initialPageIndex: 0),
+                              ));
                           // Tambahkan logika untuk tombol login di sini
                         },
                         style: ButtonStyle(

@@ -140,64 +140,68 @@ class DetailsPageWidget extends StatelessWidget {
                   ],
                 ),
               ),
-              Container(
-                child: Center(
-                  child: Container(
-                    width: 400,
-                    height: 60,
-                    decoration: BoxDecoration(
-                        color: const Color.fromARGB(111, 130, 130, 130),
-                        // border: Border.all(color: Colors.black),
-                        borderRadius: BorderRadius.circular(30)),
-                    child: Row(
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(left: 5, right: 1),
-                          child: IconButton(
-                            icon: const Icon(
-                              Icons.favorite,
-                              color: Colors.redAccent,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  child: Center(
+                    child: Container(
+                      width: 400,
+                      height: 60,
+                      decoration: BoxDecoration(
+                          color: const Color.fromARGB(111, 130, 130, 130),
+                          // border: Border.all(color: Colors.black),
+                          borderRadius: BorderRadius.circular(30)),
+                      child: Row(
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(left: 5, right: 1),
+                            child: IconButton(
+                              icon: const Icon(
+                                Icons.favorite,
+                                color: Colors.redAccent,
+                              ),
+                              iconSize: 35.0,
+                              tooltip: 'Add to Bookmark',
+                              onPressed: () {
+                                // Aksi ketika button diklik
+                              },
                             ),
-                            iconSize: 35.0,
-                            tooltip: 'Add to Bookmark',
-                            onPressed: () {
-                              // Aksi ketika button diklik
-                            },
                           ),
-                        ),
-                        Container(
-                          width: 1,
-                          height: 40,
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: Color.fromARGB(255, 142, 142, 142))),
-                        ),
-                        Expanded(
-                            child: Padding(
-                          padding: const EdgeInsets.only(left: 8, right: 13.0),
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              // Atur ukuran ElevatedButton di sini
-                              fixedSize: const Size(
-                                  0, 40), // Sesuaikan ukuran sesuai kebutuhan
-                              // atau
-                              // minimumSize: Size(120, 40),
-                            ),
-                            child: const Text(
-                              "Book an Appointment",
-                              style: TextStyle(fontSize: 15),
-                            ),
-                            onPressed: () {
-                              // Aksi ketika button diklik
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => appointmentPage()),
-                              );
-                            },
+                          Container(
+                            width: 1,
+                            height: 40,
+                            decoration: BoxDecoration(
+                                border: Border.all(
+                                    color: Color.fromARGB(255, 142, 142, 142))),
                           ),
-                        )),
-                      ],
+                          Expanded(
+                              child: Padding(
+                            padding:
+                                const EdgeInsets.only(left: 8, right: 13.0),
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                // Atur ukuran ElevatedButton di sini
+                                fixedSize: const Size(
+                                    0, 40), // Sesuaikan ukuran sesuai kebutuhan
+                                // atau
+                                // minimumSize: Size(120, 40),
+                              ),
+                              child: const Text(
+                                "Book an Appointment",
+                                style: TextStyle(fontSize: 15),
+                              ),
+                              onPressed: () {
+                                // Aksi ketika button diklik
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => appointmentPage()),
+                                );
+                              },
+                            ),
+                          )),
+                        ],
+                      ),
                     ),
                   ),
                 ),

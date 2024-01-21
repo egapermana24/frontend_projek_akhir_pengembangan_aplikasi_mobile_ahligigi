@@ -1,9 +1,10 @@
-import 'package:ahli_gigi/pages/dashboard/dashboard.dart';
-import 'package:ahli_gigi/pages/dashboard/dashboard.dart';
+// import 'package:ahli_gigi/pages/dashboard/dashboard.dart';
+// import 'package:ahli_gigi/pages/dashboard/dashboard.dart';
+import 'package:ahli_gigi/pages/login/login.dart';
 import 'package:ahli_gigi/pages/navbar/navbar.dart';
-import 'package:ahli_gigi/pages/register.dart';
-import 'package:ahli_gigi/pages/login.dart';
-import 'package:ahli_gigi/pages/forgot_pw.dart';
+// import 'package:ahli_gigi/pages/login/register.dart';
+// import 'package:ahli_gigi/pages/login/login.dart';
+// import 'package:ahli_gigi/pages/login/forgot_pw.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: NavBar(initialPageIndex: 0),
+      home: Login(),
 
       // initialRoute: 'Login',
       // routes: {

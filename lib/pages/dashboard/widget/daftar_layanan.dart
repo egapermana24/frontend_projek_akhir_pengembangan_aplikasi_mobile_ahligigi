@@ -72,6 +72,7 @@ class DaftarLayananCard extends StatelessWidget {
                 SizedBox(height: 20),
                 // Tombol status "Available" dan "Book"
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     ElevatedButton(
@@ -89,7 +90,7 @@ class DaftarLayananCard extends StatelessWidget {
                                 Colors.white), // Ubah warna teks menjadi putih
                       ),
                     ),
-                    Spacer(),
+                    // Spacer(),
                     ElevatedButton(
                       onPressed: () {
                         Navigator.push(
