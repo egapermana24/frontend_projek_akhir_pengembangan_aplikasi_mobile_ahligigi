@@ -1,7 +1,7 @@
 // import 'package:ahli_gigi/pages/dashboard/dashboard.dart';
 // import 'package:ahli_gigi/pages/dashboard/dashboard.dart';
 import 'package:ahli_gigi/pages/login/login.dart';
-import 'package:ahli_gigi/pages/navbar/navbar.dart';
+// import 'package:ahli_gigi/pages/navbar/navbar.dart';
 // import 'package:ahli_gigi/pages/login/register.dart';
 // import 'package:ahli_gigi/pages/login/login.dart';
 // import 'package:ahli_gigi/pages/login/forgot_pw.dart';

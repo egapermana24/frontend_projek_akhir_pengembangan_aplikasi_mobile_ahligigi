@@ -1,6 +1,6 @@
 import 'package:ahli_gigi/pages/categories/categories.dart';
 import 'package:ahli_gigi/pages/dashboard/widget/daftar_layanan.dart';
-import 'package:ahli_gigi/pages/navbar/navbar.dart';
+// import 'package:ahli_gigi/pages/navbar/navbar.dart';
 import 'package:ahli_gigi/pages/profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,6 +8,9 @@ import 'package:ahli_gigi/aturan/constants/warna_apps.dart';
 import 'package:ahli_gigi/pages/dashboard/widget/popular_card.dart';
 import 'package:ahli_gigi/pages/dashboard/widget/service_card.dart';
 import 'package:ahli_gigi/pages/login/login.dart';
+import 'dart:async';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -17,6 +20,20 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
+  late Future<List<dynamic>> _serviceData;
+
+  Future<List> getData() async {
+    var url = Uri.parse('http://192.168.100.124:8000/api/Layanan'); //Api Link
+    final response = await http.get(url);
+    return jsonDecode(response.body);
+  }
+
+  @override
+  void initState() {
+    _serviceData = getData();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
@@ -57,188 +74,178 @@ class _DashboardState extends State<Dashboard> {
       //   },
       // ),
       body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Bagian atas dengan foto profil dan username
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Profile()),
-                  );
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                      border:
-                          Border.all(color: const Color.fromARGB(0, 0, 0, 0))),
-                  child: Row(
-                    children: [
-                      CircleAvatar(
-                        radius: 30,
-                        backgroundImage:
-                            AssetImage('assets/img/profile_picture.jpg'),
-                      ),
-                      SizedBox(width: 16),
-                      Text(
-                        'Username',
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            // Konten dashboard lainnya dapat ditambahkan di sini
-            const Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: 'Cari...',
-                  prefixIcon: Icon(Icons.search),
-                  border: OutlineInputBorder(),
-                ),
-              ),
-            ),
-            // Layanan dan More
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: FutureBuilder<List<dynamic>>(
+          future: _serviceData,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return CircularProgressIndicator(); // Show loading indicator while fetching data
+            } else if (snapshot.hasError) {
+              return Text('Error: ${snapshot.error}');
+            } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+              return Text('No data available');
+            } else {
+              List<dynamic> serviceList = snapshot.data!;
+
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Layanan',
-                    style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      // Tambahkan logika untuk navigasi ke halaman lain di sini
-                      // Misalnya, Navigator.push ke halaman baru.
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Categories()),
-                      );
-                    },
-                    child: const Text(
-                      'More',
-                      style: TextStyle(fontSize: 15, color: Colors.blue),
+                  // Bagian atas dengan foto profil dan username
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Profile()),
+                        );
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                                color: const Color.fromARGB(0, 0, 0, 0))),
+                        child: Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 30,
+                              backgroundImage:
+                                  AssetImage('assets/img/profile_picture.jpg'),
+                            ),
+                            SizedBox(width: 16),
+                            Text(
+                              'Username',
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
-                ],
-              ),
-            ),
-            // Kotak container dengan gambar dan nama layanan
-            Container(
-              height: 120,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  ServiceCard('Pembuatan', 'assets/icons/image.png'),
-                  ServiceCard('Pemasangan', 'assets/icons/image.png'),
-                  ServiceCard('Konsultasi', 'assets/icons/image.png'),
-                  ServiceCard('Garansi', 'assets/icons/image.png'),
-                  // Tambahkan layanan lainnya di sini
-                ],
-              ),
-            ),
-            // Popular
-            const Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Yang Dicari',
-                    style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
+                  // Konten dashboard lainnya dapat ditambahkan di sini
+                  const Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        hintText: 'Cari...',
+                        prefixIcon: Icon(Icons.search),
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                  ),
+                  // Layanan dan More
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'Layanan',
+                          style: TextStyle(
+                              fontSize: 19, fontWeight: FontWeight.bold),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            // Tambahkan logika untuk navigasi ke halaman lain di sini
+                            // Misalnya, Navigator.push ke halaman baru.
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Categories()),
+                            );
+                          },
+                          child: const Text(
+                            'More',
+                            style: TextStyle(fontSize: 15, color: Colors.blue),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  // Kotak container dengan gambar dan nama layanan
+                  Container(
+                    height: 120,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: serviceList.length,
+                      itemBuilder: (context, index) {
+                        var service = serviceList[index];
+                        return ServiceCard(
+                            service['name'], 'assets/icons/image.png');
+                      },
+                    ),
+                  ),
+                  // Popular
+                  const Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Yang Dicari',
+                          style: TextStyle(
+                              fontSize: 19, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),
+                  // List dokter populer
+                  Container(
+                    height: 200,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        PopularCard(
+                          'Gigi Palsu',
+                          'Lorem ipsum',
+                          'assets/doctor1.jpg',
+                          'Excellent doctor, highly recommended!, Thank You So Muchhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh',
+                          4,
+                        ),
+                        PopularCard(
+                          'Pasang Behel',
+                          'Lorem ipsum',
+                          'assets/doctor2.jpg',
+                          'Great with kids, very patient and understanding. Thank You So Muchhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh',
+                          5,
+                        ),
+                        // Tambahkan DoctorCard lainnya di sini
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  // Popular
+                  const Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Daftar Layanan',
+                          style: TextStyle(
+                              fontSize: 19, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    physics: ClampingScrollPhysics(),
+                    itemCount: serviceList.length,
+                    itemBuilder: (context, index) {
+                      var service = serviceList[index];
+                      return DaftarLayananCard(
+                        imagePath: 'assets/icons/image2.png',
+                        layanan: service['nama_layanan'],
+                        specialization: service['gambar_layanan'],
+                        biography: service['deskripsi'],
+                        isAvailable: false,
+                      );
+                    },
                   ),
                 ],
-              ),
-            ),
-            // List dokter populer
-            Container(
-              height: 200,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  PopularCard(
-                    'Gigi Palsu',
-                    'Lorem ipsum',
-                    'assets/doctor1.jpg',
-                    'Excellent doctor, highly recommended!, Thank You So Muchhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh',
-                    4,
-                  ),
-                  PopularCard(
-                    'Pasang Behel',
-                    'Lorem ipsum',
-                    'assets/doctor2.jpg',
-                    'Great with kids, very patient and understanding. Thank You So Muchhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh',
-                    5,
-                  ),
-                  // Tambahkan DoctorCard lainnya di sini
-                ],
-              ),
-            ),
-            const SizedBox(height: 5),
-            // Popular
-            const Padding(
-              padding: EdgeInsets.all(16.0),
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Daftar Layanan',
-                    style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-            ),
-            DaftarLayananCard(
-              imagePath: 'assets/icons/image2.png',
-              layanan: 'Tambal Gigi',
-              specialization: 'Lorem ipsum',
-              biography:
-                  'Lorem ipsum dolor sit amet,consectetur adipiscing elit.',
-              isAvailable:
-                  false, // Ganti dengan nilai sesuai dengan status dokter
-            ),
-            DaftarLayananCard(
-              imagePath: 'assets/icons/image2.png',
-              layanan: 'Gigi Palsu',
-              specialization: 'Lorem ipsum',
-              biography:
-                  'Lorem ipsum dolor sit amet,consectetur adipiscing elit.',
-              isAvailable:
-                  true, // Ganti dengan nilai sesuai dengan status dokter
-            ),
-            DaftarLayananCard(
-              imagePath: 'assets/icons/image2.png',
-              layanan: 'Pasang Behel',
-              specialization: 'Lorem ipsum',
-              biography:
-                  'Lorem ipsum dolor sit amet,consectetur adipiscing elit.',
-              isAvailable:
-                  false, // Ganti dengan nilai sesuai dengan status dokter
-            ),
-            DaftarLayananCard(
-              imagePath: 'assets/icons/image2.png',
-              layanan: 'Venner Scaling',
-              specialization: 'Lorem ipsum',
-              biography:
-                  'Lorem ipsum dolor sit amet,consectetur adipiscing elit.',
-              isAvailable:
-                  true, // Ganti dengan nilai sesuai dengan status dokter
-            ),
-            // Konten dashboard lainnya dapat ditambahkan di sini
-            const Center(
-              child: Padding(
-                padding: EdgeInsets.all(16.0),
-                child: Text('Selamat datang di dashboard!'),
-              ),
-            ),
-          ],
+              );
+            }
+          },
         ),
       ),
     );
