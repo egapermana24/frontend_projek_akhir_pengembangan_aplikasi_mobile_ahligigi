@@ -1,3 +1,4 @@
+import 'package:ahli_gigi/config/api_config.dart';
 import 'package:ahli_gigi/pages/categories/categories.dart';
 import 'package:ahli_gigi/pages/dashboard/widget/daftar_layanan.dart';
 // import 'package:ahli_gigi/pages/navbar/navbar.dart';
@@ -23,7 +24,7 @@ class _DashboardState extends State<Dashboard> {
   late Future<List<dynamic>> _serviceData;
 
   Future<List> getData() async {
-    var url = Uri.parse('http://192.168.100.124:8000/api/Layanan'); //Api Link
+    var url = Uri.parse('${ApiConfig.baseUrl}/api/Layanan');//Api Link
     final response = await http.get(url);
     return jsonDecode(response.body);
   }
