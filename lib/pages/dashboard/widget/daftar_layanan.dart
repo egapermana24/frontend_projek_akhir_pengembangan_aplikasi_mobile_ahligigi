@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 
 class DaftarLayananCard extends StatelessWidget {
   final String imagePath;
-  final String layanan;
+  final String nama_layanan;
   final String specialization;
-  final String biography;
+  final String deskripsi;
   final bool isAvailable;
 
   DaftarLayananCard({
     required this.imagePath,
-    required this.layanan,
+    required this.nama_layanan,
     required this.specialization,
-    required this.biography,
+    required this.deskripsi,
     required this.isAvailable,
   });
 
@@ -53,7 +53,7 @@ class DaftarLayananCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  layanan,
+                  nama_layanan,
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 Text(
@@ -64,7 +64,7 @@ class DaftarLayananCard extends StatelessWidget {
                 ),
                 SizedBox(height: 8),
                 Text(
-                  biography,
+                  deskripsi,
                   style: TextStyle(
                       fontSize: 10,
                       color: const Color.fromARGB(255, 255, 255, 255)),
