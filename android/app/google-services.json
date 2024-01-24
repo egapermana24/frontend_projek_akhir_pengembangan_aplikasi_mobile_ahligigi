@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "723047128823",
+    "project_id": "ahli-gigi-acenk",
+    "storage_bucket": "ahli-gigi-acenk.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:723047128823:android:21aa408d5df132bbb83df2",
+        "android_client_info": {
+          "package_name": "com.example.ahli_gigi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "723047128823-o5m93l7m7gths47g3lm1gd5uq86d7121.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ahli_gigi",
+            "certificate_hash": "edb626624684e335d4ec2043a1f8c6dd0c9181c6"
+          }
+        },
+        {
+          "client_id": "723047128823-4eg3svdv7cuakno78v599863fk6g6e14.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7tbMZnKUGme_rLKOB3bRnsFaBkEaPqI4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "723047128823-4eg3svdv7cuakno78v599863fk6g6e14.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "723047128823-1uau1vd5gdser8ebsmtdufoqc261o59a.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.ahliGigi"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

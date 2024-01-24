@@ -1,6 +1,9 @@
 import 'package:ahli_gigi/pages/dashboard/dashboard.dart';
+import 'package:ahli_gigi/pages/login/login.dart';
 import 'package:ahli_gigi/pages/profile/components/info_akun.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -10,6 +13,16 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+
+void _signOut(BuildContext context) async {
+    await FirebaseAuth.instance.signOut();
+    await GoogleSignIn().signOut();
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => Login()),
+    );
+  }
+
   bool isTapped = false;
 
   @override
@@ -139,7 +152,22 @@ class _ProfileState extends State<Profile> {
                     ],
                   )),
             ),
-          )
+          ),
+          // buatkan tombol logout di paling bawah halaman mengikuti panjang device layar user, letakkan ditengah bawah
+          Spacer(),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: 50,
+            margin: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+            child: ElevatedButton(
+              onPressed: () => _signOut(context),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.red, // Ubah warna latar belakang
+                onPrimary: Colors.white, // Ubah warna teks
+              ),
+              child: Text('Logout'),
+            ),
+          ),
         ],
       ),
     );

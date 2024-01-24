@@ -8,7 +8,8 @@ import 'package:flutter/material.dart';
 
 class NavBar extends StatefulWidget {
   final int initialPageIndex;
-  const NavBar({Key? key, required this.initialPageIndex}) : super(key: key);
+  const NavBar({Key? key, required this.initialPageIndex})
+      : super(key: key);
 
   @override
   _NavBarState createState() => _NavBarState();
@@ -16,6 +17,7 @@ class NavBar extends StatefulWidget {
 
 class _NavBarState extends State<NavBar> {
   // int _selectedIndex = 0;
+
   late int pageIndex;
   late int initialPageIndex;
   late List<Widget> pages;
@@ -27,7 +29,8 @@ class _NavBarState extends State<NavBar> {
     pageIndex = initialPageIndex;
     // Inisialisasi pages di dalam initState
     pages = [
-      const Dashboard(),
+      Dashboard(
+      ),
       const Categories(),
       const Profile(),
     ];
