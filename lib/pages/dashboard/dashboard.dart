@@ -176,14 +176,15 @@ class _DashboardState extends State<Dashboard> {
                   ),
                   // Kotak container dengan gambar dan nama layanan
                   Container(
-                    height: 120,
+                    height: 125,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: serviceList.length,
+                      itemCount:
+                          serviceList.length > 5 ? 4 : serviceList.length,
                       itemBuilder: (context, index) {
                         var service = serviceList[index];
                         return ServiceCard(
-                            service['name'], 'assets/icons/image.png');
+                            service['nama_layanan'], 'assets/icons/image.png');
                       },
                     ),
                   ),
@@ -248,9 +249,9 @@ class _DashboardState extends State<Dashboard> {
                       var service = serviceList[index];
                       return DaftarLayananCard(
                         imagePath: 'assets/icons/image2.png',
-                        layanan: service['nama_layanan'],
+                        nama_layanan: service['nama_layanan'],
                         specialization: service['gambar_layanan'],
-                        biography: service['deskripsi'],
+                        deskripsi: service['deskripsi'],
                         isAvailable: false,
                       );
                     },

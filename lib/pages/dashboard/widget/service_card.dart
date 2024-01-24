@@ -9,7 +9,7 @@ class ServiceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: 16),
+      margin: EdgeInsets.only(left: 10, right: 10),
       width: 100,
       child: Column(
         children: [
@@ -24,10 +24,12 @@ class ServiceCard extends StatelessWidget {
             ),
           ),
           SizedBox(height: 8),
-          Text(
-            serviceName,
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 12),
+          Flexible(
+            child: Text(
+              serviceName,
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 12),
+            ),
           ),
         ],
       ),
