@@ -1,17 +1,18 @@
 import 'package:ahli_gigi/pages/appointment/appointment.dart';
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 
 class DetailsPageWidget extends StatelessWidget {
   final String imagePath;
   final String layanan;
-  final String details;
+  final String harga;
   final String penjelasan;
 
   const DetailsPageWidget({
     Key? key,
     required this.imagePath,
     required this.layanan,
-    required this.details,
+    required this.harga,
     required this.penjelasan,
   }) : super(key: key);
 
@@ -53,7 +54,7 @@ class DetailsPageWidget extends StatelessWidget {
                       ),
                       Container(
                         child: Text(
-                          details,
+                          '${NumberFormat.currency(locale: 'id_ID', symbol: 'Rp', decimalDigits: 0).format(double.parse(harga))}',
                           style: const TextStyle(
                             fontSize: 13.0,
                           ),

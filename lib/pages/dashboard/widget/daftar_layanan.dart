@@ -1,23 +1,34 @@
 import 'package:ahli_gigi/pages/DetailsPage/DetailsPage.dart';
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 
 class DaftarLayananCard extends StatelessWidget {
   final String imagePath;
   final String nama_layanan;
-  final String specialization;
+  final String harga;
   final String deskripsi;
   final bool isAvailable;
 
   DaftarLayananCard({
     required this.imagePath,
     required this.nama_layanan,
-    required this.specialization,
+    required this.harga,
     required this.deskripsi,
     required this.isAvailable,
   });
 
   @override
   Widget build(BuildContext context) {
+    int hargas = 0; // Initialize harga as an integer
+
+    try {
+      // Attempt to parse harga as an integer, catching potential errors
+      hargas = int.parse(harga);
+    } catch (e) {
+      // Handle parsing errors gracefully
+      print("Error parsing harga: $e");
+      // Provide a default value or alternative action as needed
+    }
     return Container(
       margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       padding: EdgeInsets.all(16),
@@ -57,11 +68,13 @@ class DaftarLayananCard extends StatelessWidget {
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  specialization,
+                  '${NumberFormat.currency(locale: 'id_ID', symbol: 'Rp', decimalDigits: 0).format(double.parse(harga))}',
                   style: TextStyle(
-                      fontSize: 14,
-                      color: const Color.fromARGB(255, 235, 235, 235)),
+                    fontSize: 14,
+                    color: const Color.fromARGB(255, 235, 235, 235),
+                  ),
                 ),
+
                 SizedBox(height: 8),
                 Text(
                   _truncateDescription(deskripsi, 20),
@@ -100,13 +113,12 @@ class DaftarLayananCard extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => DetailsPage(
-                              imagePath: imagePath,
-                              layanan: nama_layanan,
-                              details: specialization,
-                              penjelasan: deskripsi,
-                            ),
-                          ),
+                              builder: (context) => DetailsPage(
+                                    imagePath: imagePath,
+                                    layanan: nama_layanan,
+                                    harga: harga,
+                                    penjelasan: deskripsi,
+                                  )),
                         );
                       },
                       child: Container(

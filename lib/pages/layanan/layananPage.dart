@@ -3,7 +3,7 @@ import 'package:ahli_gigi/pages/dashboard/widget/daftar_layanan.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:ahli_gigi/aturan/constants/warna_apps.dart';
+import 'package:ahli_gigi/settings/constants/warna_apps.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -88,7 +88,7 @@ class _LayananState extends State<Layanan> {
                       return DaftarLayananCard(
                         imagePath: 'assets/icons/image2.png',
                         nama_layanan: service['nama_layanan'],
-                        specialization: service['gambar_layanan'],
+                        harga: service['harga'],
                         deskripsi: service['deskripsi'],
                         isAvailable: false,
                       );

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../aturan/pengaturan_perangkat.dart';
+import '../../settings/pengaturan_perangkat.dart';
 
 
 class CustomHeightSpacer extends StatelessWidget {

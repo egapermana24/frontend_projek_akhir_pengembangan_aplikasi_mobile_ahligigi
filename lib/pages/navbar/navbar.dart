@@ -1,4 +1,4 @@
-import 'package:ahli_gigi/aturan/constants/warna_apps.dart';
+import 'package:ahli_gigi/settings/constants/warna_apps.dart';
 import 'package:ahli_gigi/pages/categories/categories.dart';
 import 'package:ahli_gigi/pages/dashboard/dashboard.dart';
 import 'package:ahli_gigi/pages/history/historyPage.dart';

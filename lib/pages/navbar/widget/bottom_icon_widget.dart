@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ahli_gigi/aturan/constants/warna_apps.dart';
+import 'package:ahli_gigi/settings/constants/warna_apps.dart';
 
 class BottomIconWidget extends StatelessWidget {
   const BottomIconWidget({
