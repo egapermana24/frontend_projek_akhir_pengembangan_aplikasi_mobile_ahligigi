@@ -52,7 +52,6 @@ class DetailsPageWidget extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        width: 200,
                         child: Text(
                           details,
                           style: const TextStyle(

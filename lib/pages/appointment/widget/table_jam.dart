@@ -11,27 +11,19 @@ class _TableJamState extends State<TableJam> {
   int selectedValue = 0;
 
   @override
-  Widget build(BuildContext context) {
+ Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 15, right: 15),
+      padding: const EdgeInsets.all(10.0),
       child: Container(
-        decoration: BoxDecoration(
-          color: Color.fromARGB(255, 79, 79, 79),
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.only(right: 14.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              buildTimeContainer(1, '09.00'),
-              buildTimeContainer(2, '11.00'),
-              buildTimeContainer(3, '13.00'),
-              buildTimeContainer(4, '15.00'),
-              buildTimeContainer(5, '17.00'),
-              buildTimeContainer(6, '19.00'),
-            ],
-          ),
+        child: Wrap(
+          spacing: 10.0,
+          runSpacing: 10.0,
+          children: List.generate(13, (index) {
+            // Generate waktu dari jam 7 sampai jam 19
+            int jam = 7 + index;
+            String waktu = '${jam.toString().padLeft(2, '0')}.00';
+            return buildTimeContainer(jam, waktu);
+          }),
         ),
       ),
     );

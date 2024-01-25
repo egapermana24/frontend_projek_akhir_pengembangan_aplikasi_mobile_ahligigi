@@ -10,6 +10,7 @@ class tableCalendar extends StatefulWidget {
 
 class _tableCalendarState extends State<tableCalendar> {
   DateTime today = DateTime.now();
+
   void _onDaySelected(DateTime day, DateTime focusedDay) {
     setState(() {
       today = day;
@@ -29,8 +30,8 @@ class _tableCalendarState extends State<tableCalendar> {
             availableGestures: AvailableGestures.all,
             selectedDayPredicate: (day) => isSameDay(day, today),
             focusedDay: today,
-            firstDay: DateTime.utc(2010, 10, 16),
-            lastDay: DateTime.utc(2030, 3, 14),
+            firstDay: today, // Mengatur firstDay dan lastDay agar hanya mencakup hari ini
+            lastDay: today,
             onDaySelected: _onDaySelected,
           ),
         ),
@@ -38,3 +39,4 @@ class _tableCalendarState extends State<tableCalendar> {
     );
   }
 }
+

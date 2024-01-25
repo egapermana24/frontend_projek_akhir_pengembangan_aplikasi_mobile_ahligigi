@@ -1,6 +1,8 @@
 import 'package:ahli_gigi/aturan/constants/warna_apps.dart';
 import 'package:ahli_gigi/pages/categories/categories.dart';
 import 'package:ahli_gigi/pages/dashboard/dashboard.dart';
+import 'package:ahli_gigi/pages/history/historyPage.dart';
+import 'package:ahli_gigi/pages/layanan/layananPage.dart';
 import 'package:ahli_gigi/pages/navbar/widget/bottom_icon_widget.dart';
 import 'package:ahli_gigi/pages/profile/profile.dart';
 import 'package:ahli_gigi/resource/resource.gen.dart';
@@ -33,6 +35,8 @@ class _NavBarState extends State<NavBar> {
       ),
       const Categories(),
       const Profile(),
+      const Layanan(),
+      const Riwayat(),
     ];
   }
 
@@ -82,6 +86,24 @@ class _NavBarState extends State<NavBar> {
               },
             ),
             BottomIconWidget(
+              title: 'Layanan',
+              titleColor: pageIndex == 3
+                  ? Theme.of(context).primaryColor
+                  : AppColors.gray,
+              iconName: pageIndex == 3
+                  ? Assets.icons.icSelectedLayanan.path
+                  : Assets.icons.icUnselectedLayanan.path,
+              iconColor: pageIndex == 3
+                  ? Theme.of(context).primaryColor
+                  : AppColors.gray,
+              pageIndex: 3,
+              tap: () {
+                setState(() {
+                  pageIndex = 3;
+                });
+              },
+            ),
+            BottomIconWidget(
               title: 'Kategori',
               titleColor: pageIndex == 1
                   ? Theme.of(context).primaryColor
@@ -96,6 +118,24 @@ class _NavBarState extends State<NavBar> {
               tap: () {
                 setState(() {
                   pageIndex = 1;
+                });
+              },
+            ),
+            BottomIconWidget(
+              title: 'Riwayat',
+              titleColor: pageIndex == 4
+                  ? Theme.of(context).primaryColor
+                  : AppColors.gray,
+              iconName: pageIndex == 4
+                  ? Assets.icons.icSelectedHistory.path
+                  : Assets.icons.icUnselectedHistory.path,
+              iconColor: pageIndex == 4
+                  ? Theme.of(context).primaryColor
+                  : AppColors.gray,
+              pageIndex: 4,
+              tap: () {
+                setState(() {
+                  pageIndex = 4;
                 });
               },
             ),

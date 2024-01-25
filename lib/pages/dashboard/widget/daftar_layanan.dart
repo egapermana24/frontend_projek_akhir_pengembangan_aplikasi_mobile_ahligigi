@@ -64,10 +64,11 @@ class DaftarLayananCard extends StatelessWidget {
                 ),
                 SizedBox(height: 8),
                 Text(
-                  deskripsi,
+                  _truncateDescription(deskripsi, 20),
                   style: TextStyle(
-                      fontSize: 10,
-                      color: const Color.fromARGB(255, 255, 255, 255)),
+                    fontSize: 10,
+                    color: const Color.fromARGB(255, 255, 255, 255),
+                  ),
                 ),
                 SizedBox(height: 20),
                 // Tombol status "Available" dan "Book"
@@ -75,45 +76,52 @@ class DaftarLayananCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    ElevatedButton(
-                      onPressed: () {
+                    GestureDetector(
+                      onTap: () {
                         // Tambahkan logika untuk mengubah status "Available"
                       },
-                      style: ElevatedButton.styleFrom(
-                        primary: isAvailable ? Colors.green : Colors.red,
-                      ),
-                      child: Text(
-                        isAvailable ? 'Available' : 'Booked',
-                        style: TextStyle(
+                      child: Container(
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: isAvailable ? Colors.green : Colors.red,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Text(
+                          isAvailable ? 'Available' : 'Booked',
+                          style: TextStyle(
                             fontSize: 10,
-                            color:
-                                Colors.white), // Ubah warna teks menjadi putih
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
                     ),
-                    // Spacer(),
-                    ElevatedButton(
-                      onPressed: () {
+                    GestureDetector(
+                      onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => DetailsPage(
-                                    imagePath: imagePath,
-                                    layanan: nama_layanan,
-                                    details: specialization,
-                                    penjelasan: deskripsi,
-                                  )),
+                            builder: (context) => DetailsPage(
+                              imagePath: imagePath,
+                              layanan: nama_layanan,
+                              details: specialization,
+                              penjelasan: deskripsi,
+                            ),
+                          ),
                         );
                       },
-                      style: ElevatedButton.styleFrom(
-                        primary:
-                            Colors.white, // Ubah warna tombol menjadi putih
-                      ),
-                      child: Text(
-                        'Book',
-                        style: TextStyle(
+                      child: Container(
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Text(
+                          'Book',
+                          style: TextStyle(
                             fontSize: 10,
-                            color:
-                                Colors.black), // Ubah warna teks menjadi hitam
+                            color: Colors.black,
+                          ),
+                        ),
                       ),
                     ),
                   ],
@@ -124,5 +132,15 @@ class DaftarLayananCard extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+String _truncateDescription(String description, int maxWords) {
+  List<String> words = description.split(' ');
+  if (words.length > maxWords) {
+    words = words.sublist(0, maxWords);
+    return words.join(' ') + '...';
+  } else {
+    return description;
   }
 }

@@ -22,16 +22,23 @@ class $ResourcesIconGen {
   /// File path: assets/icons/ic_selected_home.png
   ResourceGenImage get icSelectedHome =>
       const ResourceGenImage('assets/icons/ic_selected_home.png');
+  /// File path: assets/icons/ic_selected_layanan.png
+  ResourceGenImage get icSelectedLayanan =>
+      const ResourceGenImage('assets/icons/ic_selected_layanan.png');
+  /// File path: assets/icons/ic_selected_history.png
+  ResourceGenImage get icSelectedHistory =>
+      const ResourceGenImage('assets/icons/ic_selected_history.png');
+  /// File path: assets/icons/ic_selected_category.png
+  ResourceGenImage get icSelectedCategory =>
+      const ResourceGenImage('assets/icons/ic_selected_category.png');
+  /// File path: assets/icons/ic_selected_user.png
+  ResourceGenImage get icSelectedUser =>
+      const ResourceGenImage('assets/icons/ic_selected_user.png');
 
   // /// File path: assets/icons/ic_selected_search_normal.png
   // ResourceGenImage get icSelectedSearchNormal =>
   //     const ResourceGenImage('assets/icons/ic_selected_search_normal.png');
 
-  /// File path: assets/icons/ic_selected_user.png
-  ResourceGenImage get icSelectedCategory =>
-      const ResourceGenImage('assets/icons/ic_selected_category.png');
-  ResourceGenImage get icSelectedUser =>
-      const ResourceGenImage('assets/icons/ic_selected_user.png');
 
   // /// File path: assets/icons/ic_selected_history.png
   // ResourceGenImage get icSelectedHistory =>
@@ -56,16 +63,23 @@ class $ResourcesIconGen {
   /// File path: assets/icons/ic_unselected_home.png
   ResourceGenImage get icUnselectedHome =>
       const ResourceGenImage('assets/icons/ic_unselected_home.png');
+  /// File path: assets/icons/ic_unselected_layanan.png
+  ResourceGenImage get icUnselectedLayanan =>
+      const ResourceGenImage('assets/icons/ic_unselected_layanan.png');
+  /// File path: assets/icons/ic_unselected_history.png
+  ResourceGenImage get icUnselectedHistory =>
+      const ResourceGenImage('assets/icons/ic_unselected_history.png');
+  /// File path: assets/icons/ic_unselected_category.png
+  ResourceGenImage get icUnselectedCategory =>
+      const ResourceGenImage('assets/icons/ic_unselected_category.png');
+  /// File path: assets/icons/ic_unselected_user.png
+  ResourceGenImage get icUnselectedUser =>
+      const ResourceGenImage('assets/icons/ic_unselected_user.png');
 
   // /// File path: assets/icons/ic_unselected_search_normal.png
   // ResourceGenImage get icUnselectedSearchNormal =>
   //     const ResourceGenImage('assets/icons/ic_unselected_search_normal.png');
 
-  /// File path: assets/icons/ic_unselected_user.png
-  ResourceGenImage get icUnselectedCategory =>
-      const ResourceGenImage('assets/icons/ic_unselected_category.png');
-  ResourceGenImage get icUnselectedUser =>
-      const ResourceGenImage('assets/icons/ic_unselected_user.png');
 
   // /// File path: assets/icons/ic_unselected_history.png
   // ResourceGenImage get icUnselectedHistory =>
@@ -90,18 +104,22 @@ class $ResourcesIconGen {
         // icNotification,
         // icSelectedArchive,
         icSelectedHome,
-        // icSelectedSearchNormal,
+        icSelectedLayanan,
+        icSelectedHistory,
         icSelectedCategory,
         icSelectedUser,
+        // icSelectedSearchNormal,
         // icSelectedHistory,
         // icSelectedAchive,
         // icSelectedCharging,
         // icSetting5,
         // icUnselectedArchive,
         icUnselectedHome,
-        // icUnselectedSearchNormal,
+        icUnselectedLayanan,
+        icUnselectedHistory,
         icUnselectedCategory,
         icUnselectedUser,
+        // icUnselectedSearchNormal,
         // icUnselectedHistory,
         // icUnselectedAchive,
         // icUnselectedCharging,

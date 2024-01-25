@@ -252,7 +252,7 @@ class _DashboardState extends State<Dashboard> {
                         nama_layanan: service['nama_layanan'],
                         specialization: service['gambar_layanan'],
                         deskripsi: service['deskripsi'],
-                        isAvailable: false,
+                        isAvailable: true,
                       );
                     },
                   ),
