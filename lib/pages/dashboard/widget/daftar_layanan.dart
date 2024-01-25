@@ -96,7 +96,12 @@ class DaftarLayananCard extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => DetailsPage()),
+                              builder: (context) => DetailsPage(
+                                    imagePath: imagePath,
+                                    layanan: nama_layanan,
+                                    details: specialization,
+                                    penjelasan: deskripsi,
+                                  )),
                         );
                       },
                       style: ElevatedButton.styleFrom(

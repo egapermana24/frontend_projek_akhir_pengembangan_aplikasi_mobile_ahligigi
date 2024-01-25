@@ -7,12 +7,13 @@ class DetailsPageWidget extends StatelessWidget {
   final String details;
   final String penjelasan;
 
-  DetailsPageWidget(
-    this.imagePath,
-    this.layanan,
-    this.details,
-    this.penjelasan,
-  );
+  const DetailsPageWidget({
+    Key? key,
+    required this.imagePath,
+    required this.layanan,
+    required this.details,
+    required this.penjelasan,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
