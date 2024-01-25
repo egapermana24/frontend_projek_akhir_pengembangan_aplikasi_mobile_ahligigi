@@ -1,4 +1,4 @@
-import 'package:ahli_gigi/pages/details_page/DetailsPage.dart';
+import 'package:ahli_gigi/pages/details_page/detailsPage.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 

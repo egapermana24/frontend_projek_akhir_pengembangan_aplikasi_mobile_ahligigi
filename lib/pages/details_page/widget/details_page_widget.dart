@@ -23,7 +23,7 @@ class DetailsPageWidget extends StatelessWidget {
     return Column(
       children: <Widget>[
         const SizedBox(
-          height: 50,
+          height: 30,
         ),
         Container(
           height: 225,
@@ -50,7 +50,7 @@ class DetailsPageWidget extends StatelessWidget {
                           child: Text(
                             layanan,
                             style: const TextStyle(
-                              fontSize: 25.0,
+                              fontSize: 20.0,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -61,7 +61,7 @@ class DetailsPageWidget extends StatelessWidget {
                           child: Text(
                             '${NumberFormat.currency(locale: 'id_ID', symbol: 'Rp', decimalDigits: 0).format(double.parse(harga))}',
                             style: const TextStyle(
-                              fontSize: 16.0,
+                              fontSize: 15.0,
                             ),
                           ),
                         ),
@@ -141,7 +141,7 @@ class DetailsPageWidget extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 13, right: 13),
                       child: Text(
                         penjelasan,
-                        style: const TextStyle(fontSize: 15.0),
+                        style: const TextStyle(fontSize: 13.0),
                       ),
                     ),
                   ],
