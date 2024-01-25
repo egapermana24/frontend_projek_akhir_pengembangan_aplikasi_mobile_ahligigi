@@ -250,8 +250,8 @@ class _DashboardState extends State<Dashboard> {
                       return DaftarLayananCard(
                         imagePath: 'assets/icons/image2.png',
                         nama_layanan: service['nama_layanan'],
-                        specialization: service['gambar_layanan'],
-                        deskripsi: service['deskripsi'],
+                        harga: service['harga'].toString(),
+                        deskripsi: service['deskripsi'], // Convert to string
                         isAvailable: false,
                       );
                     },

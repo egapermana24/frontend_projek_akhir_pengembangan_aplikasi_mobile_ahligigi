@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 class DetailsPage extends StatefulWidget {
   final String imagePath;
   final String layanan;
-  final String details;
+  final String harga;
   final String penjelasan;
 
   const DetailsPage({
     Key? key,
     required this.imagePath,
     required this.layanan,
-    required this.details,
+    required this.harga,
     required this.penjelasan,
   }) : super(key: key);
 
@@ -28,10 +28,10 @@ class _DetailsPageState extends State<DetailsPage> {
             Text('Janji Temu', style: TextStyle(fontWeight: FontWeight.bold)),
         centerTitle: true,
       ),
-     body: DetailsPageWidget(
+      body: DetailsPageWidget(
         imagePath: widget.imagePath,
         layanan: widget.layanan,
-        details: widget.details,
+        harga: widget.harga,
         penjelasan: widget.penjelasan,
       ),
     );
