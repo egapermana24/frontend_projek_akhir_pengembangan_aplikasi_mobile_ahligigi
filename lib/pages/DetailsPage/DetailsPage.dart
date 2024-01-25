@@ -28,13 +28,11 @@ class _DetailsPageState extends State<DetailsPage> {
             Text('Janji Temu', style: TextStyle(fontWeight: FontWeight.bold)),
         centerTitle: true,
       ),
-      body: DetailsPageWidget(
-        imagePath: 'assets/icons/google.png',
-        layanan: 'Tambal Gigi',
-        details:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fringilla ex at leo hendrerit, id condimentum arcu pharetra.',
-        penjelasan:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fringilla ex at leo hendrerit, id condimentum arcu pharetra. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fringilla ex at leo hendrerit, id condimentum arcu pharetraLorem ipsum dolor sit amet, consectetur adipiscing elit. In fringilla ex at leo hendrerit, id condimentum arcu pharetra',
+     body: DetailsPageWidget(
+        imagePath: widget.imagePath,
+        layanan: widget.layanan,
+        details: widget.details,
+        penjelasan: widget.penjelasan,
       ),
     );
   }
