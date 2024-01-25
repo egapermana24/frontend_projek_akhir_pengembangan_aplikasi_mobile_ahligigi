@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "723047128823-e4fkskgflippad9m69ike0uk14kjvnns.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ahli_gigi",
+            "certificate_hash": "278453b67b8efd029fc82e32f66a32c4aa4a145f"
+          }
+        },
+        {
           "client_id": "723047128823-o5m93l7m7gths47g3lm1gd5uq86d7121.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
