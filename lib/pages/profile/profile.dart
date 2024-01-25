@@ -13,8 +13,7 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-
-void _signOut(BuildContext context) async {
+  void _signOut(BuildContext context) async {
     await FirebaseAuth.instance.signOut();
     await GoogleSignIn().signOut();
     Navigator.pushReplacement(
@@ -29,7 +28,10 @@ void _signOut(BuildContext context) async {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profil'),
+        title: Text(
+          'Profil',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
       ),
       body: Column(

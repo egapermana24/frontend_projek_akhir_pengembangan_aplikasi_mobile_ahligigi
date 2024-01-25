@@ -18,83 +18,89 @@ class DetailsPageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
-    double screenWidth = MediaQuery.of(context).size.width;
+    // double screenHeight = MediaQuery.of(context).size.height;
+    // double screenWidth = MediaQuery.of(context).size.width;
     return Column(
       children: <Widget>[
+        const SizedBox(
+          height: 30,
+        ),
         Container(
           height: 225,
-          child: Row(
+          child: Column(
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(left: 13.0, right: 13.0),
                 child: Container(
-                  width: 120,
-                  height: 120,
-                  // decoration: BoxDecoration(
-                  //     border: Border.all(color: Colors.black, width: 2),
-                  //     borderRadius: BorderRadius.circular(7)),
+                  width: 150,
+                  height: 150,
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black, width: 2),
+                      borderRadius: BorderRadius.circular(7)),
                   child: Image.asset(imagePath),
                 ),
               ),
               Container(
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 15.0),
+                  padding: const EdgeInsets.only(top: 10.0),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Container(
-                        child: Text(
-                          layanan,
-                          style: const TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
+                      Center(
+                        child: Container(
+                          child: Text(
+                            layanan,
+                            style: const TextStyle(
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
-                      Container(
-                        child: Text(
-                          '${NumberFormat.currency(locale: 'id_ID', symbol: 'Rp', decimalDigits: 0).format(double.parse(harga))}',
-                          style: const TextStyle(
-                            fontSize: 13.0,
+                      Center(
+                        child: Container(
+                          child: Text(
+                            '${NumberFormat.currency(locale: 'id_ID', symbol: 'Rp', decimalDigits: 0).format(double.parse(harga))}',
+                            style: const TextStyle(
+                              fontSize: 15.0,
+                            ),
                           ),
                         ),
                       ),
-                      Container(
-                        margin: const EdgeInsets.symmetric(vertical: 10.0),
-                        child: Row(
-                          children: <Widget>[
-                            IconButton(
-                              icon: const Icon(Icons.phone),
-                              tooltip: 'Call',
-                              onPressed: () {
-                                // Aksi ketika button diklik
-                              },
-                            ),
-                            const SizedBox(height: 8.0),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            IconButton(
-                              icon: const Icon(Icons.video_call),
-                              tooltip: 'Video Call',
-                              onPressed: () {
-                                // Aksi ketika button diklik
-                              },
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            IconButton(
-                              icon: const Icon(Icons.mail),
-                              tooltip: 'Message',
-                              onPressed: () {
-                                // Aksi ketika button diklik
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
+                      // Container(
+                      //   margin: const EdgeInsets.symmetric(vertical: 10.0),
+                      //   child: Row(
+                      //     children: <Widget>[
+                      //       IconButton(
+                      //         icon: const Icon(Icons.phone),
+                      //         tooltip: 'Call',
+                      //         onPressed: () {
+                      //           // Aksi ketika button diklik
+                      //         },
+                      //       ),
+                      //       const SizedBox(height: 8.0),
+                      //       const SizedBox(
+                      //         width: 10,
+                      //       ),
+                      //       IconButton(
+                      //         icon: const Icon(Icons.video_call),
+                      //         tooltip: 'Video Call',
+                      //         onPressed: () {
+                      //           // Aksi ketika button diklik
+                      //         },
+                      //       ),
+                      //       const SizedBox(
+                      //         width: 10,
+                      //       ),
+                      //       IconButton(
+                      //         icon: const Icon(Icons.mail),
+                      //         tooltip: 'Message',
+                      //         onPressed: () {
+                      //           // Aksi ketika button diklik
+                      //         },
+                      //       ),
+                      //     ],
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),

@@ -1,4 +1,4 @@
-import 'package:ahli_gigi/pages/DetailsPage/widget/details_page_widget.dart';
+import 'package:ahli_gigi/pages/details_page/widget/details_page_widget.dart';
 import 'package:flutter/material.dart';
 
 class DetailsPage extends StatefulWidget {

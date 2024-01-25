@@ -14,7 +14,10 @@ class _InfoAkunState extends State<InfoAkun> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Info Akun'),
+        title: Text(
+          'Info Akun',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
       ),
       body: Column(

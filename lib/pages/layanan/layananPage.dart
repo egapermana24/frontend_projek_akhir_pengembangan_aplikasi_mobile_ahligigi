@@ -43,7 +43,7 @@ class _LayananState extends State<Layanan> {
           255, 0, 0, 0), //or set color with: Color(0xFF0000FF)
     ));
     return Scaffold(
-       appBar: AppBar(
+      appBar: AppBar(
         title: Text('Daftar Layanan',
             style: TextStyle(fontWeight: FontWeight.bold)),
         centerTitle: true,
@@ -88,7 +88,7 @@ class _LayananState extends State<Layanan> {
                       return DaftarLayananCard(
                         imagePath: 'assets/icons/image2.png',
                         nama_layanan: service['nama_layanan'],
-                        harga: service['harga'],
+                        harga: service['harga'].toString(),
                         deskripsi: service['deskripsi'],
                         isAvailable: false,
                       );

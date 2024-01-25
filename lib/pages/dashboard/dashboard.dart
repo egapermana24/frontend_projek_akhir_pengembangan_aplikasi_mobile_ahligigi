@@ -10,6 +10,7 @@ import 'package:flutter/services.dart';
 import 'package:ahli_gigi/settings/constants/warna_apps.dart';
 import 'package:ahli_gigi/pages/dashboard/widget/popular_card.dart';
 import 'package:ahli_gigi/pages/dashboard/widget/service_card.dart';
+import 'package:ahli_gigi/pages/layanan/layananPage.dart';
 import 'package:ahli_gigi/pages/login/login.dart';
 import 'dart:async';
 import 'dart:convert';
@@ -166,9 +167,13 @@ class _DashboardState extends State<Dashboard> {
                                   builder: (context) => Categories()),
                             );
                           },
-                          child: const Text(
-                            'More',
-                            style: TextStyle(fontSize: 15, color: Colors.blue),
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                            child: const Text(
+                              'More',
+                              style:
+                                  TextStyle(fontSize: 15, color: Colors.blue),
+                            ),
                           ),
                         ),
                       ],
@@ -228,15 +233,39 @@ class _DashboardState extends State<Dashboard> {
                   ),
                   const SizedBox(height: 5),
                   // Popular
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.all(16.0),
-                    child: const Row(
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           'Daftar Layanan',
                           style: TextStyle(
-                              fontSize: 19, fontWeight: FontWeight.bold),
+                            fontSize: 19,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            // Tambahkan logika untuk navigasi ke halaman lain di sini
+                            // Misalnya, Navigator.push ke halaman baru.
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Layanan(),
+                              ),
+                            );
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: Text(
+                              'More',
+                              style: TextStyle(
+                                fontSize: 15,
+                                color: Colors.blue,
+                              ),
+                            ),
+                          ),
                         ),
                       ],
                     ),
@@ -244,7 +273,10 @@ class _DashboardState extends State<Dashboard> {
                   ListView.builder(
                     shrinkWrap: true,
                     physics: ClampingScrollPhysics(),
-                    itemCount: serviceList.length,
+                    itemCount: serviceList.length > 2
+                        ? 2
+                        : serviceList
+                            .length, // Apabila Lebih dari 2 maka tampilkan 2
                     itemBuilder: (context, index) {
                       var service = serviceList[index];
                       return DaftarLayananCard(
