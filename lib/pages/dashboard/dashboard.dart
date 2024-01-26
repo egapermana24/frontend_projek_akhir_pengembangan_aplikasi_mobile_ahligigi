@@ -144,7 +144,7 @@ class _DashboardState extends State<Dashboard> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Container(
-                      height: 40.0,
+                      height: 60.0,
                       decoration: BoxDecoration(
                         color: Colors.white, // Warna latar belakang
                         border: Border.all(
@@ -203,7 +203,7 @@ class _DashboardState extends State<Dashboard> {
                             child: const Text(
                               'More',
                               style:
-                                  TextStyle(fontSize: 10, color: Colors.blue),
+                                  TextStyle(fontSize: 13, color: Colors.blue),
                             ),
                           ),
                         ),
@@ -271,7 +271,7 @@ class _DashboardState extends State<Dashboard> {
                             child: const Text(
                               'More',
                               style:
-                                  TextStyle(fontSize: 10, color: Colors.blue),
+                                  TextStyle(fontSize: 13, color: Colors.blue),
                             ),
                           ),
                         ),
@@ -353,7 +353,7 @@ class _DashboardState extends State<Dashboard> {
                             child: Text(
                               'More',
                               style: TextStyle(
-                                fontSize: 10,
+                                fontSize: 13,
                                 color: Colors.blue,
                               ),
                             ),
