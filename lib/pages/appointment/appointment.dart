@@ -1,5 +1,6 @@
 import 'package:ahli_gigi/pages/appointment/widget/table_calendar.dart';
 import 'package:ahli_gigi/pages/pembayaran/pembayaranPage.dart';
+import 'package:ahli_gigi/settings/constants/warna_apps.dart';
 import 'package:flutter/material.dart';
 import 'package:ahli_gigi/pages/appointment/widget/table_jam.dart';
 
@@ -18,7 +19,8 @@ class _appointmentPageState extends State<appointmentPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Janji Temu',
-            style: TextStyle(fontWeight: FontWeight.bold)),
+            style: TextStyle(
+                fontWeight: FontWeight.bold, color: AppColors.primaryText)),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -35,9 +37,12 @@ class _appointmentPageState extends State<appointmentPage> {
             Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 15.0, top: 10),
+                  padding: const EdgeInsets.only(left: 26.0, top: 10),
                   child: const Text('Waktu yang Tersedia :',
-                      style: TextStyle(fontSize: 20)),
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.primaryText)),
                 ),
               ],
             ),
@@ -57,14 +62,14 @@ class _appointmentPageState extends State<appointmentPage> {
                     child: Container(
                       height: 35,
                       child: ElevatedButton(
-                       onPressed: () {
-                                // Aksi ketika button diklik
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => PembayaranPage()),
-                                );
-                              },
+                        onPressed: () {
+                          // Aksi ketika button diklik
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => PembayaranPage()),
+                          );
+                        },
                         child: Text(
                           'Pilih Pembayaran',
                           style: TextStyle(

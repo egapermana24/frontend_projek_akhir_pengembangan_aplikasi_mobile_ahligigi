@@ -1,4 +1,5 @@
 import 'package:ahli_gigi/pages/details_page/detailsPage.dart';
+import 'package:ahli_gigi/settings/constants/warna_apps.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 
@@ -33,112 +34,101 @@ class DaftarLayananCard extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.grey,
-        borderRadius: BorderRadius.circular(8),
+        color: AppColors.primaryColor,
+        borderRadius: BorderRadius.circular(15),
         border: Border.all(color: Colors.grey),
       ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment
-            .start, // Mengubah alignment agar tombol berada di atas
+      child: Column(
         children: [
-          // Foto Layanan
-          Padding(
-            padding: const EdgeInsets.only(top: 25.0),
-            child: Container(
-              height: 100,
-              width: 100,
-              decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black, width: 2),
-                  borderRadius: BorderRadius.circular(7)),
-              child: Center(
-                child: Image.asset(
-                  imagePath,
+          Row(
+            crossAxisAlignment: CrossAxisAlignment
+                .start, // Mengubah alignment agar tombol berada di atas
+            children: [
+              // Foto Layanan
+              Padding(
+                padding: const EdgeInsets.only(top: 5.0),
+                child: Container(
+                  height: 100,
+                  width: 100,
+                  decoration: BoxDecoration(
+                      border: Border.all(color: Colors.white, width: 2),
+                      borderRadius: BorderRadius.circular(10)),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image.network(
+                      imagePath,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ),
-          SizedBox(width: 16),
-          // Informasi dokter
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  nama_layanan,
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  '${NumberFormat.currency(locale: 'id_ID', symbol: 'Rp', decimalDigits: 0).format(double.parse(harga))}',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: const Color.fromARGB(255, 235, 235, 235),
-                  ),
-                ),
-
-                SizedBox(height: 8),
-                Text(
-                  _truncateDescription(deskripsi, 20),
-                  style: TextStyle(
-                    fontSize: 10,
-                    color: const Color.fromARGB(255, 255, 255, 255),
-                  ),
-                ),
-                SizedBox(height: 20),
-                // Tombol status "Available" dan "Book"
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.end,
+              SizedBox(width: 16),
+              // Informasi dokter
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    GestureDetector(
-                      onTap: () {
-                        // Tambahkan logika untuk mengubah status "Available"
-                      },
-                      child: Container(
-                        padding: EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          color: isAvailable ? Colors.green : Colors.red,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Text(
-                          isAvailable ? 'Available' : 'Booked',
-                          style: TextStyle(
-                            fontSize: 10,
-                            color: Colors.white,
-                          ),
-                        ),
+                    Text(
+                      nama_layanan,
+                      style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                    Text(
+                      '${NumberFormat.currency(locale: 'id_ID', symbol: 'Rp', decimalDigits: 0).format(double.parse(harga))}',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: const Color.fromARGB(255, 235, 235, 235),
                       ),
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => DetailsPage(
-                                    imagePath: imagePath,
-                                    layanan: nama_layanan,
-                                    harga: harga,
-                                    penjelasan: deskripsi,
-                                  )),
-                        );
-                      },
-                      child: Container(
-                        padding: EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Text(
-                          'Book',
-                          style: TextStyle(
-                            fontSize: 10,
-                            color: Colors.black,
-                          ),
-                        ),
+
+                    SizedBox(height: 8),
+                    Text(
+                      _truncateDescription(deskripsi, 20),
+                      style: TextStyle(
+                        fontSize: 10,
+                        color: const Color.fromARGB(255, 255, 255, 255),
                       ),
                     ),
+                    SizedBox(height: 20),
+                    // Tombol status "Available" dan "Book"
                   ],
                 ),
-              ],
+              ),
+            ],
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DetailsPage(
+                    imagePath: imagePath,
+                    layanan: nama_layanan,
+                    harga: harga,
+                    penjelasan: deskripsi,
+                  ),
+                ),
+              );
+            },
+            child: Container(
+              width: double
+                  .infinity, // Set lebar ke infinity untuk memenuhi panjang baris
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Center(
+                child: Text(
+                  'Pesan',
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: AppColors.primaryColor,
+                  ),
+                ),
+              ),
             ),
           ),
         ],

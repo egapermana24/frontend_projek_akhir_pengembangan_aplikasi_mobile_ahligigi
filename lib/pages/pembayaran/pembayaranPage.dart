@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:ahli_gigi/settings/constants/warna_apps.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -33,7 +34,8 @@ class _PembayaranPageState extends State<PembayaranPage> {
       appBar: AppBar(
         title: const Text(
           'Pembayaran',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(
+              fontWeight: FontWeight.bold, color: AppColors.primaryText),
         ),
         centerTitle: true,
       ),
@@ -50,130 +52,324 @@ class _PembayaranPageState extends State<PembayaranPage> {
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 10),
-              Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Layanan',
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        'Tambal Gigi',
-                        style: TextStyle(
-                          fontSize: 18,
+              Container(
+                padding: EdgeInsets.all(16.0),
+                // tambahkan decoration background
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.2),
+                      spreadRadius: 3,
+                      blurRadius: 5,
+                      offset: const Offset(0, 3),
+                    ),
+                  ],
+                ),
+
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Layanan',
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.bold),
                         ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Waktu',
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        'Hari ini, 12.00 WIB',
-                        style: TextStyle(
-                          fontSize: 18,
+                        Text(
+                          'Tambal Gigi',
+                          style: TextStyle(
+                            fontSize: 14,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Total Pembayaran',
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        'Rp100.000,00',
-                        style: TextStyle(
-                          fontSize: 18,
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Waktu',
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.bold),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                        Text(
+                          'Hari ini, 12.00 WIB',
+                          style: TextStyle(
+                            fontSize: 14,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Total Pembayaran',
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          'Rp100.000,00',
+                          style: TextStyle(
+                            fontSize: 14,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
               SizedBox(height: 10),
               Text(
                 'Pilih Metode Pembayaran:',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-              // Metode Pembayaran 1
-              RadioListTile<int>(
-                title: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Image.asset('assets/img/wallet.jpg', height: 100),
-                    if (selectedPaymentMethod == 1)
-                      Text('Nomor Handphone: 1234567890'),
-                  ],
-                ),
-                value: 1,
-                groupValue: selectedPaymentMethod,
-                onChanged: (value) {
+              SizedBox(height: 10),
+              GestureDetector(
+                onTap: () {
                   setState(() {
-                    selectedPaymentMethod = value;
+                    selectedPaymentMethod = 1;
                   });
                 },
+                child: Container(
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.2),
+                        spreadRadius: 3,
+                        blurRadius: 5,
+                        offset: const Offset(0, 3),
+                      ),
+                    ],
+                    border: Border.all(
+                      color: selectedPaymentMethod == 1
+                          ? AppColors.primaryColor
+                          : Colors.grey, // Warna abu-abu jika belum terpilih
+                      width: 2.0,
+                    ),
+                    borderRadius: BorderRadius.circular(8.0),
+                    color: selectedPaymentMethod == 1
+                        ? Colors.white
+                            .withOpacity(0.9) // Warna latar belakang terpilih
+                        : Colors.white,
+                  ),
+                  padding: EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Image.asset('assets/img/wallet.jpg',
+                          width: double.infinity),
+                      if (selectedPaymentMethod == 1)
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(height: 5),
+                            Text('Silahkan Untuk Melakukan:',
+                                style: TextStyle(
+                                    fontSize: 14, fontWeight: FontWeight.bold)),
+                            Text(
+                                '1. Pilih Dompet Digital mana yang akan digunakan',
+                                style: TextStyle(fontSize: 14)),
+                            Text(
+                                '2. Masukkan Nomor Handphone 085794912280 sebagai penerima',
+                                style: TextStyle(fontSize: 14)),
+                            Text(
+                                '3. Masukkan Jumlah Pembayaran sesuai dengan yang tertera',
+                                style: TextStyle(fontSize: 14)),
+                            Text(
+                                '4. Jika Pembayaran Berhasil segera kirimkan bukti screenshot pada tombol upload bukti pembayaran',
+                                style: TextStyle(fontSize: 14)),
+                            Text('4. Selesai', style: TextStyle(fontSize: 14)),
+                          ],
+                        ),
+                    ],
+                  ),
+                ),
               ),
-              // Metode Pembayaran 2
-              RadioListTile<int>(
-                title: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Image.asset('assets/img/bank.jpg', height: 100),
-                    if (selectedPaymentMethod == 2)
-                      Text('Nomor Rekening: 9876543210'),
-                  ],
-                ),
-                value: 2,
-                groupValue: selectedPaymentMethod,
-                onChanged: (value) {
+              SizedBox(height: 10),
+              GestureDetector(
+                onTap: () {
                   setState(() {
-                    selectedPaymentMethod = value;
+                    selectedPaymentMethod = 2;
                   });
                 },
+                child: Container(
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.2),
+                        spreadRadius: 3,
+                        blurRadius: 5,
+                        offset: const Offset(0, 3),
+                      ),
+                    ],
+                    border: Border.all(
+                      color: selectedPaymentMethod == 2
+                          ? AppColors.primaryColor
+                          : Colors.grey, // Warna abu-abu jika belum terpilih
+                      width: 2.0,
+                    ),
+                    borderRadius: BorderRadius.circular(8.0),
+                    color: selectedPaymentMethod == 2
+                        ? Colors.white
+                            .withOpacity(0.9) // Warna latar belakang terpilih
+                        : Colors.white,
+                  ),
+                  padding: EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Image.asset('assets/img/bank.jpg',
+                          width: double.infinity),
+                      if (selectedPaymentMethod == 2)
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(height: 5),
+                            Text('Silahkan Untuk Melakukan:',
+                                style: TextStyle(
+                                    fontSize: 14, fontWeight: FontWeight.bold)),
+                            Text('1. Pilih Bank mana yang akan digunakan',
+                                style: TextStyle(fontSize: 14)),
+                            Text(
+                                '2. Masukkan Nomor Rekening BCA 987654321 sebagai penerima',
+                                style: TextStyle(fontSize: 14)),
+                            Text(
+                                '3. Masukkan Jumlah Pembayaran sesuai dengan yang tertera',
+                                style: TextStyle(fontSize: 14)),
+                            Text(
+                                '4. Jika Pembayaran Berhasil segera kirimkan bukti screenshot pada tombol upload bukti pembayaran',
+                                style: TextStyle(fontSize: 14)),
+                            Text('4. Selesai', style: TextStyle(fontSize: 14)),
+                          ],
+                        ),
+                    ],
+                  ),
+                ),
               ),
-              RadioListTile<int>(
-                title: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Image.asset('assets/img/cod.png', height: 100),
-                    if (selectedPaymentMethod == 3)
-                      Text(
-                          'Harap Membawa Uang sesuai dengan yang tertera di atas'),
-                  ],
-                ),
-                value: 3,
-                groupValue: selectedPaymentMethod,
-                onChanged: (value) {
+              SizedBox(height: 10),
+              GestureDetector(
+                onTap: () {
                   setState(() {
-                    selectedPaymentMethod = value;
+                    selectedPaymentMethod = 3;
                   });
                 },
+                child: Container(
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.2),
+                        spreadRadius: 3,
+                        blurRadius: 5,
+                        offset: const Offset(0, 3),
+                      ),
+                    ],
+                    border: Border.all(
+                      color: selectedPaymentMethod == 3
+                          ? AppColors.primaryColor
+                          : Colors.grey, // Warna abu-abu jika belum terpilih
+                      width: 2.0,
+                    ),
+                    borderRadius: BorderRadius.circular(8.0),
+                    color: selectedPaymentMethod == 3
+                        ? Colors.white
+                            .withOpacity(0.9) // Warna latar belakang terpilih
+                        : Colors.white,
+                  ),
+                  padding: EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Image.asset('assets/img/cod.jpg', width: double.infinity),
+                      if (selectedPaymentMethod == 3)
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(height: 5),
+                            Text('Silahkan Untuk Melakukan:',
+                                style: TextStyle(
+                                    fontSize: 14, fontWeight: FontWeight.bold)),
+                            Text('1. Datang ke tempat',
+                                style: TextStyle(fontSize: 14)),
+                            Text('2. Konfirmasi pembayaran kepada pihak kami',
+                                style: TextStyle(fontSize: 14)),
+                            Text(
+                                '3. Melakukan transaksi pembayaran sesuai dengan yang tertera',
+                                style: TextStyle(fontSize: 14)),
+                            Text('4. Selesai', style: TextStyle(fontSize: 14)),
+                          ],
+                        ),
+                    ],
+                  ),
+                ),
               ),
               const SizedBox(height: 20),
-              Text(
-                'Bukti Pembayaran:',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              // Tampilkan gambar yang diupload
-              _image == null ? const SizedBox() : Image.file(_image!),
-              // Tambahkan widget untuk mengupload bukti pembayaran
-              ElevatedButton(
-                onPressed: () {
-                  getImage(); // Panggil fungsi untuk mengambil gambar
+              if (selectedPaymentMethod != 3)
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Bukti Pembayaran:',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(height: 5),
+                    Column(
+                      children: [
+                        // Tampilkan gambar yang diupload jika ada
+                        _image == null ? const SizedBox() : Image.file(_image!),
+
+                        SizedBox(height: 5),
+                        GestureDetector(
+                          onTap: () {
+                            getImage();
+                          },
+                          child: Container(
+                            width:
+                                double.infinity, // Menggunakan lebar maksimal
+                            height: 35,
+                            decoration: BoxDecoration(
+                              color: Colors
+                                  .white, // Ganti dengan warna yang diinginkan
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(
+                                color: AppColors.primaryColor,
+                                width: 2.0,
+                              ),
+                            ),
+                            child: Center(
+                              child: Text(
+                                'Upload Bukti Pembayaran',
+                                style: TextStyle(color: AppColors.primaryColor),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              SizedBox(height: 10),
+              GestureDetector(
+                onTap: () {
+                  // Panggil fungsi untuk mengambil gambar
                 },
-                child: Text('Upload Bukti Pembayaran'),
+                child: Container(
+                  width: double.infinity, // Menggunakan lebar maksimal
+                  height: 35,
+                  decoration: BoxDecoration(
+                    color: Colors.blue, // Ganti dengan warna yang diinginkan
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Center(
+                    child: Text(
+                      'Selesai',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
               ),
             ],
           ),

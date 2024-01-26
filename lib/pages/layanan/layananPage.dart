@@ -45,7 +45,8 @@ class _LayananState extends State<Layanan> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Daftar Layanan',
-            style: TextStyle(fontWeight: FontWeight.bold)),
+            style: TextStyle(
+                fontWeight: FontWeight.bold, color: AppColors.primaryColor)),
         centerTitle: true,
       ),
       backgroundColor: AppColors.backGroundColor,
@@ -77,6 +78,39 @@ class _LayananState extends State<Layanan> {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Container(
+                      height: 40.0,
+                      decoration: BoxDecoration(
+                        color: Colors.white, // Warna latar belakang
+                        // border: Border.all(
+                        //   color: Colors.black45, // Warna border
+                        //   width: 1, // Lebar border
+                        // ),
+                        borderRadius: BorderRadius.circular(
+                            15.0), // Border radius untuk membuatnya menjadi rounded
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.2), // Warna shadow
+                            spreadRadius: 2,
+                            blurRadius: 5,
+                            offset: Offset(0, 2), // Offset shadow
+                          ),
+                        ],
+                      ),
+                      child: TextField(
+                        decoration: InputDecoration(
+                          hintText: 'Cari...',
+                          prefixIcon: Icon(Icons.search),
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide
+                                .none, // Hapus border bawaan dari TextField
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                   const SizedBox(height: 5),
                   // Popular
                   ListView.builder(
@@ -86,7 +120,7 @@ class _LayananState extends State<Layanan> {
                     itemBuilder: (context, index) {
                       var service = serviceList[index];
                       return DaftarLayananCard(
-                        imagePath: 'assets/icons/image2.png',
+                        imagePath: service['lokasi_gambar'],
                         nama_layanan: service['nama_layanan'],
                         harga: service['harga'].toString(),
                         deskripsi: service['deskripsi'],

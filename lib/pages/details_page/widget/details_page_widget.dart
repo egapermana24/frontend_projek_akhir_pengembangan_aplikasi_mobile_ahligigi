@@ -1,4 +1,5 @@
 import 'package:ahli_gigi/pages/appointment/appointment.dart';
+import 'package:ahli_gigi/settings/constants/warna_apps.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 
@@ -35,9 +36,16 @@ class DetailsPageWidget extends StatelessWidget {
                   width: 150,
                   height: 150,
                   decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black, width: 2),
-                      borderRadius: BorderRadius.circular(7)),
-                  child: Image.asset(imagePath),
+                      border:
+                          Border.all(color: AppColors.primaryColor, width: 5),
+                      borderRadius: BorderRadius.circular(20)),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(13),
+                    child: Image.network(
+                      imagePath,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
               ),
               Container(
@@ -127,7 +135,7 @@ class DetailsPageWidget extends StatelessWidget {
                       child: Row(
                         children: [
                           Text(
-                            'Details',
+                            'Penjelasan',
                             style: TextStyle(
                               fontSize: 20.0,
                               fontWeight: FontWeight.bold,
@@ -154,59 +162,41 @@ class DetailsPageWidget extends StatelessWidget {
                     child: Container(
                       width: 400,
                       height: 60,
-                      decoration: BoxDecoration(
-                          color: const Color.fromARGB(111, 130, 130, 130),
-                          // border: Border.all(color: Colors.black),
-                          borderRadius: BorderRadius.circular(30)),
+                      // decoration: BoxDecoration(
+                      //     color: const Color.fromARGB(111, 130, 130, 130),
+                      //     // border: Border.all(color: Colors.black),
+                      //     borderRadius: BorderRadius.circular(30)),
                       child: Row(
                         children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.only(left: 5, right: 1),
-                            child: IconButton(
-                              icon: const Icon(
-                                Icons.favorite,
-                                color: Colors.redAccent,
-                              ),
-                              iconSize: 35.0,
-                              tooltip: 'Add to Bookmark',
-                              onPressed: () {
-                                // Aksi ketika button diklik
-                              },
-                            ),
-                          ),
-                          Container(
-                            width: 1,
-                            height: 40,
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: Color.fromARGB(255, 142, 142, 142))),
-                          ),
                           Expanded(
-                              child: Padding(
-                            padding:
-                                const EdgeInsets.only(left: 8, right: 13.0),
-                            child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                // Atur ukuran ElevatedButton di sini
-                                fixedSize: const Size(
-                                    0, 40), // Sesuaikan ukuran sesuai kebutuhan
-                                // atau
-                                // minimumSize: Size(120, 40),
+                            child: Container(
+                              height: 35,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  // Aksi ketika button diklik
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            appointmentPage()),
+                                  );
+                                },
+                                child: Text(
+                                  'Buat Janji Temu',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                style: ElevatedButton.styleFrom(
+                                  primary: Colors.blue,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                ),
                               ),
-                              child: const Text(
-                                "Book an Appointment",
-                                style: TextStyle(fontSize: 15),
-                              ),
-                              onPressed: () {
-                                // Aksi ketika button diklik
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => appointmentPage()),
-                                );
-                              },
                             ),
-                          )),
+                          ),
                         ],
                       ),
                     ),

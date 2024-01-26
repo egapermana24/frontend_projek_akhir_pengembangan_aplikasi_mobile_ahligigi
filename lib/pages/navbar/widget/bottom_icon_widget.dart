@@ -21,26 +21,40 @@ class BottomIconWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return pageIndex == 2 ? _buildNormalButton() : _buildNormalButton();
+    return pageIndex == 0 ? _buildFloatingButton() : _buildNormalButton();
   }
 
   Widget _buildFloatingButton() {
     return Container(
-      // bottom: 20,
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: Colors.white, // Warna border putih
+          width: 1, // Lebar border
+        ),
+        shape: BoxShape.circle,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.15),
+            blurRadius: 4,
+            spreadRadius: 2,
+            offset: Offset(0, 3),
+          ),
+        ],
+      ),
       child: ClipOval(
         child: Material(
-          elevation: 10.0, // Sesuaikan dengan kebutuhan Anda
+          elevation: 10.0,
           color: AppColors.primaryColor,
-          shadowColor:
-              Colors.black, // Sesuaikan dengan warna bayangan yang diinginkan
-          child: InkWell(
+          shadowColor: Colors.black,
+          child: GestureDetector(
+            behavior: HitTestBehavior.translucent,
             onTap: tap,
             child: Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(15.0),
               child: Image.asset(
-                'assets/icons/ic_selected_achive.png',
-                width: 30,
-                height: 30,
+                'assets/icons/ic_selected_home.png',
+                width: 25,
+                height: 25,
                 color: Colors.white,
               ),
             ),

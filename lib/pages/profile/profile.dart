@@ -1,6 +1,7 @@
 import 'package:ahli_gigi/pages/dashboard/dashboard.dart';
 import 'package:ahli_gigi/pages/login/login.dart';
 import 'package:ahli_gigi/pages/profile/components/info_akun.dart';
+import 'package:ahli_gigi/settings/constants/warna_apps.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -30,7 +31,8 @@ class _ProfileState extends State<Profile> {
       appBar: AppBar(
         title: Text(
           'Profil',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(
+              fontWeight: FontWeight.bold, color: AppColors.primaryColor),
         ),
         centerTitle: true,
       ),

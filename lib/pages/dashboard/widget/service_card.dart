@@ -1,3 +1,4 @@
+import 'package:ahli_gigi/settings/constants/warna_apps.dart';
 import 'package:flutter/material.dart';
 
 class ServiceCard extends StatelessWidget {
@@ -9,7 +10,7 @@ class ServiceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: 10, right: 10),
+      margin: EdgeInsets.only(left: 16),
       width: 100,
       child: Column(
         children: [
@@ -18,7 +19,7 @@ class ServiceCard extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
               image: DecorationImage(
-                image: AssetImage(imagePath),
+                image: NetworkImage(imagePath),
                 fit: BoxFit.cover,
               ),
             ),
@@ -28,7 +29,11 @@ class ServiceCard extends StatelessWidget {
             child: Text(
               serviceName,
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 12),
+              style: TextStyle(
+                fontSize: 14,
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ],

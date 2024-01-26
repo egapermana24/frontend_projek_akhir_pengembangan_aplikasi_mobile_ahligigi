@@ -2,12 +2,14 @@ import 'package:ahli_gigi/config/api_config.dart';
 import 'package:ahli_gigi/pages/categories/categories.dart';
 import 'package:ahli_gigi/pages/dashboard/widget/daftar_layanan.dart';
 import 'package:ahli_gigi/pages/dashboard/widget/user_profile.dart';
+import 'package:ahli_gigi/pages/details_page/DetailsPage.dart';
+import 'package:ahli_gigi/pages/navbar/navbar.dart';
+import 'package:ahli_gigi/settings/constants/warna_apps.dart';
 // import 'package:ahli_gigi/pages/navbar/navbar.dart';
 import 'package:ahli_gigi/pages/profile/profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:ahli_gigi/settings/constants/warna_apps.dart';
 import 'package:ahli_gigi/pages/dashboard/widget/popular_card.dart';
 import 'package:ahli_gigi/pages/dashboard/widget/service_card.dart';
 import 'package:ahli_gigi/pages/layanan/layananPage.dart';
@@ -25,17 +27,25 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   late User? user;
-  late Future<List<dynamic>> _serviceData;
+  late Future<List<dynamic>> _serviceDataLayanan;
+  late Future<List<dynamic>> _serviceDataUlasan;
 
-  Future<List> getData() async {
-    var url = Uri.parse('${ApiConfig.baseUrl}/api/Layanan'); //Api Link
+  Future<List> getDataLayanan() async {
+    var url = Uri.parse('${ApiConfig.baseUrl}/api/Layanan');
+    final response = await http.get(url);
+    return jsonDecode(response.body);
+  }
+
+  Future<List> getDataUlasan() async {
+    var url = Uri.parse('${ApiConfig.baseUrl}/api/Ulasan');
     final response = await http.get(url);
     return jsonDecode(response.body);
   }
 
   @override
   void initState() {
-    _serviceData = getData();
+    _serviceDataLayanan = getDataLayanan();
+    _serviceDataUlasan = getDataUlasan();
     super.initState();
     initializeUser();
   }
@@ -52,9 +62,16 @@ class _DashboardState extends State<Dashboard> {
     ));
     return Scaffold(
       appBar: AppBar(
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.notifications),
+        toolbarHeight: 45.0,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 0.0),
+            child: IconButton(
+              icon: const Icon(
+                Icons.notifications,
+                color: Colors.white,
+                size: 16,
+              ),
               onPressed: () {
                 Navigator.pushReplacement(
                   context,
@@ -62,15 +79,22 @@ class _DashboardState extends State<Dashboard> {
                 );
               },
             ),
-          ],
-          title: Text(
-            'Selamat Datang!',
-            style: const TextStyle(
-                fontSize: 23,
-                color: Color.fromARGB(255, 0, 0, 0),
-                fontWeight: FontWeight.w500),
           ),
-          backgroundColor: Color.fromARGB(255, 255, 255, 255)),
+        ],
+        title: Text(
+          'Selamat Datang!',
+          style: const TextStyle(
+              fontSize: 16, color: Colors.white, fontWeight: FontWeight.w500),
+        ),
+        backgroundColor: AppColors.primaryColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(10.0),
+            bottomRight: Radius.circular(10.0),
+          ),
+        ),
+      ),
+
       backgroundColor: AppColors.backGroundColor,
       // body: LayoutBuilder(
       //   builder: (BuildContext context, BoxConstraints constraints) {
@@ -85,7 +109,7 @@ class _DashboardState extends State<Dashboard> {
       // ),
       body: SingleChildScrollView(
         child: FutureBuilder<List<dynamic>>(
-          future: _serviceData,
+          future: _serviceDataLayanan,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Column(
@@ -118,15 +142,21 @@ class _DashboardState extends State<Dashboard> {
                   // Bagian atas dengan foto profil dan username
                   // Konten dashboard lainnya dapat ditambahkan di sini
                   Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: Container(
+                      height: 40.0,
                       decoration: BoxDecoration(
                         color: Colors.white, // Warna latar belakang
+                        border: Border.all(
+                          color: AppColors.primaryColor, // Warna border
+                          width: 1, // Lebar border
+                        ),
                         borderRadius: BorderRadius.circular(
-                            50.0), // Border radius untuk membuatnya menjadi rounded
+                            15.0), // Border radius untuk membuatnya menjadi rounded
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.grey.withOpacity(0.3), // Warna shadow
+                            color: AppColors.primaryColor
+                                .withOpacity(0.2), // Warna shadow
                             spreadRadius: 2,
                             blurRadius: 5,
                             offset: Offset(0, 2), // Offset shadow
@@ -161,18 +191,19 @@ class _DashboardState extends State<Dashboard> {
                           onTap: () {
                             // Tambahkan logika untuk navigasi ke halaman lain di sini
                             // Misalnya, Navigator.push ke halaman baru.
-                            Navigator.push(
+                            Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Categories()),
+                                  builder: (context) =>
+                                      NavBar(initialPageIndex: 3)),
                             );
                           },
                           child: Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
+                            padding: const EdgeInsets.only(right: 0.0),
                             child: const Text(
                               'More',
                               style:
-                                  TextStyle(fontSize: 15, color: Colors.blue),
+                                  TextStyle(fontSize: 10, color: Colors.blue),
                             ),
                           ),
                         ),
@@ -181,56 +212,114 @@ class _DashboardState extends State<Dashboard> {
                   ),
                   // Kotak container dengan gambar dan nama layanan
                   Container(
-                    height: 125,
+                    height: 110,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount:
                           serviceList.length > 5 ? 4 : serviceList.length,
                       itemBuilder: (context, index) {
                         var service = serviceList[index];
-                        return ServiceCard(
-                            service['nama_layanan'], 'assets/icons/image.png');
+                        return GestureDetector(
+                          onTap: () {
+                            // Navigasi ke halaman detail dengan membawa data service
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => DetailsPage(
+                                  imagePath: service['lokasi_gambar'],
+                                  layanan: service['nama_layanan'],
+                                  harga: service['harga'].toString(),
+                                  penjelasan: service['deskripsi'],
+                                ),
+                              ),
+                            );
+                          },
+                          child: ServiceCard(
+                            service['nama_layanan'],
+                            service['lokasi_gambar'],
+                          ),
+                        );
                       },
                     ),
                   ),
+
                   // Popular
-                  const Padding(
-                    padding: EdgeInsets.all(16.0),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Yang Dicari',
+                          'Ulasan',
                           style: TextStyle(
                               fontSize: 19, fontWeight: FontWeight.bold),
                         ),
+                        InkWell(
+                          onTap: () {
+                            // Tambahkan logika untuk navigasi ke halaman lain di sini
+                            // Misalnya, Navigator.push ke halaman baru.
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      NavBar(initialPageIndex: 3)),
+                            );
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.only(right: 0.0),
+                            child: const Text(
+                              'More',
+                              style:
+                                  TextStyle(fontSize: 10, color: Colors.blue),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
-                  // List dokter populer
+
+// List ulasan populer
                   Container(
                     height: 200,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: [
-                        PopularCard(
-                          'Gigi Palsu',
-                          'Lorem ipsum',
-                          'assets/doctor1.jpg',
-                          'Excellent doctor, highly recommended!, Thank You So Muchhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh',
-                          4,
-                        ),
-                        PopularCard(
-                          'Pasang Behel',
-                          'Lorem ipsum',
-                          'assets/doctor2.jpg',
-                          'Great with kids, very patient and understanding. Thank You So Muchhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh',
-                          5,
-                        ),
-                        // Tambahkan DoctorCard lainnya di sini
-                      ],
+                    child: FutureBuilder<List<dynamic>>(
+                      future: _serviceDataUlasan,
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return Center(
+                            child: CircularProgressIndicator(
+                              valueColor:
+                                  AlwaysStoppedAnimation<Color>(Colors.blue),
+                            ),
+                          );
+                        } else if (snapshot.hasError) {
+                          return Text('Error: ${snapshot.error}');
+                        } else if (!snapshot.hasData ||
+                            snapshot.data!.isEmpty) {
+                          return Text('No data available');
+                        } else {
+                          List<dynamic> ulasanList = snapshot.data!;
+                          return ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: ulasanList.length,
+                            itemBuilder: (context, index) {
+                              var ulasan = ulasanList[index];
+                              return PopularCard(
+                                layanan: ulasan['nama_layanan'],
+                                namaUser: ulasan['nama_user'],
+                                imagePath: ulasan['lokasi_gambar'],
+                                review: ulasan['komentar'],
+                                harga: ulasan['harga'].toString(),
+                                deskripsi: ulasan['deskripsi'],
+                                rating: ulasan['nilai_ulasan'],
+                              );
+                            },
+                          );
+                        }
+                      },
                     ),
                   ),
+
                   const SizedBox(height: 5),
                   // Popular
                   Padding(
@@ -257,11 +346,11 @@ class _DashboardState extends State<Dashboard> {
                             );
                           },
                           child: Padding(
-                            padding: const EdgeInsets.only(left: 8.0),
+                            padding: const EdgeInsets.only(left: 0.0),
                             child: Text(
                               'More',
                               style: TextStyle(
-                                fontSize: 15,
+                                fontSize: 10,
                                 color: Colors.blue,
                               ),
                             ),
@@ -280,10 +369,10 @@ class _DashboardState extends State<Dashboard> {
                     itemBuilder: (context, index) {
                       var service = serviceList[index];
                       return DaftarLayananCard(
-                        imagePath: 'assets/icons/image2.png',
+                        imagePath: service['lokasi_gambar'],
                         nama_layanan: service['nama_layanan'],
                         harga: service['harga'].toString(),
-                        deskripsi: service['deskripsi'], // Convert to string
+                        deskripsi: service['deskripsi'],
                         isAvailable: false,
                       );
                     },

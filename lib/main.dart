@@ -3,8 +3,11 @@ import 'package:ahli_gigi/pages/login/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/rendering.dart';
 
 void main() async {
+  // menampilkan garis debug
+  debugPaintSizeEnabled = false;
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyApp());

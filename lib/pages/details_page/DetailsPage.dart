@@ -1,4 +1,5 @@
 import 'package:ahli_gigi/pages/details_page/widget/details_page_widget.dart';
+import 'package:ahli_gigi/settings/constants/warna_apps.dart';
 import 'package:flutter/material.dart';
 
 class DetailsPage extends StatefulWidget {
@@ -24,8 +25,11 @@ class _DetailsPageState extends State<DetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:
-            Text('Janji Temu', style: TextStyle(fontWeight: FontWeight.bold)),
+        title: Text('Deskripsi',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: AppColors.primaryColor,
+            )),
         centerTitle: true,
       ),
       body: DetailsPageWidget(
