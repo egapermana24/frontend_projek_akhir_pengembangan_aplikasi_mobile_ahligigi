@@ -18,6 +18,8 @@ class Layanan extends StatefulWidget {
 class _LayananState extends State<Layanan> {
   late User? user;
   late Future<List<dynamic>> _serviceData;
+  late List<dynamic> serviceList = [];
+  late List<dynamic> filteredServiceList = [];
 
   Future<List> getData() async {
     var url = Uri.parse('${ApiConfig.baseUrl}/api/Layanan'); //Api Link
@@ -26,14 +28,39 @@ class _LayananState extends State<Layanan> {
   }
 
   @override
+  @override
   void initState() {
     _serviceData = getData();
     super.initState();
     initializeUser();
+    _serviceData.then((data) {
+      setState(() {
+        serviceList = data;
+        filteredServiceList = List.from(serviceList); // Initialize here
+      });
+    });
   }
 
   void initializeUser() {
     user = FirebaseAuth.instance.currentUser;
+  }
+
+  void filterServices(String query) {
+    List<dynamic> filteredList = [];
+    if (query.isNotEmpty) {
+      filteredList = serviceList.where((service) {
+        // Customize the filtering logic based on your needs.
+        return service['nama_layanan']
+            .toLowerCase()
+            .contains(query.toLowerCase());
+      }).toList();
+    } else {
+      filteredList = List.from(serviceList);
+    }
+
+    setState(() {
+      filteredServiceList = filteredList;
+    });
   }
 
   @override
@@ -100,6 +127,9 @@ class _LayananState extends State<Layanan> {
                         ],
                       ),
                       child: TextField(
+                        onChanged: (value) {
+                          filterServices(value);
+                        },
                         decoration: InputDecoration(
                           hintText: 'Cari...',
                           prefixIcon: Icon(Icons.search),
@@ -116,9 +146,9 @@ class _LayananState extends State<Layanan> {
                   ListView.builder(
                     shrinkWrap: true,
                     physics: ClampingScrollPhysics(),
-                    itemCount: serviceList.length,
+                    itemCount: filteredServiceList.length,
                     itemBuilder: (context, index) {
-                      var service = serviceList[index];
+                      var service = filteredServiceList[index];
                       return DaftarLayananCard(
                         imagePath: service['lokasi_gambar'],
                         nama_layanan: service['nama_layanan'],

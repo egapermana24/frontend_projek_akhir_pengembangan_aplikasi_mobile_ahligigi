@@ -26,7 +26,7 @@ class PopularCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 16, right: 16),
       child: Container(
-        width: 210,
+        width: 230,
         child: Card(
           elevation: 4,
           color: AppColors.primaryColor,
@@ -34,7 +34,7 @@ class PopularCard extends StatelessWidget {
             left: 0,
           ),
           child: Padding(
-            padding: const EdgeInsets.all(13.0),
+            padding: const EdgeInsets.all(9.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -51,7 +51,7 @@ class PopularCard extends StatelessWidget {
                         Text(
                           _truncateLayanan(layanan, 15),
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 14,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                           ),

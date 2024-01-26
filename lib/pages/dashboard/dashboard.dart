@@ -215,8 +215,10 @@ class _DashboardState extends State<Dashboard> {
                     height: 110,
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount:
-                          serviceList.length > 5 ? 4 : serviceList.length,
+                      itemCount: serviceList.length > 2
+                          ? 4
+                          : serviceList
+                              .length, // Apabila Lebih dari 2 maka tampilkan 4
                       itemBuilder: (context, index) {
                         var service = serviceList[index];
                         return GestureDetector(
@@ -242,7 +244,6 @@ class _DashboardState extends State<Dashboard> {
                       },
                     ),
                   ),
-
                   // Popular
                   Padding(
                     padding: const EdgeInsets.all(16.0),
@@ -277,8 +278,7 @@ class _DashboardState extends State<Dashboard> {
                       ],
                     ),
                   ),
-
-// List ulasan populer
+                  // List ulasan populer
                   Container(
                     height: 200,
                     child: FutureBuilder<List<dynamic>>(
@@ -301,7 +301,10 @@ class _DashboardState extends State<Dashboard> {
                           List<dynamic> ulasanList = snapshot.data!;
                           return ListView.builder(
                             scrollDirection: Axis.horizontal,
-                            itemCount: ulasanList.length,
+                            itemCount: ulasanList.length > 2
+                                ? 4
+                                : ulasanList
+                                    .length, // Apabila Lebih dari 2 maka tampilkan 4
                             itemBuilder: (context, index) {
                               var ulasan = ulasanList[index];
                               return PopularCard(
