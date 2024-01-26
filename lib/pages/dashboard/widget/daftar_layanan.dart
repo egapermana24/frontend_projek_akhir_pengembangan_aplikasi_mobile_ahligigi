@@ -34,9 +34,18 @@ class DaftarLayananCard extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppColors.primaryColor,
+        color: Colors.white,
         borderRadius: BorderRadius.circular(15),
-        border: Border.all(color: Colors.grey),
+        // border: Border.all(color: AppColors.primaryColor),
+        // shadow
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.3),
+            spreadRadius: 3,
+            blurRadius: 5,
+            offset: Offset(0, 2),
+          ),
+        ],
       ),
       child: Column(
         children: [
@@ -51,10 +60,11 @@ class DaftarLayananCard extends StatelessWidget {
                   height: 100,
                   width: 100,
                   decoration: BoxDecoration(
-                      border: Border.all(color: Colors.white, width: 2),
-                      borderRadius: BorderRadius.circular(10)),
+                      border:
+                          Border.all(color: AppColors.primaryColor, width: 2),
+                      borderRadius: BorderRadius.circular(11)),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(9),
                     child: Image.network(
                       imagePath,
                       fit: BoxFit.cover,
@@ -73,13 +83,13 @@ class DaftarLayananCard extends StatelessWidget {
                       style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white),
+                          color: AppColors.primaryText),
                     ),
                     Text(
                       '${NumberFormat.currency(locale: 'id_ID', symbol: 'Rp', decimalDigits: 0).format(double.parse(harga))}',
                       style: TextStyle(
                         fontSize: 14,
-                        color: const Color.fromARGB(255, 235, 235, 235),
+                        color: Colors.black38,
                       ),
                     ),
 
@@ -88,7 +98,7 @@ class DaftarLayananCard extends StatelessWidget {
                       _truncateDescription(deskripsi, 20),
                       style: TextStyle(
                         fontSize: 10,
-                        color: const Color.fromARGB(255, 255, 255, 255),
+                        color: Colors.black54,
                       ),
                     ),
                     SizedBox(height: 20),
@@ -117,7 +127,7 @@ class DaftarLayananCard extends StatelessWidget {
                   .infinity, // Set lebar ke infinity untuk memenuhi panjang baris
               padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: AppColors.primaryColor,
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Center(
@@ -125,7 +135,7 @@ class DaftarLayananCard extends StatelessWidget {
                   'Pesan',
                   style: TextStyle(
                     fontSize: 12,
-                    color: AppColors.primaryColor,
+                    color: Colors.white,
                   ),
                 ),
               ),

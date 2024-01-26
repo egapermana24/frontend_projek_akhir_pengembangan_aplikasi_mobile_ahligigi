@@ -202,7 +202,7 @@ class _DashboardState extends State<Dashboard> {
 
                     // Popular
                     Padding(
-                      padding: const EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -280,7 +280,7 @@ class _DashboardState extends State<Dashboard> {
                     const SizedBox(height: 5),
                     // Popular
                     Padding(
-                      padding: EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
