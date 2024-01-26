@@ -46,7 +46,7 @@ class Categories extends StatelessWidget {
                     children: [
                       // Gambar kategori
                       Image.asset(
-                        'assets/img/1.jpg',
+                        'assets/img/Kpembuatan.jpg',
                         height: 120,
                         width: double.infinity,
                         fit: BoxFit.cover,
@@ -59,7 +59,7 @@ class Categories extends StatelessWidget {
                         child: Text(
                           'Pembuatan',
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 17,
                             fontWeight: FontWeight.bold,
                             color: Colors.white, // Warna teks
                           ),
@@ -85,7 +85,7 @@ class Categories extends StatelessWidget {
                     children: [
                       // Gambar kategori
                       Image.asset(
-                        'assets/img/2.jpg',
+                        'assets/img/Kpemasangangigipalsu.jpg',
                         height: 120,
                         width: double.infinity,
                         fit: BoxFit.cover,
@@ -98,7 +98,7 @@ class Categories extends StatelessWidget {
                         child: Text(
                           'Pemasangan',
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 17,
                             fontWeight: FontWeight.bold,
                             color: Colors.white, // Warna teks
                           ),
@@ -124,7 +124,7 @@ class Categories extends StatelessWidget {
                     children: [
                       // Gambar kategori
                       Image.asset(
-                        'assets/img/3.jpg',
+                        'assets/img/Kkonsultasi.jpg',
                         height: 120,
                         width: double.infinity,
                         fit: BoxFit.cover,
@@ -137,7 +137,7 @@ class Categories extends StatelessWidget {
                         child: Text(
                           'Konsultasi',
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 17,
                             fontWeight: FontWeight.bold,
                             color: Colors.white, // Warna teks
                           ),
@@ -163,7 +163,7 @@ class Categories extends StatelessWidget {
                     children: [
                       // Gambar kategori
                       Image.asset(
-                        'assets/img/1.jpg',
+                        'assets/img/Kgaransi.jpg',
                         height: 120,
                         width: double.infinity,
                         fit: BoxFit.cover,
@@ -176,7 +176,7 @@ class Categories extends StatelessWidget {
                         child: Text(
                           'Garansi',
                           style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 17,
                             fontWeight: FontWeight.bold,
                             color: Colors.white, // Warna teks
                           ),
