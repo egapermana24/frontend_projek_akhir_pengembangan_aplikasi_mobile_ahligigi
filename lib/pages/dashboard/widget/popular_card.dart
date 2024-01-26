@@ -26,7 +26,7 @@ class PopularCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 16, right: 16),
       child: Container(
-        width: 230,
+        width: 240,
         child: Card(
           elevation: 4,
           color: AppColors.primaryColor,
