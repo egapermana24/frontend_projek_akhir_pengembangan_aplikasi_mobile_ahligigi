@@ -97,22 +97,20 @@ class _DashboardState extends State<Dashboard> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Container(
-                        height: 60.0,
+                        height: 40.0,
                         decoration: BoxDecoration(
-                          color: Colors.white, // Warna latar belakang
+                          color: Colors.white,
                           border: Border.all(
-                            color: AppColors.primaryColor, // Warna border
-                            width: 1, // Lebar border
+                            color: AppColors.primaryColor,
+                            width: 1,
                           ),
-                          borderRadius: BorderRadius.circular(
-                              15.0), // Border radius untuk membuatnya menjadi rounded
+                          borderRadius: BorderRadius.circular(15.0),
                           boxShadow: [
                             BoxShadow(
-                              color: AppColors.primaryColor
-                                  .withOpacity(0.2), // Warna shadow
+                              color: AppColors.primaryColor.withOpacity(0.2),
                               spreadRadius: 2,
                               blurRadius: 5,
-                              offset: Offset(0, 2), // Offset shadow
+                              offset: Offset(0, 2),
                             ),
                           ],
                         ),
@@ -121,9 +119,10 @@ class _DashboardState extends State<Dashboard> {
                             hintText: 'Cari...',
                             prefixIcon: Icon(Icons.search),
                             border: OutlineInputBorder(
-                              borderSide: BorderSide
-                                  .none, // Hapus border bawaan dari TextField
+                              borderSide: BorderSide.none,
                             ),
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 8.0), // Atur padding vertikal
                           ),
                         ),
                       ),
@@ -199,7 +198,8 @@ class _DashboardState extends State<Dashboard> {
                     ),
                     // Popular
                     Padding(
-                      padding: const EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16.0, vertical: 5.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -279,7 +279,8 @@ class _DashboardState extends State<Dashboard> {
                     const SizedBox(height: 5),
                     // Popular
                     Padding(
-                      padding: EdgeInsets.all(16.0),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 16.0, vertical: 5.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [

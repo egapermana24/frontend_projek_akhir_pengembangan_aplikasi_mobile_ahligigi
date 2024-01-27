@@ -1,3 +1,4 @@
+import 'package:ahli_gigi/settings/constants/warna_apps.dart';
 import 'package:flutter/material.dart';
 
 class CategoryCard extends StatelessWidget {
@@ -23,7 +24,7 @@ class CategoryCard extends StatelessWidget {
           // Nama kategori
           Container(
             padding: EdgeInsets.all(8),
-            color: Color.fromARGB(255, 44, 44, 44)
+            color: AppColors.primaryColor
                 .withOpacity(0.7), // Warna background teks dengan opasitas
             child: Text(
               categoryName,

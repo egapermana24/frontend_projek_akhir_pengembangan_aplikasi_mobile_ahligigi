@@ -83,21 +83,20 @@ class _LayananState extends State<Layanan> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Container(
-              height: 60.0,
+              height: 40.0,
               decoration: BoxDecoration(
-                color: Colors.white, // Warna latar belakang
+                color: Colors.white,
                 border: Border.all(
-                  color: AppColors.primaryColor, // Warna border
-                  width: 1, // Lebar border
+                  color: AppColors.primaryColor,
+                  width: 1,
                 ),
                 borderRadius: BorderRadius.circular(15.0),
                 boxShadow: [
                   BoxShadow(
-                    color:
-                        AppColors.primaryColor.withOpacity(0.2), // Warna shadow
+                    color: AppColors.primaryColor.withOpacity(0.2),
                     spreadRadius: 2,
                     blurRadius: 5,
-                    offset: Offset(0, 2), // Offset shadow
+                    offset: Offset(0, 2),
                   ),
                 ],
               ),
@@ -107,14 +106,17 @@ class _LayananState extends State<Layanan> {
                 },
                 decoration: InputDecoration(
                   hintText: 'Cari...',
-                  prefixIcon: Icon(
-                    Icons.search,
+                  prefixIcon: Icon(Icons.search),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide.none,
                   ),
-                  border: OutlineInputBorder(borderSide: BorderSide.none),
+                  contentPadding: EdgeInsets.symmetric(
+                      vertical: 8.0), // Atur padding vertikal
                 ),
               ),
             ),
           ),
+
           const SizedBox(height: 5),
           // Popular
           ListView.builder(

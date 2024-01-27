@@ -31,37 +31,52 @@ class Categories extends StatelessWidget {
             // ),
             Container(
                 margin: EdgeInsets.only(bottom: 16),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(15.0), // Mengatur sudut kanan atas
+                  ),
+                ),
                 child: InkWell(
                   onTap: () {
                     // Navigate to the next page here
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              Dashboard()), // Replace with the actual page you want to navigate to
-                    );
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => NavBar(initialPageIndex: 3),
+                        ));
                   },
                   child: Stack(
                     alignment: Alignment.bottomLeft,
                     children: [
                       // Gambar kategori
-                      Image.asset(
-                        'assets/img/Kpembuatan.jpg',
-                        height: 120,
-                        width: double.infinity,
-                        fit: BoxFit.cover,
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(
+                            15.0), // Sesuaikan nilai sesuai kebutuhan
+                        child: Image.asset(
+                          'assets/img/Kpembuatan.jpg',
+                          height: 120,
+                          width: double.infinity,
+                          fit: BoxFit.cover,
+                        ),
                       ),
+
                       // Nama kategori
                       Container(
                         padding: EdgeInsets.all(8),
-                        color: Color.fromARGB(255, 44, 44, 44).withOpacity(
-                            0.7), // Warna background teks dengan opasitas
+                        decoration: BoxDecoration(
+                          color: AppColors.primaryColor.withOpacity(0.7),
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(15.0),
+                            bottomLeft: Radius.circular(
+                                15.0), // Mengatur sudut kanan atas
+                          ),
+                        ),
                         child: Text(
                           'Pembuatan',
                           style: TextStyle(
                             fontSize: 17,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white, // Warna teks
+                            color: Colors.white,
                           ),
                         ),
                       ),
@@ -72,35 +87,42 @@ class Categories extends StatelessWidget {
                 margin: EdgeInsets.only(bottom: 16),
                 child: InkWell(
                   onTap: () {
-                    // Navigate to the next page here
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              Dashboard()), // Replace with the actual page you want to navigate to
-                    );
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => NavBar(initialPageIndex: 3),
+                        ));
                   },
                   child: Stack(
                     alignment: Alignment.bottomLeft,
                     children: [
-                      // Gambar kategori
-                      Image.asset(
-                        'assets/img/Kpemasangangigipalsu.jpg',
-                        height: 120,
-                        width: double.infinity,
-                        fit: BoxFit.cover,
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(
+                            15.0), // Sesuaikan nilai sesuai kebutuhan
+                        child: Image.asset(
+                          'assets/img/Kpemasangangigipalsu.jpg',
+                          height: 120,
+                          width: double.infinity,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                       // Nama kategori
                       Container(
                         padding: EdgeInsets.all(8),
-                        color: Color.fromARGB(255, 44, 44, 44).withOpacity(
-                            0.7), // Warna background teks dengan opasitas
+                        decoration: BoxDecoration(
+                          color: AppColors.primaryColor.withOpacity(0.7),
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(
+                                15.0), // Mengatur sudut kanan atas
+                            bottomLeft: Radius.circular(15.0),
+                          ),
+                        ),
                         child: Text(
                           'Pemasangan',
                           style: TextStyle(
                             fontSize: 17,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white, // Warna teks
+                            color: Colors.white,
                           ),
                         ),
                       ),
@@ -112,34 +134,42 @@ class Categories extends StatelessWidget {
                 child: InkWell(
                   onTap: () {
                     // Navigate to the next page here
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              Dashboard()), // Replace with the actual page you want to navigate to
-                    );
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => NavBar(initialPageIndex: 3),
+                        ));
                   },
                   child: Stack(
                     alignment: Alignment.bottomLeft,
                     children: [
-                      // Gambar kategori
-                      Image.asset(
-                        'assets/img/Kkonsultasi.jpg',
-                        height: 120,
-                        width: double.infinity,
-                        fit: BoxFit.cover,
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(
+                            15.0), // Sesuaikan nilai sesuai kebutuhan
+                        child: Image.asset(
+                          'assets/img/Kkonsultasi.jpg',
+                          height: 120,
+                          width: double.infinity,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                       // Nama kategori
                       Container(
                         padding: EdgeInsets.all(8),
-                        color: Color.fromARGB(255, 44, 44, 44).withOpacity(
-                            0.7), // Warna background teks dengan opasitas
+                        decoration: BoxDecoration(
+                          color: AppColors.primaryColor.withOpacity(0.7),
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(
+                                15.0), // Mengatur sudut kanan atas
+                            bottomLeft: Radius.circular(15.0),
+                          ),
+                        ),
                         child: Text(
                           'Konsultasi',
                           style: TextStyle(
                             fontSize: 17,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white, // Warna teks
+                            color: Colors.white,
                           ),
                         ),
                       ),
@@ -151,34 +181,42 @@ class Categories extends StatelessWidget {
                 child: InkWell(
                   onTap: () {
                     // Navigate to the next page here
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              Dashboard()), // Replace with the actual page you want to navigate to
-                    );
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => NavBar(initialPageIndex: 3),
+                        ));
                   },
                   child: Stack(
                     alignment: Alignment.bottomLeft,
                     children: [
-                      // Gambar kategori
-                      Image.asset(
-                        'assets/img/Kgaransi.jpg',
-                        height: 120,
-                        width: double.infinity,
-                        fit: BoxFit.cover,
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(
+                            15.0), // Sesuaikan nilai sesuai kebutuhan
+                        child: Image.asset(
+                          'assets/img/Kgaransi.jpg',
+                          height: 120,
+                          width: double.infinity,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                       // Nama kategori
                       Container(
                         padding: EdgeInsets.all(8),
-                        color: Color.fromARGB(255, 44, 44, 44).withOpacity(
-                            0.7), // Warna background teks dengan opasitas
+                        decoration: BoxDecoration(
+                          color: AppColors.primaryColor.withOpacity(0.7),
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(
+                                15.0), // Mengatur sudut kanan atas
+                            bottomLeft: Radius.circular(15.0),
+                          ),
+                        ),
                         child: Text(
                           'Garansi',
                           style: TextStyle(
                             fontSize: 17,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white, // Warna teks
+                            color: Colors.white,
                           ),
                         ),
                       ),

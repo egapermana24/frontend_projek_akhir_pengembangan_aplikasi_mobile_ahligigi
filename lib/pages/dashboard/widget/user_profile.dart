@@ -118,7 +118,7 @@ class UserProfile extends StatelessWidget {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) =>
-                                        NavBar(initialPageIndex: 3),
+                                        NavBar(initialPageIndex: 1),
                                   ),
                                 );
                               },
