@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:ahli_gigi/pages/pembayaran/pembayaranSukses.dart';
 import 'package:ahli_gigi/settings/constants/warna_apps.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -354,6 +355,11 @@ class _PembayaranPageState extends State<PembayaranPage> {
               SizedBox(height: 10),
               GestureDetector(
                 onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => PembayaranSuksesPage()),
+                  );
                   // Panggil fungsi untuk mengambil gambar
                 },
                 child: Container(
