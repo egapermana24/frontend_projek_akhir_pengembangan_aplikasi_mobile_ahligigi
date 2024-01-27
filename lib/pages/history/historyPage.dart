@@ -50,6 +50,7 @@ class _RiwayatState extends State<Riwayat> {
           ),
         ),
         centerTitle: true,
+        automaticallyImplyLeading: false,
       ),
       body: RefreshIndicator(
         onRefresh: _refreshData,

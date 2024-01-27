@@ -355,7 +355,7 @@ class _PembayaranPageState extends State<PembayaranPage> {
               SizedBox(height: 10),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(
+                  Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                         builder: (context) => PembayaranSuksesPage()),

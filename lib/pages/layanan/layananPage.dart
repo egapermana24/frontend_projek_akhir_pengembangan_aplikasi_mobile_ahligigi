@@ -75,6 +75,7 @@ class _LayananState extends State<Layanan> {
             style: TextStyle(
                 fontWeight: FontWeight.bold, color: AppColors.primaryColor)),
         centerTitle: true,
+        automaticallyImplyLeading: false,
       ),
       backgroundColor: AppColors.backGroundColor,
       body: ListView(

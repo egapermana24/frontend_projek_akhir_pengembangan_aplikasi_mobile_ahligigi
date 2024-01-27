@@ -38,6 +38,7 @@ class _ProfileState extends State<Profile> {
           ),
         ),
         centerTitle: true,
+        automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
         child: Column(
