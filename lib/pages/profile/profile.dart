@@ -1,4 +1,5 @@
 import 'package:ahli_gigi/pages/dashboard/dashboard.dart';
+import 'package:ahli_gigi/pages/profile/widget/user_profile.dart';
 import 'package:ahli_gigi/pages/login/login.dart';
 import 'package:ahli_gigi/pages/profile/components/info_akun.dart';
 import 'package:ahli_gigi/settings/constants/warna_apps.dart';
@@ -7,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class Profile extends StatefulWidget {
-  const Profile({super.key});
+  const Profile({Key? key}) : super(key: key);
 
   @override
   State<Profile> createState() => _ProfileState();
@@ -32,147 +33,315 @@ class _ProfileState extends State<Profile> {
         title: Text(
           'Profil',
           style: TextStyle(
-              fontWeight: FontWeight.bold, color: AppColors.primaryColor),
+            fontWeight: FontWeight.bold,
+            color: AppColors.primaryColor,
+          ),
         ),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.all(30.0),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            UserProfile(
+              user: FirebaseAuth.instance.currentUser,
+              onPressed: () => _showFullscreenImage(context),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            // -------INFO AKUN-------
+            Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10),
               child: InkWell(
                 onTap: () {
-                  // Toggling the tapped state to show/hide the fullscreen image
-                  setState(() {
-                    isTapped = !isTapped;
-                  });
-
-                  if (isTapped) {
-                    // If tapped, show the fullscreen image
-                    _showFullscreenImage(context);
-                  }
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => InfoAkun()),
+                  // );
                 },
                 child: Container(
-                  height: 100,
-                  width: 100,
                   decoration: BoxDecoration(
-                    // border: Border.all(color: Colors.black),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.2),
+                        spreadRadius: 1,
+                        blurRadius: 3,
+                        offset: Offset(0, 2),
+                      ),
+                    ],
                     borderRadius: BorderRadius.circular(15),
                   ),
-                  clipBehavior: Clip.antiAlias,
-                  child: Image.asset(
-                    'assets/icons/image.png',
-                    fit: BoxFit.cover,
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Icon(
+                          Icons.account_circle,
+                          size: 40,
+                          color: AppColors.primaryColor,
+                        ),
+                      ),
+                      Text(
+                        'Info Akun',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
+                      Spacer(),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Image.asset(
+                          'assets/icons/arrow-right.png',
+                          width: 15,
+                          height: 15,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
             ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          // -------INFO AKUN-------
-          Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            child: InkWell(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => InfoAkun()),
-                );
-              },
-              child: Container(
+
+            SizedBox(
+              height: 10,
+            ),
+            // -------ALAMAT-------
+            Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              child: InkWell(
+                onTap: () {
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => InfoAkun()),
+                  // );
+                },
+                child: Container(
                   decoration: BoxDecoration(
-                    // border: Border.all(color: Colors.black),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.2),
+                        spreadRadius: 1,
+                        blurRadius: 3,
+                        offset: Offset(0, 2),
+                      ),
+                    ],
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: Row(
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          width: 40,
-                          height: 40,
-                          margin: EdgeInsets.only(
-                              right: 8), // Jarak antara ikon dan teks
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: const Color.fromARGB(255, 199, 199, 199),
-                          ),
-                          child: Icon(
-                            Icons.account_circle,
-                            size: 20,
-                          ),
+                        child: Icon(
+                          Icons.location_on_rounded,
+                          size: 40,
+                          color: AppColors.primaryColor,
                         ),
                       ),
-                      Text('Info Akun'),
-                      Spacer(), // Spacer untuk memberikan jarak ke kanan
-                      Icon(Icons.arrow_right),
-                    ],
-                  )),
-            ),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          // -------ALAMAT-------
-          Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            child: InkWell(
-              onTap: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => Dashboard()),
-                // );
-              },
-              child: Container(
-                  decoration: BoxDecoration(
-                    // border: Border.all(color: Colors.black),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Row(
-                    children: [
+                      Text(
+                        'Alamat',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
+                      Spacer(),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          width: 40,
-                          height: 40,
-                          margin: EdgeInsets.only(
-                              right: 8), // Jarak antara ikon dan teks
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: const Color.fromARGB(255, 199, 199, 199),
-                          ),
-                          child: Icon(
-                            Icons.location_pin,
-                            size: 20,
-                          ),
+                        child: Image.asset(
+                          'assets/icons/arrow-right.png',
+                          width: 15,
+                          height: 15,
                         ),
                       ),
-                      Text('Alamat'),
-                      Spacer(), // Spacer untuk memberikan jarak ke kanan
-                      Icon(Icons.arrow_right),
                     ],
-                  )),
-            ),
-          ),
-          // buatkan tombol logout di paling bawah halaman mengikuti panjang device layar user, letakkan ditengah bawah
-          Spacer(),
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: 50,
-            margin: EdgeInsets.only(left: 10, right: 10, bottom: 10),
-            child: ElevatedButton(
-              onPressed: () => _signOut(context),
-              style: ElevatedButton.styleFrom(
-                primary: Colors.red, // Ubah warna latar belakang
-                onPrimary: Colors.white, // Ubah warna teks
+                  ),
+                ),
               ),
-              child: Text('Logout'),
             ),
-          ),
-        ],
+            SizedBox(
+              height: 10,
+            ),
+            // -------TENTANG-------
+            Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              child: InkWell(
+                onTap: () {
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => InfoAkun()),
+                  // );
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.2),
+                        spreadRadius: 1,
+                        blurRadius: 3,
+                        offset: Offset(0, 2),
+                      ),
+                    ],
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Icon(
+                          Icons.info_outline,
+                          size: 40,
+                          color: AppColors.primaryColor,
+                        ),
+                      ),
+                      Text(
+                        'Tentang',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
+                      Spacer(),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Image.asset(
+                          'assets/icons/arrow-right.png',
+                          width: 15,
+                          height: 15,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            // -------BANTUAN-------
+            Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              child: InkWell(
+                onTap: () {
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => InfoAkun()),
+                  // );
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.2),
+                        spreadRadius: 1,
+                        blurRadius: 3,
+                        offset: Offset(0, 2),
+                      ),
+                    ],
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Icon(
+                          Icons.help_outline_rounded,
+                          size: 40,
+                          color: AppColors.primaryColor,
+                        ),
+                      ),
+                      Text(
+                        'Bantuan',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
+                      Spacer(),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Image.asset(
+                          'assets/icons/arrow-right.png',
+                          width: 15,
+                          height: 15,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            // -------BANTUAN-------
+            Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              child: InkWell(
+                onTap: () {
+                  _signOut(context);
+                },
+                child: Container(
+                  padding: EdgeInsets.all(15),
+                  decoration: BoxDecoration(
+                    color: AppColors.primaryColor,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.2),
+                        spreadRadius: 1,
+                        blurRadius: 3,
+                        offset: Offset(0, 2),
+                      ),
+                    ],
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.logout,
+                        size: 20,
+                        color: Colors.white,
+                      ),
+                      Text(
+                        'Logout',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            // Container(
+            //   width: MediaQuery.of(context).size.width,
+            //   height: 50,
+            //   margin: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+            //   child: ElevatedButton(
+            //     onPressed: () => _signOut(context),
+            //     style: ElevatedButton.styleFrom(
+            //       primary: Colors.red,
+            //       onPrimary: Colors.white,
+            //     ),
+            //     child: Text('Logout'),
+            //   ),
+            // ),
+          ],
+        ),
       ),
     );
   }
@@ -187,9 +356,18 @@ void _showFullscreenImage(BuildContext context) {
         child: Container(
           height: 300,
           width: 300,
-          child: Image.asset(
-            'assets/icons/image.png',
-            fit: BoxFit.cover,
+          child: SizedBox(
+            width: 150.0,
+            height: 150.0,
+            child: FirebaseAuth.instance.currentUser?.photoURL != null
+                ? Image.network(
+                    FirebaseAuth.instance.currentUser!.photoURL!,
+                    fit: BoxFit.cover,
+                  )
+                : Image.asset(
+                    'assets/img/empty-user.png',
+                    fit: BoxFit.cover,
+                  ),
           ),
         ),
       );

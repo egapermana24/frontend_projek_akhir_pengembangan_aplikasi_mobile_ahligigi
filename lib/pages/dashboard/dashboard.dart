@@ -164,6 +164,7 @@ class _DashboardState extends State<Dashboard> {
                     ),
                     // Kotak container dengan gambar dan nama layanan
                     Container(
+                      padding: EdgeInsets.symmetric(horizontal: 6.0),
                       height: 110,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
