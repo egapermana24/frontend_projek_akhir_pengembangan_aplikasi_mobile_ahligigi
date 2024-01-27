@@ -57,12 +57,12 @@ class _PembayaranSuksesPageState extends State<PembayaranSuksesPage> {
                       Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => NavBar(initialPageIndex: 0),
+                            builder: (context) => NavBar(initialPageIndex: 4),
                           ));
                       // Tambahkan logika untuk tombol login di sini
                     },
                     child: Text(
-                      'Kembali ke Dashboard',
+                      'Riwayat Janji Temu',
                       style: TextStyle(
                         fontSize: 14,
                         color: Colors.white,

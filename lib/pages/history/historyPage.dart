@@ -26,6 +26,12 @@ class _RiwayatState extends State<Riwayat> {
     }
   }
 
+  Future<void> _refreshData() async {
+    setState(() {
+      _serviceDataLayanan = getDataLayanan();
+    });
+  }
+
   @override
   void initState() {
     _serviceDataLayanan = getDataLayanan();
@@ -45,108 +51,131 @@ class _RiwayatState extends State<Riwayat> {
         ),
         centerTitle: true,
       ),
-      body: FutureBuilder<List<dynamic>>(
-        future: _serviceDataLayanan,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(
-                      top: 50.0), // Ganti nilai sesuai kebutuhan
-                  child: Center(
-                    child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
-                    ),
-                  ),
+      body: RefreshIndicator(
+        onRefresh: _refreshData,
+        child: FutureBuilder<List<dynamic>>(
+          future: _serviceDataLayanan,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
                 ),
-              ],
-            );
-          } else if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
-          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Center(child: Text('No data available'));
-          } else {
-            List<dynamic> dataLayanan = snapshot.data!;
-
-            return ListView.builder(
-              itemCount: dataLayanan.length,
-              itemBuilder: (context, index) {
-                return Container(
-                  margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                  padding: EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(15),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.3),
-                        spreadRadius: 2,
-                        blurRadius: 5,
-                        offset: Offset(0, 2),
-                      ),
-                    ],
-                  ),
-                  child: Row(
-                    children: [
-                      CircleAvatar(
-                        backgroundColor: AppColors.primaryColor,
-                        radius: 30,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.network(
-                            dataLayanan[index]['lokasi_gambar'],
-                            width: 60,
-                            height: 60,
-                            fit: BoxFit.cover,
+              );
+            } else if (snapshot.hasError) {
+              return Center(child: Text('Error: ${snapshot.error}'));
+            } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+              return Center(child: Text('No data available'));
+            } else {
+              List<dynamic> dataLayanan = snapshot.data!;
+              dataLayanan.sort((a, b) {
+                DateTime dateA = DateTime.parse(a['tanggal_pemesanan']);
+                DateTime dateB = DateTime.parse(b['tanggal_pemesanan']);
+                return dateB.compareTo(dateA);
+              });
+              return ListView.builder(
+                itemCount: dataLayanan.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    margin: EdgeInsets.symmetric(vertical: 5, horizontal: 16),
+                    padding: EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.3),
+                          spreadRadius: 2,
+                          blurRadius: 5,
+                          offset: Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                    child: Row(
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: AppColors.primaryColor,
+                          radius: 30,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.network(
+                              dataLayanan[index]['lokasi_gambar'],
+                              width: 60,
+                              height: 60,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(width: 16),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              dataLayanan[index]['nama_layanan'],
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                                color: AppColors.primaryColor,
+                        SizedBox(width: 16),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                dataLayanan[index]['nama_layanan'],
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                  color: AppColors.primaryColor,
+                                ),
                               ),
-                            ),
-                            SizedBox(height: 8),
-                            Text(
-                              '${_formatDate(dataLayanan[index]['tanggal_pemesanan'])} - ${_formatTime(dataLayanan[index]['waktu_pemesanan'])}',
-                              style: TextStyle(fontSize: 14),
-                            ),
-                            SizedBox(height: 8),
-                            Text(
-                              dataLayanan[index]['status_pemesanan'],
-                              style: TextStyle(fontSize: 14),
-                            ),
-                          ],
+                              SizedBox(height: 5),
+                              Text(
+                                '${_formatDate(dataLayanan[index]['tanggal_pemesanan'])} - ${_formatTime(dataLayanan[index]['waktu_pemesanan'])}',
+                                style: TextStyle(fontSize: 14),
+                              ),
+                              SizedBox(height: 5),
+                              Container(
+                                decoration: BoxDecoration(
+                                  color: _getStatusColor(
+                                      dataLayanan[index]['status_pemesanan']),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 8, vertical: 3),
+                                child: Text(
+                                  dataLayanan[index]['status_pemesanan'],
+                                  style: TextStyle(
+                                      fontSize: 12, color: Colors.white),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                );
-              },
-            );
-          }
-        },
+                      ],
+                    ),
+                  );
+                },
+              );
+            }
+          },
+        ),
       ),
     );
   }
-}
 
-String _formatDate(String rawDate) {
-  DateTime date = DateTime.parse(rawDate);
-  return DateFormat('dd MMM y').format(date);
-}
+  Color _getStatusColor(String status) {
+    switch (status) {
+      case 'Menunggu Konfirmasi':
+        return Colors.orange.withOpacity(0.8);
+      case 'Menunggu Kunjungan':
+        return Colors.blue.withOpacity(0.8);
+      case 'Selesai':
+        return Colors.green.withOpacity(0.8);
+      case 'Tidak Valid':
+        return Colors.red.withOpacity(0.8);
+      default:
+        return Colors.grey.withOpacity(0.8);
+    }
+  }
 
-String _formatTime(String rawTime) {
-  DateTime time = DateTime.parse('2024-01-24T$rawTime');
-  return DateFormat('HH.mm').format(time) + ' WIB';
+  String _formatDate(String rawDate) {
+    DateTime date = DateTime.parse(rawDate);
+    return DateFormat('dd MMM y').format(date);
+  }
+
+  String _formatTime(String rawTime) {
+    DateTime time = DateTime.parse('2024-01-24T$rawTime');
+    return DateFormat('HH.mm').format(time) + ' WIB';
+  }
 }

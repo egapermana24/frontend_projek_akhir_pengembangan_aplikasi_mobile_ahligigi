@@ -130,7 +130,8 @@ class _DashboardState extends State<Dashboard> {
 
                     // Layanan dan More
                     Padding(
-                      padding: const EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.only(
+                          top: 16.0, left: 16.0, right: 16.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -164,8 +165,10 @@ class _DashboardState extends State<Dashboard> {
                     ),
                     // Kotak container dengan gambar dan nama layanan
                     Container(
-                      padding: EdgeInsets.symmetric(horizontal: 6.0),
-                      height: 110,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 6.0,
+                      ),
+                      height: 125,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount: serviceList.length > 2
@@ -199,8 +202,8 @@ class _DashboardState extends State<Dashboard> {
                     ),
                     // Popular
                     Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16.0, vertical: 5.0),
+                      padding: const EdgeInsets.only(
+                          top: 16.0, left: 16.0, right: 16.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [

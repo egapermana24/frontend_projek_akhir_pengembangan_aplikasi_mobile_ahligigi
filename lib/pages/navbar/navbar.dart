@@ -172,6 +172,7 @@ class _NavBarState extends State<NavBar> {
                   bottom: 17, // Sesuaikan dengan kebutuhan Anda
                   left: 0,
                   right: 0,
+
                   child: Container(
                     child: Align(
                       alignment: Alignment.bottomCenter,

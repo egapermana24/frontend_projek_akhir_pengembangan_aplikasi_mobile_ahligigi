@@ -25,30 +25,30 @@ class BottomIconWidget extends StatelessWidget {
   }
 
   Widget _buildFloatingButton() {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Colors.white, // Warna border putih
-          width: 1, // Lebar border
-        ),
-        shape: BoxShape.circle,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.15),
-            blurRadius: 4,
-            spreadRadius: 2,
-            offset: Offset(0, 3),
+    return InkWell(
+      // behavior: HitTestBehavior.translucent,
+      onTap: tap,
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: Colors.white, // Warna border putih
+            width: 1, // Lebar border
           ),
-        ],
-      ),
-      child: ClipOval(
-        child: Material(
-          elevation: 10.0,
-          color: AppColors.primaryColor,
-          shadowColor: Colors.black,
-          child: GestureDetector(
-            behavior: HitTestBehavior.translucent,
-            onTap: tap,
+          shape: BoxShape.circle,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.15),
+              blurRadius: 4,
+              spreadRadius: 2,
+              offset: Offset(0, 3),
+            ),
+          ],
+        ),
+        child: ClipOval(
+          child: Material(
+            elevation: 10.0,
+            color: AppColors.primaryColor,
+            shadowColor: Colors.black,
             child: Padding(
               padding: const EdgeInsets.all(15.0),
               child: Image.asset(
