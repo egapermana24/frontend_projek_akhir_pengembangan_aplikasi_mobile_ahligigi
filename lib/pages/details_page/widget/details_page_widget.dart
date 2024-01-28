@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 class DetailsPageWidget extends StatelessWidget {
   final String imagePath;
+  final int idLayanan;
   final String layanan;
   final String harga;
   final String penjelasan;
@@ -12,6 +13,7 @@ class DetailsPageWidget extends StatelessWidget {
   const DetailsPageWidget({
     Key? key,
     required this.imagePath,
+    required this.idLayanan,
     required this.layanan,
     required this.harga,
     required this.penjelasan,
@@ -178,7 +180,7 @@ class DetailsPageWidget extends StatelessWidget {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            appointmentPage()),
+                                            AppointmentPage()),
                                   );
                                 },
                                 child: Text(

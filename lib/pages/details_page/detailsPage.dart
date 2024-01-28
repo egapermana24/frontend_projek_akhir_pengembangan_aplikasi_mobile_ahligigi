@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 class DetailsPage extends StatefulWidget {
   final String imagePath;
+  final int idLayanan;
   final String layanan;
   final String harga;
   final String penjelasan;
@@ -11,6 +12,7 @@ class DetailsPage extends StatefulWidget {
   const DetailsPage({
     Key? key,
     required this.imagePath,
+    required this.idLayanan,
     required this.layanan,
     required this.harga,
     required this.penjelasan,
@@ -34,6 +36,7 @@ class _DetailsPageState extends State<DetailsPage> {
       ),
       body: DetailsPageWidget(
         imagePath: widget.imagePath,
+        idLayanan: widget.idLayanan,
         layanan: widget.layanan,
         harga: widget.harga,
         penjelasan: widget.penjelasan,

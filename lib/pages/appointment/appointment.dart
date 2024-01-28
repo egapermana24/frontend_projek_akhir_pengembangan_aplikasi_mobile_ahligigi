@@ -4,14 +4,14 @@ import 'package:ahli_gigi/settings/constants/warna_apps.dart';
 import 'package:flutter/material.dart';
 import 'package:ahli_gigi/pages/appointment/widget/table_jam.dart';
 
-class appointmentPage extends StatefulWidget {
-  const appointmentPage({super.key});
+class AppointmentPage extends StatefulWidget {
+  const AppointmentPage({super.key});
 
   @override
-  State<appointmentPage> createState() => _appointmentPageState();
+  State<AppointmentPage> createState() => _AppointmentPageState();
 }
 
-class _appointmentPageState extends State<appointmentPage> {
+class _AppointmentPageState extends State<AppointmentPage> {
   int groupValue = 1;
 
   @override

@@ -128,6 +128,7 @@ class _LayananState extends State<Layanan> {
               var service = filteredServiceList[index];
               return DaftarLayananCard(
                 imagePath: service['lokasi_gambar'],
+                idLayanan: service['id_layanan'],
                 nama_layanan: service['nama_layanan'],
                 harga: service['harga'].toString(),
                 deskripsi: service['deskripsi'],

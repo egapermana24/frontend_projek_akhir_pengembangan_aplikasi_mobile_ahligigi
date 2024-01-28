@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 class PopularCard extends StatelessWidget {
   final String layanan;
+  final int idLayanan;
   final String namaUser;
   final String imagePath;
   final String review;
@@ -13,6 +14,7 @@ class PopularCard extends StatelessWidget {
 
   PopularCard({
     required this.layanan,
+    required this.idLayanan,
     required this.namaUser,
     required this.imagePath,
     required this.review,
@@ -119,6 +121,7 @@ class PopularCard extends StatelessWidget {
                         MaterialPageRoute(
                           builder: (context) => DetailsPage(
                             imagePath: imagePath,
+                            idLayanan: idLayanan,
                             layanan: layanan,
                             harga: harga,
                             penjelasan: deskripsi,

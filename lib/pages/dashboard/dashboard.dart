@@ -185,6 +185,7 @@ class _DashboardState extends State<Dashboard> {
                                 MaterialPageRoute(
                                   builder: (context) => DetailsPage(
                                     imagePath: service['lokasi_gambar'],
+                                    idLayanan: service['id_layanan'],
                                     layanan: service['nama_layanan'],
                                     harga: service['harga'].toString(),
                                     penjelasan: service['deskripsi'],
@@ -266,6 +267,7 @@ class _DashboardState extends State<Dashboard> {
                                 var ulasan = ulasanList[index];
                                 return PopularCard(
                                   layanan: ulasan['nama_layanan'],
+                                  idLayanan: ulasan['id_layanan'],
                                   namaUser: ulasan['nama_user'],
                                   imagePath: ulasan['lokasi_gambar'],
                                   review: ulasan['komentar'],
@@ -331,6 +333,7 @@ class _DashboardState extends State<Dashboard> {
                         var service = serviceList[index];
                         return DaftarLayananCard(
                           imagePath: service['lokasi_gambar'],
+                          idLayanan: service['id_layanan'],
                           nama_layanan: service['nama_layanan'],
                           harga: service['harga'].toString(),
                           deskripsi: service['deskripsi'],

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 class DaftarLayananCard extends StatelessWidget {
   final String imagePath;
+  final int idLayanan;
   final String nama_layanan;
   final String harga;
   final String deskripsi;
@@ -12,6 +13,7 @@ class DaftarLayananCard extends StatelessWidget {
 
   DaftarLayananCard({
     required this.imagePath,
+    required this.idLayanan,
     required this.nama_layanan,
     required this.harga,
     required this.deskripsi,
@@ -101,13 +103,14 @@ class DaftarLayananCard extends StatelessWidget {
                         color: Colors.black54,
                       ),
                     ),
-                    SizedBox(height: 20),
+                    // SizedBox(height: 10),
                     // Tombol status "Available" dan "Book"
                   ],
                 ),
               ),
             ],
           ),
+          SizedBox(height: 16),
           GestureDetector(
             onTap: () {
               Navigator.push(
@@ -115,6 +118,7 @@ class DaftarLayananCard extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) => DetailsPage(
                     imagePath: imagePath,
+                    idLayanan: idLayanan,
                     layanan: nama_layanan,
                     harga: harga,
                     penjelasan: deskripsi,

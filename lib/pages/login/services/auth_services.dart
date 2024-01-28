@@ -1,9 +1,10 @@
-import 'package:ahli_gigi/pages/dashboard/widget/user_profile.dart';
+import 'dart:convert';
+import 'package:ahli_gigi/config/api_config.dart';
+import 'package:http/http.dart' as http;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:ahli_gigi/pages/dashboard/dashboard.dart';
 import 'package:ahli_gigi/pages/navbar/navbar.dart';
-// material
 import 'package:flutter/material.dart';
 
 class AuthService {
@@ -11,11 +12,7 @@ class AuthService {
     try {
       // Trigger the Google Sign In process
       final GoogleSignInAccount? googleUser =
-          await GoogleSignIn(scopes: ['email'])
-              .signIn();
-
-      // GoogleSignInAccount? googleSignInAccount = await GoogleSignIn().signIn();
-      // String userName = googleSignInAccount?.displayName ?? 'Guest';
+          await GoogleSignIn(scopes: ['email']).signIn();
 
       // Check if the sign-in process was canceled
       if (googleUser == null) {
@@ -39,11 +36,19 @@ class AuthService {
       UserCredential userCredential =
           await FirebaseAuth.instance.signInWithCredential(credential);
 
-      UserProfile(
-        user: userCredential.user,
-      );
+      // tambahkan data user yang didapat dari google ke dalam database API MySQL (id_google, nama_user, email, password, no_telpon)
+      // id_google dan email harus unique, maka jika id_google dan email sudah ada di database, maka tidak perlu ditambahkan lagi
 
-      // Navigasi ke halaman MainTabBar setelah login berhasil
+      // Extract user data
+      User user = userCredential.user!;
+      String userId = user.uid;
+      String userName = user.displayName ?? 'Pengguna';
+      String userEmail = user.email!;
+
+      // Add user data to MySQL database
+      await addUserToDatabase(userId, userName, userEmail);
+
+      // Navigate to the main page after successful login
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
@@ -60,123 +65,19 @@ class AuthService {
       );
     }
   }
+
+  static Future<void> addUserToDatabase(
+      String userId, String userName, String userEmail) async {
+    var url = Uri.parse(
+        '${ApiConfig.baseUrl}/api/User'); // Replace with your API endpoint
+    var headers = {'Content-Type': 'application/json'};
+    var body = jsonEncode({
+      'id_google': userId,
+      'nama_user': userName,
+      'email': userEmail,
+      'role': 'user',
+    });
+
+    await http.post(url, headers: headers, body: body);
+  }
 }
-
-
-// import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:firebase_core/firebase_core.dart';
-// import 'package:flutter/material.dart';
-// import 'package:google_sign_in/google_sign_in.dart';
-// import 'package:flutter/foundation.dart' show kIsWeb;
-// import 'package:simplynews/screen/navbar/navbar.dart';
-
-// class Authentication {
-//   static SnackBar customSnackBar({required String content}) {
-//     return SnackBar(
-//       backgroundColor: Colors.black,
-//       content: Text(
-//         content,
-//         style: TextStyle(color: Colors.redAccent, letterSpacing: 0.5),
-//       ),
-//     );
-//   }
-
-//   static Future<FirebaseApp> initializeFirebase({
-//     required BuildContext context,
-//   }) async {
-//     FirebaseApp firebaseApp = await Firebase.initializeApp();
-
-//     User? user = FirebaseAuth.instance.currentUser;
-
-//     if (user != null) {
-//       Navigator.of(context).pushReplacement(
-//         MaterialPageRoute(
-//           builder: (context) => MainTabBar(
-//             initialPageIndex: 0,
-//           ),
-//         ),
-//       );
-//     }
-
-//     return firebaseApp;
-//   }
-
-//   static Future<User?> signInWithGoogle({required BuildContext context}) async {
-//     FirebaseAuth auth = FirebaseAuth.instance;
-//     User? user;
-
-//     if (kIsWeb) {
-//       GoogleAuthProvider authProvider = GoogleAuthProvider();
-
-//       try {
-//         final UserCredential userCredential =
-//             await auth.signInWithPopup(authProvider);
-
-//         user = userCredential.user;
-//       } catch (e) {
-//         print(e);
-//       }
-//     } else {
-//       final GoogleSignIn googleSignIn = GoogleSignIn();
-
-//       try {
-//         final GoogleSignInAccount? googleSignInAccount =
-//             await googleSignIn.signIn();
-
-//         if (googleSignInAccount != null) {
-//           final GoogleSignInAuthentication googleSignInAuthentication =
-//               await googleSignInAccount.authentication;
-
-//           final AuthCredential credential = GoogleAuthProvider.credential(
-//             accessToken: googleSignInAuthentication.accessToken,
-//             idToken: googleSignInAuthentication.idToken,
-//           );
-
-//           final UserCredential userCredential =
-//               await auth.signInWithCredential(credential);
-
-//           user = userCredential.user;
-//         }
-//       } on FirebaseAuthException catch (e) {
-//         if (e.code == 'account-exists-with-different-credential') {
-//           ScaffoldMessenger.of(context).showSnackBar(
-//             Authentication.customSnackBar(
-//               content: 'The account already exists with a different credential',
-//             ),
-//           );
-//         } else if (e.code == 'invalid-credential') {
-//           ScaffoldMessenger.of(context).showSnackBar(
-//             Authentication.customSnackBar(
-//               content: 'Error occurred while accessing credentials. Try again.',
-//             ),
-//           );
-//         }
-//       } catch (e) {
-//         ScaffoldMessenger.of(context).showSnackBar(
-//           Authentication.customSnackBar(
-//             content: 'Error occurred using Google Sign In. Try again.',
-//           ),
-//         );
-//       }
-//     }
-
-//     return user;
-//   }
-
-//   static Future<void> signOut({required BuildContext context}) async {
-//     final GoogleSignIn googleSignIn = GoogleSignIn();
-
-//     try {
-//       if (!kIsWeb) {
-//         await googleSignIn.signOut();
-//       }
-//       await FirebaseAuth.instance.signOut();
-//     } catch (e) {
-//       ScaffoldMessenger.of(context).showSnackBar(
-//         Authentication.customSnackBar(
-//           content: 'Error signing out. Try again.',
-//         ),
-//       );
-//     }
-//   }
-// }
