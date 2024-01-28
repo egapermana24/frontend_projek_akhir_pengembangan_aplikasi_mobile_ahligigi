@@ -129,32 +129,34 @@ class DetailsPageWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Container(
-                // height: 435,
-                child: Column(
-                  children: <Widget>[
-                    const Padding(
-                      padding: EdgeInsets.only(left: 13, top: 10),
-                      child: Row(
-                        children: [
-                          Text(
-                            'Penjelasan',
-                            style: TextStyle(
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.bold,
+                height: 150,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(left: 13, top: 10),
+                        child: Row(
+                          children: [
+                            Text(
+                              'Penjelasan',
+                              style: TextStyle(
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 10),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 13, right: 13),
-                      child: Text(
-                        penjelasan,
-                        style: const TextStyle(fontSize: 13.0),
+                      const SizedBox(height: 10),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 13, right: 13),
+                        child: Text(
+                          penjelasan,
+                          style: const TextStyle(fontSize: 13.0),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
               Padding(
@@ -179,8 +181,11 @@ class DetailsPageWidget extends StatelessWidget {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) =>
-                                            AppointmentPage()),
+                                        builder: (context) => AppointmentPage(
+                                              idLayanan: idLayanan,
+                                              layanan: layanan,
+                                              harga: harga,
+                                            )),
                                   );
                                 },
                                 child: Text(

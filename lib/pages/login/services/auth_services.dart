@@ -44,9 +44,13 @@ class AuthService {
       String userId = user.uid;
       String userName = user.displayName ?? 'Pengguna';
       String userEmail = user.email!;
+      // image
+      String userImage = user.photoURL!;
+      // debug photoURL
+      print(userImage);
 
       // Add user data to MySQL database
-      await addUserToDatabase(userId, userName, userEmail);
+      await addUserToDatabase(userId, userName, userEmail, userImage);
 
       // Navigate to the main page after successful login
       Navigator.pushReplacement(
@@ -67,13 +71,14 @@ class AuthService {
   }
 
   static Future<void> addUserToDatabase(
-      String userId, String userName, String userEmail) async {
+      String userId, String userName, String userEmail, String userImage) async {
     var url = Uri.parse(
         '${ApiConfig.baseUrl}/api/User'); // Replace with your API endpoint
     var headers = {'Content-Type': 'application/json'};
     var body = jsonEncode({
       'id_google': userId,
       'nama_user': userName,
+      'foto_user': userImage,
       'email': userEmail,
       'role': 'user',
     });

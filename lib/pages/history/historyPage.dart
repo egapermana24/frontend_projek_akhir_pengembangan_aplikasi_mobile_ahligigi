@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:intl/intl.dart';
 import 'package:ahli_gigi/config/api_config.dart';
 import 'package:ahli_gigi/settings/constants/warna_apps.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -16,13 +17,32 @@ class _RiwayatState extends State<Riwayat> {
   late Future<List<dynamic>> _serviceDataLayanan;
 
   Future<List<dynamic>> getDataLayanan() async {
-    var url = Uri.parse('${ApiConfig.baseUrl}/api/Pemesanan');
-    final response = await http.get(url);
+    try {
+      // Mendapatkan pengguna yang sedang login dari Firebase Auth
+      User? user = FirebaseAuth.instance.currentUser;
 
-    if (response.statusCode == 200) {
-      return jsonDecode(response.body);
-    } else {
-      throw Exception('Failed to load data');
+      if (user != null) {
+        // Mengambil ID Google pengguna yang sedang login
+        String idGoogle = user.uid;
+
+        // Menggunakan ID Google dalam permintaan HTTP
+        var url =
+            Uri.parse('${ApiConfig.baseUrl}/api/Pemesanan?idGoogle=$idGoogle');
+        final response = await http.get(url);
+
+        if (response.statusCode == 200) {
+          return jsonDecode(response.body);
+        } else {
+          throw Exception('Failed to load data');
+        }
+      } else {
+        // Handle jika pengguna belum login
+        throw Exception('User is not logged in');
+      }
+    } catch (e) {
+      // Handle kesalahan lain yang mungkin terjadi
+      print('Error: $e');
+      throw Exception('Failed to get user data');
     }
   }
 
@@ -66,7 +86,7 @@ class _RiwayatState extends State<Riwayat> {
             } else if (snapshot.hasError) {
               return Center(child: Text('Error: ${snapshot.error}'));
             } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-              return Center(child: Text('No data available'));
+              return Center(child: Text('Kamu Belum Memiliki Riwayat'));
             } else {
               List<dynamic> dataLayanan = snapshot.data!;
               dataLayanan.sort((a, b) {

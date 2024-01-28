@@ -1,17 +1,40 @@
+import 'dart:convert';
 import 'dart:io';
+import 'package:ahli_gigi/config/api_config.dart';
 import 'package:ahli_gigi/pages/pembayaran/pembayaranSukses.dart';
 import 'package:ahli_gigi/settings/constants/warna_apps.dart';
+import 'package:dio/dio.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:http/http.dart' as http;
 
 class PembayaranPage extends StatefulWidget {
-  const PembayaranPage({Key? key}) : super(key: key);
+  final int idLayanan;
+  final String layanan;
+  final String harga;
+  final String jam;
+  const PembayaranPage({
+    Key? key,
+    required this.idLayanan,
+    required this.layanan,
+    required this.harga,
+    required this.jam,
+  }) : super(key: key);
 
   @override
   _PembayaranPageState createState() => _PembayaranPageState();
 }
 
 class _PembayaranPageState extends State<PembayaranPage> {
+  dateNow() {
+    var now = new DateTime.now();
+    var formatter = new DateFormat('yyyy-MM-dd');
+    String formattedDate = formatter.format(now);
+    return formattedDate;
+  }
+
   int? selectedPaymentMethod;
   File? _image;
 
@@ -28,6 +51,105 @@ class _PembayaranPageState extends State<PembayaranPage> {
       }
     });
   }
+
+  // Function to get id_google of the logged-in user
+  Future<String?> getIdGoogle() async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+
+    try {
+      User? user = auth.currentUser;
+
+      if (user != null) {
+        String idGoogle = user.uid;
+        return idGoogle;
+      } else {
+        return null; // No user is currently logged in
+      }
+    } catch (e) {
+      print("Error getting id_google: $e");
+      return null;
+    }
+  }
+
+  Future<int> fetchUserId(String idGoogle) async {
+    try {
+      final response = await http.get(
+        Uri.parse('${ApiConfig.baseUrl}/api/User?id_google=$idGoogle'),
+      );
+
+      if (response.statusCode == 200) {
+        // Parse the response to get the user ID
+        final Map<String, dynamic> userData = jsonDecode(response.body);
+        return userData['id_user'];
+      } else {
+        // Handle errors
+        throw Exception('Gagal memuat ID pengguna');
+      }
+    } catch (e) {
+      print("Error fetching user ID: $e");
+      throw Exception('Gagal memuat ID pengguna');
+    }
+  }
+
+ Future<void> kirimDataPemesanan() async {
+  final url = Uri.parse('${ApiConfig.baseUrl}/api/Pemesanan');
+
+  // Replace this with the actual user ID retrieval logic
+  final String idGoogle = await getIdGoogle() ?? '';
+
+  // Determine payment method based on selectedPaymentMethod
+  String metodePembayaran = '';
+  if (selectedPaymentMethod == 1) {
+    metodePembayaran = 'Dompet Digital';
+  } else if (selectedPaymentMethod == 2) {
+    metodePembayaran = 'Bank';
+  } else if (selectedPaymentMethod == 3) {
+    metodePembayaran = 'COD';
+  }
+
+  try {
+    // Prepare data to be sent to the API
+    final Map<String, dynamic> dataPemesanan = {
+      'id_layanan': widget.idLayanan,
+      'id_user': await fetchUserId(idGoogle),
+      'id_google': idGoogle,
+      'tanggal_pemesanan': dateNow(),
+      'waktu_pemesanan': widget.jam,
+      'status_pemesanan': 'Menunggu Konfirmasi',
+      'metode_pembayaran': metodePembayaran,
+      if (_image != null)
+        // Convert the image to a MultipartFile
+        // and assign it to the 'bukti_pembayaran' key
+        // in the dataPemesanan map
+        'bukti_pembayaran': await MultipartFile.fromFile(_image!.path, filename: 'bukti_pembayaran.jpg'),
+      // 'bukti_pembayaran': await MultipartFile.fromFile(_image!.path, filename: 'bukti_pembayaran.jpg'),
+    };
+
+    // Send data to the API
+    final response = await Dio().post(
+      url.toString(),
+      data: FormData.fromMap(dataPemesanan),
+    );
+
+    // Check the response status
+    if (response.statusCode! >= 200 && response.statusCode! <= 208) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => PembayaranSuksesPage()),
+      );
+      // tampilkan semua data yang dikirimkan
+      print('Berhasil mengirim data: ${response.data}');
+    } else {
+      // If failed, print an error message or take appropriate action
+      print('Gagal mengirim data: ${dataPemesanan}');
+      print('Gagal mengirim data: ${response.data}');
+      print('Gagal mengirim data: ${response.statusCode}');
+    }
+  } catch (e) {
+    print('Error: $e');
+  }
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +171,7 @@ class _PembayaranPageState extends State<PembayaranPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                'Jumlah Yang Harus dibayarkan:',
+                'Detail Yang Harus dibayarkan:',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 10),
@@ -80,7 +202,7 @@ class _PembayaranPageState extends State<PembayaranPage> {
                               fontSize: 14, fontWeight: FontWeight.bold),
                         ),
                         Text(
-                          'Tambal Gigi',
+                          widget.layanan,
                           style: TextStyle(
                             fontSize: 14,
                           ),
@@ -96,7 +218,8 @@ class _PembayaranPageState extends State<PembayaranPage> {
                               fontSize: 14, fontWeight: FontWeight.bold),
                         ),
                         Text(
-                          'Hari ini, 12.00 WIB',
+                          'Hari ini, ${widget.jam.substring(0, 5)} WIB',
+                          // 'Hari ini, 10:00 WIB',
                           style: TextStyle(
                             fontSize: 14,
                           ),
@@ -112,7 +235,7 @@ class _PembayaranPageState extends State<PembayaranPage> {
                               fontSize: 14, fontWeight: FontWeight.bold),
                         ),
                         Text(
-                          'Rp100.000,00',
+                          '${NumberFormat.currency(locale: 'id_ID', symbol: 'Rp', decimalDigits: 0).format(double.parse(widget.harga))}',
                           style: TextStyle(
                             fontSize: 14,
                           ),
@@ -355,11 +478,8 @@ class _PembayaranPageState extends State<PembayaranPage> {
               SizedBox(height: 10),
               GestureDetector(
                 onTap: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => PembayaranSuksesPage()),
-                  );
+                  kirimDataPemesanan();
+
                   // Panggil fungsi untuk mengambil gambar
                 },
                 child: Container(
@@ -383,12 +503,4 @@ class _PembayaranPageState extends State<PembayaranPage> {
       ),
     );
   }
-}
-
-void main() {
-  runApp(MaterialApp(
-    home: Scaffold(
-      body: PembayaranPage(),
-    ),
-  ));
 }
