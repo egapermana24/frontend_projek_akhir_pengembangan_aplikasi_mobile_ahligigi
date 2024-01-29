@@ -17,6 +17,7 @@ import 'package:ahli_gigi/pages/login/login.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:lottie/lottie.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -66,17 +67,22 @@ class _DashboardState extends State<Dashboard> {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Padding(
-                      padding: EdgeInsets.only(
-                          top: 50.0), // Ganti nilai sesuai kebutuhan
-                      child: Center(
-                        child: CircularProgressIndicator(
-                          valueColor:
-                              AlwaysStoppedAnimation<Color>(Colors.blue),
-                        ),
+                    // Expanded(
+                    // Menggunakan Expanded di sekitar widget Lottie.asset
+                    SizedBox(
+                      height: 175,
+                    ),
+                    Center(
+                      child: Lottie.asset(
+                        'assets/lottie/SplashDental.json',
+                        repeat: true,
+                        width: 100,
+                        height: 100,
                       ),
                     ),
+                    // ),
                   ],
                 );
               } else if (snapshot.hasError) {
