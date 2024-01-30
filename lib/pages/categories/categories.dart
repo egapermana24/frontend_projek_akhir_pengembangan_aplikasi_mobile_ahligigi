@@ -10,6 +10,7 @@ class Categories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.backGroundColor,
       appBar: AppBar(
         title: Text(
           'Kategori',

@@ -67,22 +67,21 @@ class _DashboardState extends State<Dashboard> {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     // Expanded(
                     // Menggunakan Expanded di sekitar widget Lottie.asset
-                    SizedBox(
-                      height: 175,
+                    const SizedBox(
+                      height: 267,
                     ),
                     Center(
                       child: Lottie.asset(
-                        'assets/lottie/SplashDental.json',
+                        'assets/lottie/LoadingAnimation.json',
                         repeat: true,
-                        width: 100,
-                        height: 100,
+                        width: 150,
+                        height: 150,
                       ),
                     ),
-                    // ),
+                    Text('Loading...'),
                   ],
                 );
               } else if (snapshot.hasError) {

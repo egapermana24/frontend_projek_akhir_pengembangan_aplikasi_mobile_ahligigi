@@ -47,26 +47,22 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: Center(
-        child: Container(
-          color: AppColors.primaryColor,
-          padding: EdgeInsets.all(20.0),
-          child: Padding(
-            padding: EdgeInsets.all(20.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Lottie.asset(
-                  'assets/lottie/SplashDental.json',
-                  repeat: true,
-                  width: 300,
-                  height: 300,
-                ),
-                SizedBox(height: 16),
-              ],
+      body: Container(
+        width: screenWidth,
+        color: AppColors.primaryColor,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Lottie.asset(
+              'assets/lottie/SplashDental.json',
+              repeat: true,
+              width: 300,
+              height: 300,
             ),
-          ),
+            const SizedBox(height: 16),
+          ],
         ),
       ),
     );

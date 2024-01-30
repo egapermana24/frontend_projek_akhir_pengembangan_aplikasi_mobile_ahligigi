@@ -5,6 +5,7 @@ import 'package:ahli_gigi/settings/constants/warna_apps.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:lottie/lottie.dart';
 
 class Riwayat extends StatefulWidget {
   const Riwayat({Key? key}) : super(key: key);
@@ -18,14 +19,10 @@ class _RiwayatState extends State<Riwayat> {
 
   Future<List<dynamic>> getDataLayanan() async {
     try {
-      // Mendapatkan pengguna yang sedang login dari Firebase Auth
       User? user = FirebaseAuth.instance.currentUser;
 
       if (user != null) {
-        // Mengambil ID Google pengguna yang sedang login
         String idGoogle = user.uid;
-
-        // Menggunakan ID Google dalam permintaan HTTP
         var url =
             Uri.parse('${ApiConfig.baseUrl}/api/Pemesanan?idGoogle=$idGoogle');
         final response = await http.get(url);
@@ -36,11 +33,9 @@ class _RiwayatState extends State<Riwayat> {
           throw Exception('Failed to load data');
         }
       } else {
-        // Handle jika pengguna belum login
         throw Exception('User is not logged in');
       }
     } catch (e) {
-      // Handle kesalahan lain yang mungkin terjadi
       print('Error: $e');
       throw Exception('Failed to get user data');
     }
@@ -61,6 +56,7 @@ class _RiwayatState extends State<Riwayat> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.backGroundColor,
       appBar: AppBar(
         title: Text(
           'Riwayat Janji Temu',
@@ -78,10 +74,19 @@ class _RiwayatState extends State<Riwayat> {
           future: _serviceDataLayanan,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(
-                child: CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
-                ),
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(
+                    child: Lottie.asset(
+                      'assets/lottie/LoadingAnimation.json',
+                      repeat: true,
+                      width: 150,
+                      height: 150,
+                    ),
+                  ),
+                  Text('Loading...'),
+                ],
               );
             } else if (snapshot.hasError) {
               return Center(child: Text('Error: ${snapshot.error}'));

@@ -169,7 +169,7 @@ class _NavBarState extends State<NavBar> {
                 ),
                 // buat agar buttonnya seperti melayang
                 Positioned(
-                  bottom: 17, // Sesuaikan dengan kebutuhan Anda
+                  bottom: 0, // Sesuaikan dengan kebutuhan Anda
                   left: 0,
                   right: 0,
 
