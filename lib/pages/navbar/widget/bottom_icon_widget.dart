@@ -78,7 +78,7 @@ class BottomIconWidget extends StatelessWidget {
                 iconName,
                 width: 18,
                 height: 18,
-                color: const Color.fromARGB(255, 99, 99, 99),
+                color: iconColor,
               ),
             ),
             SizedBox(width: 1),
@@ -87,7 +87,7 @@ class BottomIconWidget extends StatelessWidget {
               style: TextStyle(
                 fontSize: 10,
                 fontWeight: FontWeight.bold,
-                color: Color.fromARGB(255, 108, 108, 108),
+                color: titleColor,
               ),
             ),
           ],
