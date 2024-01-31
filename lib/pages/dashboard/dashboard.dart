@@ -94,46 +94,54 @@ class _DashboardState extends State<Dashboard> {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    const SizedBox(
+                      height: 5,
+                    ),
                     UserProfile(
                       user: user,
                     ),
                     // Bagian atas dengan foto profil dan username
                     // Konten dashboard lainnya dapat ditambahkan di sini
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      child: Container(
-                        height: 40.0,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          border: Border.all(
-                            color: AppColors.primaryColor,
-                            width: 1,
-                          ),
-                          borderRadius: BorderRadius.circular(15.0),
-                          boxShadow: [
-                            BoxShadow(
-                              color: AppColors.primaryColor.withOpacity(0.2),
-                              spreadRadius: 2,
-                              blurRadius: 5,
-                              offset: Offset(0, 2),
-                            ),
-                          ],
-                        ),
-                        child: TextField(
-                          decoration: InputDecoration(
-                            hintText: 'Cari...',
-                            prefixIcon: Icon(Icons.search),
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide.none,
-                            ),
-                            contentPadding: EdgeInsets.symmetric(
-                                vertical: 8.0), // Atur padding vertikal
-                          ),
-                        ),
-                      ),
-                    ),
-
+                    // Padding(
+                    //   padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    //   child: Container(
+                    //     height: 40.0,
+                    //     decoration: BoxDecoration(
+                    //       color: Colors.white,
+                    //       border: Border.all(
+                    //         color: AppColors.primaryColor,
+                    //         width: 1,
+                    //       ),
+                    //       borderRadius: BorderRadius.circular(15.0),
+                    //       boxShadow: [
+                    //         BoxShadow(
+                    //           color: AppColors.primaryColor.withOpacity(0.2),
+                    //           spreadRadius: 2,
+                    //           blurRadius: 5,
+                    //           offset: Offset(0, 2),
+                    //         ),
+                    //       ],
+                    //     ),
+                    //     child: TextField(
+                    //       decoration: InputDecoration(
+                    //         hintText: 'Cari...',
+                    //         prefixIcon: Icon(Icons.search),
+                    //         border: OutlineInputBorder(
+                    //           borderSide: BorderSide.none,
+                    //         ),
+                    //         contentPadding: EdgeInsets.symmetric(
+                    //             vertical: 8.0), // Atur padding vertikal
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                     // Layanan dan More
+                    const Divider(
+                      thickness: 0.5,
+                      indent: 18,
+                      endIndent: 18,
+                      color: Colors.black,
+                    ),
                     Padding(
                       padding: const EdgeInsets.only(
                           top: 16.0, left: 16.0, right: 16.0),
@@ -309,7 +317,8 @@ class _DashboardState extends State<Dashboard> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => Layanan(),
+                                  builder: (context) =>
+                                      NavBar(initialPageIndex: 3),
                                 ),
                               );
                             },

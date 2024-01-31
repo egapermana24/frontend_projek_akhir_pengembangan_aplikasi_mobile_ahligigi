@@ -2,21 +2,20 @@ import 'package:ahli_gigi/settings/constants/warna_apps.dart';
 import 'package:expansion_tile_card/expansion_tile_card.dart';
 import 'package:flutter/material.dart';
 
-class Tentang extends StatefulWidget {
-  const Tentang({Key? key, this.title}) : super(key: key);
+class BantuanPage extends StatefulWidget {
+  const BantuanPage({Key? key, this.title}) : super(key: key);
 
   final String? title;
 
   @override
-  _TentangState createState() => _TentangState();
+  _BantuanPageState createState() => _BantuanPageState();
 }
 
-class _TentangState extends State<Tentang> {
+class _BantuanPageState extends State<BantuanPage> {
   final GlobalKey<ExpansionTileCardState> cardA = GlobalKey();
   final GlobalKey<ExpansionTileCardState> cardB = GlobalKey();
   final GlobalKey<ExpansionTileCardState> cardC = GlobalKey();
   final GlobalKey<ExpansionTileCardState> cardD = GlobalKey();
-  final GlobalKey<ExpansionTileCardState> cardE = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +29,7 @@ class _TentangState extends State<Tentang> {
       backgroundColor: AppColors.backGroundColor,
       appBar: AppBar(
         title: Text(
-          widget.title ?? 'Tentang',
+          widget.title ?? 'Bantuan',
           style: TextStyle(
               fontWeight: FontWeight.bold, color: AppColors.primaryColor),
         ),
@@ -44,7 +43,7 @@ class _TentangState extends State<Tentang> {
               key: cardA,
               expandedTextColor: AppColors.primaryColor,
               title: const Text(
-                'Tentang Kami',
+                'FAQ (Pertanyaan yang Sering Diajukan)',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               children: <Widget>[
@@ -60,7 +59,9 @@ class _TentangState extends State<Tentang> {
                       vertical: 8.0,
                     ),
                     child: Text(
-                      'Ahli Gigi adalah aplikasi yang didedikasikan untuk memudahkan Anda dalam mencari dan memesan layanan gigi yang berkualitas. Kami menyediakan akses yang mudah, terpercaya, dan layanan kesehatan gigi yang berkualitas.',
+                      """* Bagaimana cara membuat janji temu dengan Ahli Gigi?
+
+Untuk membuat janji temu, buka aplikasi dan masuk ke bagian "Layanan".  Pilih waktu yang sesuai, lalu pilih metode pembayaran yang diinginkan.""",
                       style: Theme.of(context)
                           .textTheme
                           .bodyMedium!
@@ -77,7 +78,7 @@ class _TentangState extends State<Tentang> {
               key: cardB,
               expandedTextColor: AppColors.primaryColor,
               title: const Text(
-                'Riwayat Perusahaan',
+                'Panduan Penggunaan Aplikasi',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               children: <Widget>[
@@ -93,7 +94,9 @@ class _TentangState extends State<Tentang> {
                       vertical: 8.0,
                     ),
                     child: Text(
-                      'Ahli Gigi Acenk didirikan pada tahun 2018 dengan misi untuk meningkatkan kualitas pelayanan kesehatan gigi. Sejak itu, kami telah tumbuh menjadi salah satu platform terkemuka dalam industri kesehatan gigi, melayani ribuan pasien setiap tahunnya.',
+                      """* Navigasi Dasar
+
+Aplikasi kami memiliki menu navigasi di bagian bawah layar. Gunakan menu tersebut untuk mengakses fitur-fitur utama yaitu, Layanan, Kategori, Home, Riwayat dan Profil.""",
                       style: Theme.of(context)
                           .textTheme
                           .bodyMedium!
@@ -110,7 +113,7 @@ class _TentangState extends State<Tentang> {
               key: cardC,
               expandedTextColor: AppColors.primaryColor,
               title: const Text(
-                'Info Kontak',
+                'Cara Menghubungi Dukungan Pelanggan',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               children: <Widget>[
@@ -126,11 +129,9 @@ class _TentangState extends State<Tentang> {
                       vertical: 8.0,
                     ),
                     child: Text(
-                      """Alamat: Jl. Ampera Raya No.17, Pekiringan, Kec. Kesambi, Kota Cirebon, Jawa Barat
+                      """* Melalui Email atau Telepon
 
-Email: info@acenkdental.com
-
-Telepon: 0800-123-4567""",
+Anda juga dapat menghubungi dukungan pelanggan melalui email di permanaega677@gmail.com atau melalui telepon di nomor 085794912280.""",
                       style: Theme.of(context)
                           .textTheme
                           .bodyMedium!
@@ -147,7 +148,7 @@ Telepon: 0800-123-4567""",
               key: cardD,
               expandedTextColor: AppColors.primaryColor,
               title: const Text(
-                'Tim Pengembang',
+                'Kebijakan Privasi dan Syarat Penggunaan',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               children: <Widget>[
@@ -163,46 +164,14 @@ Telepon: 0800-123-4567""",
                       vertical: 8.0,
                     ),
                     child: Text(
-                      """Kami adalah mahasiswa dan mahasiswi dari Kampus Universitas Catur Insan Cendekia Kota Cirebon yang memiliki tugas projek dalam pembuatan dan pengembangan aplikasi mobile menggunakan Flutter untuk Penerapan Sistem Booking Ahli Gigi sebagai salah satu syarat dan memperoleh nilai akhir mata kuliah Pengembangan Aplikasi Mobile. Dengan menggunakan teknologi Flutter, kami bertujuan untuk menciptakan solusi yang inovatif dan efektif untuk memenuhi kebutuhan dalam bidang pelayanan kesehatan gigi.
+                      """* Kebijakan Privasi
 
-Anggota :
-- 20210120068 - Ega Permana
-- 20210120059 - Fia Hamasyatus Syahadah
-- 20210120071 - Royfansyah M Razavi""",
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyMedium!
-                          .copyWith(fontSize: 16),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12.0),
-            child: ExpansionTileCard(
-              key: cardE,
-              expandedTextColor: AppColors.primaryColor,
-              title: const Text(
-                'Versi Aplikasi',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              children: <Widget>[
-                const Divider(
-                  thickness: 1.0,
-                  height: 1.0,
-                ),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16.0,
-                      vertical: 8.0,
-                    ),
-                    child: Text(
-                      """Versi Aplikasi: 1.2
-Terakhir Diperbarui: 31 Januari 2024""",
+Baca kebijakan privasi kami di www.acenkdental.com/privasi untuk memahami bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi pribadi Anda.
+
+
+* Syarat Penggunaan
+
+Syarat dan ketentuan penggunaan aplikasi kami dapat ditemukan di www.acenkdental.com/syarat-dan-ketentuan. Harap baca dengan seksama sebelum menggunakan layanan kami.""",
                       style: Theme.of(context)
                           .textTheme
                           .bodyMedium!
