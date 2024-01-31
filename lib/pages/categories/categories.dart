@@ -1,7 +1,7 @@
-import 'package:ahli_gigi/pages/dashboard/dashboard.dart';
+// import 'package:ahli_gigi/pages/dashboard/dashboard.dart';
 import 'package:ahli_gigi/settings/constants/warna_apps.dart';
 import 'package:flutter/material.dart';
-import 'widget/categories_card.dart';
+// import 'widget/categories_card.dart';
 import 'package:ahli_gigi/pages/navbar/navbar.dart';
 
 class Categories extends StatelessWidget {

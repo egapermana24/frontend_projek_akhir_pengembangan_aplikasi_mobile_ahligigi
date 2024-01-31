@@ -1,4 +1,5 @@
 import 'package:ahli_gigi/pages/dashboard/dashboard.dart';
+import 'package:ahli_gigi/pages/profile/components/tentang.dart';
 import 'package:ahli_gigi/pages/profile/widget/user_profile.dart';
 import 'package:ahli_gigi/pages/login/login.dart';
 import 'package:ahli_gigi/pages/profile/components/info_akun.dart';
@@ -173,10 +174,10 @@ class _ProfileState extends State<Profile> {
               padding: const EdgeInsets.only(left: 10, right: 10),
               child: InkWell(
                 onTap: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => InfoAkun()),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Tentang()),
+                  );
                 },
                 child: Container(
                   decoration: BoxDecoration(

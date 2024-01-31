@@ -64,6 +64,8 @@ class _LayananState extends State<Layanan> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: const Color.fromARGB(255, 0, 0, 0),
     ));
@@ -148,23 +150,41 @@ class _LayananState extends State<Layanan> {
               } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
                 return Text('No data available');
               } else {
-                // Display service list
-                return ListView.builder(
-                  shrinkWrap: true,
-                  physics: ClampingScrollPhysics(),
-                  itemCount: filteredServiceList.length,
-                  itemBuilder: (context, index) {
-                    var service = filteredServiceList[index];
-                    return DaftarLayananCard(
-                      imagePath: service['lokasi_gambar'],
-                      idLayanan: service['id_layanan'],
-                      nama_layanan: service['nama_layanan'],
-                      harga: service['harga'].toString(),
-                      deskripsi: service['deskripsi'],
-                      isAvailable: false,
-                    );
-                  },
-                );
+                if (filteredServiceList.isEmpty) {
+                  return Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20.0),
+                        child: Container(
+                          child: Text(
+                            'Data tidak ditemukan',
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.red,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                } else {
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    physics: ClampingScrollPhysics(),
+                    itemCount: filteredServiceList.length,
+                    itemBuilder: (context, index) {
+                      var service = filteredServiceList[index];
+                      return DaftarLayananCard(
+                        imagePath: service['lokasi_gambar'],
+                        idLayanan: service['id_layanan'],
+                        nama_layanan: service['nama_layanan'],
+                        harga: service['harga'].toString(),
+                        deskripsi: service['deskripsi'],
+                        isAvailable: false,
+                      );
+                    },
+                  );
+                }
               }
             },
           ),

@@ -76,41 +76,6 @@ class DetailsPageWidget extends StatelessWidget {
                           ),
                         ),
                       ),
-                      // Container(
-                      //   margin: const EdgeInsets.symmetric(vertical: 10.0),
-                      //   child: Row(
-                      //     children: <Widget>[
-                      //       IconButton(
-                      //         icon: const Icon(Icons.phone),
-                      //         tooltip: 'Call',
-                      //         onPressed: () {
-                      //           // Aksi ketika button diklik
-                      //         },
-                      //       ),
-                      //       const SizedBox(height: 8.0),
-                      //       const SizedBox(
-                      //         width: 10,
-                      //       ),
-                      //       IconButton(
-                      //         icon: const Icon(Icons.video_call),
-                      //         tooltip: 'Video Call',
-                      //         onPressed: () {
-                      //           // Aksi ketika button diklik
-                      //         },
-                      //       ),
-                      //       const SizedBox(
-                      //         width: 10,
-                      //       ),
-                      //       IconButton(
-                      //         icon: const Icon(Icons.mail),
-                      //         tooltip: 'Message',
-                      //         onPressed: () {
-                      //           // Aksi ketika button diklik
-                      //         },
-                      //       ),
-                      //     ],
-                      //   ),
-                      // ),
                     ],
                   ),
                 ),

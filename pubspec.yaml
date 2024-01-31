@@ -50,6 +50,7 @@ dependencies:
   flutter_spinkit: ^5.2.0
   dio: ^5.4.0
   connectivity: ^3.0.6
+  expansion_tile_card: ^3.0.0
   # webview_flutter: ^4.4.4
 
 
