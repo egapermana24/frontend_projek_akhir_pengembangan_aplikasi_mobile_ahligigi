@@ -493,7 +493,7 @@ class _PembayaranPageState extends State<PembayaranPage> {
                   width: double.infinity,
                   height: 35,
                   decoration: BoxDecoration(
-                    color: Colors.blue,
+                    color: AppColors.primaryColor,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Material(

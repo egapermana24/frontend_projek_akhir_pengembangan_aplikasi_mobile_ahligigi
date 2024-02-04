@@ -1,5 +1,6 @@
 import 'package:ahli_gigi/pages/dashboard/dashboard.dart';
 import 'package:ahli_gigi/pages/navbar/navbar.dart';
+import 'package:ahli_gigi/pages/profile/components/tentang.dart';
 import 'package:ahli_gigi/settings/constants/warna_apps.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -138,8 +139,12 @@ class _LoginState extends State<Login> {
                                         height: 20,
                                         width: 20,
                                       ),
-                                      const SizedBox(width: 8),
-                                      const Text('Google'),
+                                      const SizedBox(width: 7),
+                                      const Text(
+                                        'Google',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -183,10 +188,10 @@ class _LoginState extends State<Login> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.pushReplacement(
+                        Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => NavBar(initialPageIndex: 0),
+                            builder: (context) => Tentang(),
                           ),
                         );
                         // Tambahkan logika untuk tombol login di sini
@@ -208,7 +213,7 @@ class _LoginState extends State<Login> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(50),
                           child: Image.asset(
-                            'assets/img/logo-apps.png',
+                            'assets/img/logo-gigi.png',
                             height: 30,
                             width: 30,
                           ),

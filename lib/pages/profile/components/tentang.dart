@@ -93,7 +93,7 @@ class _TentangState extends State<Tentang> {
                       vertical: 8.0,
                     ),
                     child: Text(
-                      'Ahli Gigi Acenk didirikan pada tahun 2018 dengan misi untuk meningkatkan kualitas pelayanan kesehatan gigi. Sejak itu, kami telah tumbuh menjadi salah satu platform terkemuka dalam industri kesehatan gigi, melayani ribuan pasien setiap tahunnya.',
+                      'Ahli Gigi Acenk didirikan pada tahun 2018 dengan tujuan meningkatkan kualitas pelayanan kesehatan gigi. Sejak itu, kami telah tumbuh menjadi salah satu platform terkemuka dalam industri kesehatan gigi, melayani ribuan pasien setiap tahunnya.',
                       style: Theme.of(context)
                           .textTheme
                           .bodyMedium!
@@ -126,7 +126,7 @@ class _TentangState extends State<Tentang> {
                       vertical: 8.0,
                     ),
                     child: Text(
-                      """Alamat: Jl. Ampera Raya No.17, Pekiringan, Kec. Kesambi, Kota Cirebon, Jawa Barat
+                      """Alamat: Jl. Ampera Raya No.17, Pekiringan, Kesambi, Kota Cirebon, Jawa Barat
 
 Email: info@acenkdental.com
 
@@ -163,12 +163,15 @@ Telepon: 0800-123-4567""",
                       vertical: 8.0,
                     ),
                     child: Text(
-                      """Kami adalah mahasiswa dan mahasiswi dari Kampus Universitas Catur Insan Cendekia Kota Cirebon yang memiliki tugas projek dalam pembuatan dan pengembangan aplikasi mobile menggunakan Flutter untuk Penerapan Sistem Booking Ahli Gigi sebagai salah satu syarat dan memperoleh nilai akhir mata kuliah Pengembangan Aplikasi Mobile. Dengan menggunakan teknologi Flutter, kami bertujuan untuk menciptakan solusi yang inovatif dan efektif untuk memenuhi kebutuhan dalam bidang pelayanan kesehatan gigi.
+                      """Kami adalah mahasiswa dan mahasiswi Semester 5 dari Kampus Universitas Catur Insan Cendekia Kota Cirebon yang memiliki tugas projek dalam pembuatan dan pengembangan aplikasi mobile menggunakan Flutter untuk Penerapan Sistem Booking Ahli Gigi sebagai salah satu syarat dan memperoleh nilai akhir mata kuliah Pengembangan Aplikasi Mobile. Dengan menggunakan teknologi Flutter, kami bertujuan untuk menciptakan solusi yang inovatif dan efektif untuk memenuhi kebutuhan dalam bidang pelayanan kesehatan gigi.
 
 Anggota :
 - 20210120068 - Ega Permana
 - 20210120059 - Fia Hamasyatus Syahadah
-- 20210120071 - Royfansyah M Razavi""",
+- 20210120071 - Royfansyah M Razavi
+
+Dosen Pengampu :
+Muhammad Hatta, M.Kom.""",
                       style: Theme.of(context)
                           .textTheme
                           .bodyMedium!
@@ -201,8 +204,9 @@ Anggota :
                       vertical: 8.0,
                     ),
                     child: Text(
-                      """Versi Aplikasi: 1.2
-Terakhir Diperbarui: 31 Januari 2024""",
+                      """Versi Aplikasi : 1.2.2
+
+Terakhir Diperbarui : 4 Februari 2024""",
                       style: Theme.of(context)
                           .textTheme
                           .bodyMedium!

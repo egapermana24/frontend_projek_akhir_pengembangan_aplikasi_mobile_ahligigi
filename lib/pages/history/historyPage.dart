@@ -199,6 +199,10 @@ class _RiwayatState extends State<Riwayat> {
                               ],
                             ),
                           ),
+                          Icon(
+                            Icons.more_vert,
+                            size: 15,
+                          ),
                         ],
                       ),
                     ),

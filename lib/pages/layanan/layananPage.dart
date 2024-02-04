@@ -115,8 +115,8 @@ class _LayananState extends State<Layanan> {
                   border: OutlineInputBorder(
                     borderSide: BorderSide.none,
                   ),
-                  contentPadding: EdgeInsets.symmetric(
-                      vertical: 8.0), // Atur padding vertikal
+                  contentPadding: EdgeInsets.symmetric(vertical: 8.0),
+                  // Atur padding vertikal
                 ),
               ),
             ),
@@ -157,10 +157,17 @@ class _LayananState extends State<Layanan> {
                         padding: const EdgeInsets.only(top: 20.0),
                         child: Container(
                           child: Text(
-                            'Data tidak ditemukan',
+                            'Layanan tidak ditemukan.',
                             style: TextStyle(
                               fontSize: 20,
                               color: Colors.red,
+                              shadows: [
+                                Shadow(
+                                  color: Color.fromARGB(189, 183, 183, 183),
+                                  offset: Offset(1, 1),
+                                  blurRadius: 3,
+                                ),
+                              ],
                             ),
                           ),
                         ),

@@ -26,14 +26,14 @@ class _DetailsPageState extends State<DetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Deskripsi',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: AppColors.primaryColor,
-            )),
-        centerTitle: true,
-      ),
+      // appBar: AppBar(
+      //   title: Text('Deskripsi',
+      //       style: TextStyle(
+      //         fontWeight: FontWeight.bold,
+      //         color: AppColors.primaryColor,
+      //       )),
+      //   centerTitle: true,
+      // ),
       body: DetailsPageWidget(
         imagePath: widget.imagePath,
         idLayanan: widget.idLayanan,

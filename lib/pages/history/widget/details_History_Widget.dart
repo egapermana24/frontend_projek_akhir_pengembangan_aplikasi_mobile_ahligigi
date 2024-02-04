@@ -78,7 +78,7 @@ class detailsHistoryWidget extends StatelessWidget {
                     child: Text(
                       layanan,
                       style: const TextStyle(
-                        fontSize: 20.0,
+                        fontSize: 23.0,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -104,43 +104,158 @@ class detailsHistoryWidget extends StatelessWidget {
         const SizedBox(height: 10),
         const Divider(
           thickness: 0.5,
-          indent: 13,
-          endIndent: 13,
+          indent: 20,
+          endIndent: 20,
           color: Colors.black,
         ),
         // Harga
         const SizedBox(height: 10),
         Text(
-          'Harga :',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+          'Harga',
+          style: TextStyle(
+            decoration: TextDecoration.underline,
+            fontWeight: FontWeight.bold,
+            fontSize: 17,
+          ),
         ),
         const SizedBox(height: 5),
-        Text(
-            '${NumberFormat.currency(locale: 'id_ID', symbol: 'Rp', decimalDigits: 0).format(double.parse(harga))}'),
+        Container(
+          height: 30,
+          margin: EdgeInsets.only(left: 70, right: 70),
+          decoration: BoxDecoration(
+            color: AppColors.primaryColor,
+            border: Border.all(color: AppColors.primaryColor),
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.3),
+                spreadRadius: 1,
+                blurRadius: 5,
+                offset: Offset(0, 4),
+              ),
+            ],
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                '${NumberFormat.currency(locale: 'id_ID', symbol: 'Rp', decimalDigits: 0).format(double.parse(harga))}',
+                style: TextStyle(color: Colors.white, fontSize: 17),
+              ),
+            ],
+          ),
+        ),
         // Tanggal
         const SizedBox(height: 20),
         Text(
-          'Tanggal :',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+          'Tanggal',
+          style: TextStyle(
+            decoration: TextDecoration.underline,
+            fontWeight: FontWeight.bold,
+            fontSize: 17,
+          ),
         ),
         const SizedBox(height: 5),
-        Text(formatDate(tanggal)), // Gunakan fungsi formatDate di sini
+        Container(
+          height: 30,
+          margin: EdgeInsets.only(left: 70, right: 70),
+          decoration: BoxDecoration(
+            color: AppColors.primaryColor,
+            border: Border.all(color: AppColors.primaryColor),
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.3),
+                spreadRadius: 1,
+                blurRadius: 5,
+                offset: Offset(0, 4),
+              ),
+            ],
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                formatDate(tanggal),
+                style: TextStyle(color: Colors.white, fontSize: 17),
+              ),
+            ],
+          ),
+        ), // Gunakan fungsi formatDate di sini
         // Waktu
         SizedBox(height: 20),
         Text(
-          'Jam :',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+          'Jam',
+          style: TextStyle(
+            decoration: TextDecoration.underline,
+            fontWeight: FontWeight.bold,
+            fontSize: 17,
+          ),
         ),
         const SizedBox(height: 5),
-        Text(formatTime(waktu)),
+        Container(
+          height: 30,
+          margin: EdgeInsets.only(left: 70, right: 70),
+          decoration: BoxDecoration(
+            color: AppColors.primaryColor,
+            border: Border.all(color: AppColors.primaryColor),
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.3),
+                spreadRadius: 1,
+                blurRadius: 5,
+                offset: Offset(0, 4),
+              ),
+            ],
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                formatTime(waktu),
+                style: TextStyle(color: Colors.white, fontSize: 17),
+              ),
+            ],
+          ),
+        ),
         // Metode Pembayaran
         const SizedBox(height: 20),
         Text(
-          'Metode Pembayaran :',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+          'Metode Pembayaran',
+          style: TextStyle(
+            decoration: TextDecoration.underline,
+            fontWeight: FontWeight.bold,
+            fontSize: 17,
+          ),
         ),
         const SizedBox(height: 5),
-        Text(metodePembayaran),
+        Container(
+          height: 30,
+          margin: EdgeInsets.only(left: 70, right: 70),
+          decoration: BoxDecoration(
+            color: AppColors.primaryColor,
+            border: Border.all(color: AppColors.primaryColor),
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.3),
+                spreadRadius: 1,
+                blurRadius: 5,
+                offset: Offset(0, 4),
+              ),
+            ],
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                metodePembayaran,
+                style: TextStyle(color: Colors.white, fontSize: 17),
+              ),
+            ],
+          ),
+        ),
       ],
     );
   }

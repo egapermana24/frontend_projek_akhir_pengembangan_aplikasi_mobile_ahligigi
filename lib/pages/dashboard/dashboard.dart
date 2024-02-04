@@ -137,14 +137,14 @@ class _DashboardState extends State<Dashboard> {
                     // ),
                     // Layanan dan More
                     const Divider(
-                      thickness: 0.5,
+                      thickness: 0.8,
                       indent: 18,
                       endIndent: 18,
-                      color: Colors.black,
+                      color: AppColors.primaryText,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(
-                          top: 16.0, left: 16.0, right: 16.0),
+                          top: 10.0, left: 16.0, right: 16.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -226,26 +226,26 @@ class _DashboardState extends State<Dashboard> {
                             style: TextStyle(
                                 fontSize: 19, fontWeight: FontWeight.bold),
                           ),
-                          InkWell(
-                            onTap: () {
-                              // Tambahkan logika untuk navigasi ke halaman lain di sini
-                              // Misalnya, Navigator.push ke halaman baru.
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        NavBar(initialPageIndex: 3)),
-                              );
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 0.0),
-                              child: const Text(
-                                'More',
-                                style:
-                                    TextStyle(fontSize: 13, color: Colors.blue),
-                              ),
-                            ),
-                          ),
+                          // InkWell(
+                          //   onTap: () {
+                          //     // Tambahkan logika untuk navigasi ke halaman lain di sini
+                          //     // Misalnya, Navigator.push ke halaman baru.
+                          //     Navigator.pushReplacement(
+                          //       context,
+                          //       MaterialPageRoute(
+                          //           builder: (context) =>
+                          //               NavBar(initialPageIndex: 3)),
+                          //     );
+                          //   },
+                          //   child: Padding(
+                          //     padding: const EdgeInsets.only(right: 0.0),
+                          //     child: const Text(
+                          //       'More',
+                          //       style:
+                          //           TextStyle(fontSize: 13, color: Colors.blue),
+                          //     ),
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),
@@ -273,7 +273,7 @@ class _DashboardState extends State<Dashboard> {
                             return ListView.builder(
                               scrollDirection: Axis.horizontal,
                               itemCount: ulasanList.length > 2
-                                  ? 4
+                                  ? 6
                                   : ulasanList
                                       .length, // Apabila Lebih dari 2 maka tampilkan 4
                               itemBuilder: (context, index) {

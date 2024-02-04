@@ -97,17 +97,38 @@ class _AppointmentPageState extends State<AppointmentPage> {
                       height: 35,
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => PembayaranPage(
-                                idLayanan: widget.idLayanan,
-                                layanan: widget.layanan,
-                                harga: widget.harga,
-                                jam: jam,
+                          if (jam.isNotEmpty) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => PembayaranPage(
+                                  idLayanan: widget.idLayanan,
+                                  layanan: widget.layanan,
+                                  harga: widget.harga,
+                                  jam: jam,
+                                ),
                               ),
-                            ),
-                          );
+                            );
+                          } else {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text("Peringatan!"),
+                                  content: Text(
+                                      "Silakan pilih waktu yang tersedia."),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: Text("OK"),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          }
                         },
                         child: Text(
                           'Pilih Pembayaran',
@@ -134,18 +155,77 @@ class _AppointmentPageState extends State<AppointmentPage> {
     );
   }
 
+  // Widget buildTimeContainer(int value, String jam) {
+  //   return InkWell(
+  //     onTap: () {
+  //       setState(() {
+  //         selectedValue = value;
+  //         onJamSelected(jam);
+  //       });
+  //     },
+  //     child: Container(
+  //       padding: EdgeInsets.all(8),
+  //       decoration: BoxDecoration(
+  //         color: selectedValue == value ? AppColors.primaryColor : Colors.grey,
+  //         borderRadius: BorderRadius.circular(10),
+  //       ),
+  //       child: Text(
+  //         jam.substring(0, 5),
+  //         style: TextStyle(
+  //           color: Colors.white,
+  //           fontWeight: FontWeight.bold,
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
+
+  // WIDGET DENGAN KONDISI APABILA WAKTU YANG SUDAH LEWAT MAKA TIDAK DAPAT DIPILIH
   Widget buildTimeContainer(int value, String jam) {
+    // Mendapatkan waktu saat ini
+    DateTime now = DateTime.now();
+    // Mendapatkan jam yang dipilih dari string
+    int selectedHour = int.parse(jam.substring(0, 2));
+
+    // Memeriksa apakah jam yang dipilih sudah lewat atau belum
+    bool isPastTime = now.hour > selectedHour ||
+        (now.hour == selectedHour && now.minute >= 0);
+
     return InkWell(
       onTap: () {
-        setState(() {
-          selectedValue = value;
-          onJamSelected(jam);
-        });
+        // Jika waktu yang dipilih belum lewat, update state
+        if (!isPastTime) {
+          setState(() {
+            selectedValue = value;
+            onJamSelected(jam);
+          });
+        } else {
+          // Jika waktu yang dipilih sudah lewat, tampilkan pesan peringatan
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text("Peringatan!"),
+                content: Text("Waktu sudah lewat."),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text("OK"),
+                  ),
+                ],
+              );
+            },
+          );
+        }
       },
       child: Container(
         padding: EdgeInsets.all(8),
         decoration: BoxDecoration(
-          color: selectedValue == value ? AppColors.primaryColor : Colors.grey,
+          color: selectedValue == value
+              ? AppColors.primaryColor
+              : (isPastTime ? Colors.red : Colors.grey),
           borderRadius: BorderRadius.circular(10),
         ),
         child: Text(
