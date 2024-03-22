@@ -1,13 +1,26 @@
 import 'dart:convert';
+import 'package:ahli_gigi/pages/history/detailsHistory.dart';
 import 'package:intl/intl.dart';
 import 'package:ahli_gigi/config/api_config.dart';
 import 'package:ahli_gigi/settings/constants/warna_apps.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:lottie/lottie.dart';
 
 class Riwayat extends StatefulWidget {
-  const Riwayat({Key? key}) : super(key: key);
+  // final String imagePath;
+  // final int idLayanan;
+  // final String layanan;
+  // final String harga;
+
+  const Riwayat({
+    Key? key,
+    // required this.imagePath,
+    // required this.idLayanan,
+    // required this.layanan,
+    // required this.harga,
+  }) : super(key: key);
 
   @override
   State<Riwayat> createState() => _RiwayatState();
@@ -18,14 +31,10 @@ class _RiwayatState extends State<Riwayat> {
 
   Future<List<dynamic>> getDataLayanan() async {
     try {
-      // Mendapatkan pengguna yang sedang login dari Firebase Auth
       User? user = FirebaseAuth.instance.currentUser;
 
       if (user != null) {
-        // Mengambil ID Google pengguna yang sedang login
         String idGoogle = user.uid;
-
-        // Menggunakan ID Google dalam permintaan HTTP
         var url =
             Uri.parse('${ApiConfig.baseUrl}/api/Pemesanan?idGoogle=$idGoogle');
         final response = await http.get(url);
@@ -36,11 +45,9 @@ class _RiwayatState extends State<Riwayat> {
           throw Exception('Failed to load data');
         }
       } else {
-        // Handle jika pengguna belum login
         throw Exception('User is not logged in');
       }
     } catch (e) {
-      // Handle kesalahan lain yang mungkin terjadi
       print('Error: $e');
       throw Exception('Failed to get user data');
     }
@@ -61,6 +68,7 @@ class _RiwayatState extends State<Riwayat> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.backGroundColor,
       appBar: AppBar(
         title: Text(
           'Riwayat Janji Temu',
@@ -78,10 +86,19 @@ class _RiwayatState extends State<Riwayat> {
           future: _serviceDataLayanan,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(
-                child: CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
-                ),
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(
+                    child: Lottie.asset(
+                      'assets/lottie/LoadingAnimation.json',
+                      repeat: true,
+                      width: 150,
+                      height: 150,
+                    ),
+                  ),
+                  Text('Loading...'),
+                ],
               );
             } else if (snapshot.hasError) {
               return Center(child: Text('Error: ${snapshot.error}'));
@@ -97,73 +114,97 @@ class _RiwayatState extends State<Riwayat> {
               return ListView.builder(
                 itemCount: dataLayanan.length,
                 itemBuilder: (context, index) {
-                  return Container(
-                    margin: EdgeInsets.symmetric(vertical: 5, horizontal: 16),
-                    padding: EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(15),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.3),
-                          spreadRadius: 2,
-                          blurRadius: 5,
-                          offset: Offset(0, 2),
+                  var layanan = dataLayanan[index];
+                  return InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => detailsHistory(
+                            imagePath: layanan['lokasi_gambar'],
+                            idLayanan: layanan['id_layanan'],
+                            layanan: layanan['nama_layanan'],
+                            harga: layanan['harga'].toString(),
+                            tanggal: layanan['tanggal_pemesanan'],
+                            waktu: layanan['waktu_pemesanan'],
+                            status: layanan['status_pemesanan'],
+                            metodePembayaran: layanan['metode_pembayaran'],
+                          ),
                         ),
-                      ],
-                    ),
-                    child: Row(
-                      children: [
-                        CircleAvatar(
-                          backgroundColor: AppColors.primaryColor,
-                          radius: 30,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Image.network(
-                              dataLayanan[index]['lokasi_gambar'],
-                              width: 60,
-                              height: 60,
-                              fit: BoxFit.cover,
+                      );
+                    },
+                    child: Container(
+                      margin: EdgeInsets.symmetric(vertical: 5, horizontal: 16),
+                      padding: EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(15),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.3),
+                            spreadRadius: 2,
+                            blurRadius: 5,
+                            offset: Offset(0, 2),
+                          ),
+                        ],
+                      ),
+                      child: Row(
+                        children: [
+                          CircleAvatar(
+                            backgroundColor: AppColors.primaryColor,
+                            radius: 30,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.network(
+                                dataLayanan[index]['lokasi_gambar'],
+                                width: 60,
+                                height: 60,
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
-                        ),
-                        SizedBox(width: 16),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                dataLayanan[index]['nama_layanan'],
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
-                                  color: AppColors.primaryColor,
-                                ),
-                              ),
-                              SizedBox(height: 5),
-                              Text(
-                                '${_formatDate(dataLayanan[index]['tanggal_pemesanan'])} - ${_formatTime(dataLayanan[index]['waktu_pemesanan'])}',
-                                style: TextStyle(fontSize: 14),
-                              ),
-                              SizedBox(height: 5),
-                              Container(
-                                decoration: BoxDecoration(
-                                  color: _getStatusColor(
-                                      dataLayanan[index]['status_pemesanan']),
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 8, vertical: 3),
-                                child: Text(
-                                  dataLayanan[index]['status_pemesanan'],
+                          SizedBox(width: 16),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  dataLayanan[index]['nama_layanan'],
                                   style: TextStyle(
-                                      fontSize: 12, color: Colors.white),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    color: AppColors.primaryColor,
+                                  ),
                                 ),
-                              )
-                            ],
+                                SizedBox(height: 5),
+                                Text(
+                                  '${_formatDate(dataLayanan[index]['tanggal_pemesanan'])} - ${_formatTime(dataLayanan[index]['waktu_pemesanan'])}',
+                                  style: TextStyle(fontSize: 14),
+                                ),
+                                SizedBox(height: 5),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: _getStatusColor(
+                                        dataLayanan[index]['status_pemesanan']),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 8, vertical: 3),
+                                  child: Text(
+                                    dataLayanan[index]['status_pemesanan'],
+                                    style: TextStyle(
+                                        fontSize: 12, color: Colors.white),
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                          Icon(
+                            Icons.more_vert,
+                            size: 15,
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 },

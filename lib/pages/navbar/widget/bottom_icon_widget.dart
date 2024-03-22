@@ -32,7 +32,7 @@ class BottomIconWidget extends StatelessWidget {
         decoration: BoxDecoration(
           border: Border.all(
             color: Colors.white, // Warna border putih
-            width: 1, // Lebar border
+            width: 0.8, // Lebar border
           ),
           shape: BoxShape.circle,
           boxShadow: [
@@ -52,9 +52,9 @@ class BottomIconWidget extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(15.0),
               child: Image.asset(
-                'assets/icons/ic_selected_home.png',
-                width: 25,
-                height: 25,
+                'assets/icons/ic_selected_home2.png',
+                width: 20,
+                height: 20,
                 color: Colors.white,
               ),
             ),
@@ -76,8 +76,8 @@ class BottomIconWidget extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Image.asset(
                 iconName,
-                width: 16,
-                height: 16,
+                width: 18,
+                height: 18,
                 color: iconColor,
               ),
             ),
@@ -86,7 +86,7 @@ class BottomIconWidget extends StatelessWidget {
               title,
               style: TextStyle(
                 fontSize: 10,
-                fontWeight: FontWeight.w600,
+                fontWeight: FontWeight.bold,
                 color: titleColor,
               ),
             ),

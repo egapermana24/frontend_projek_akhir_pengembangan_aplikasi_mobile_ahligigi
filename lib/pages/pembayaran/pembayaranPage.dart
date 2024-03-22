@@ -91,65 +91,65 @@ class _PembayaranPageState extends State<PembayaranPage> {
     }
   }
 
- Future<void> kirimDataPemesanan() async {
-  final url = Uri.parse('${ApiConfig.baseUrl}/api/Pemesanan');
+  Future<void> kirimDataPemesanan() async {
+    final url = Uri.parse('${ApiConfig.baseUrl}/api/Pemesanan');
 
-  // Replace this with the actual user ID retrieval logic
-  final String idGoogle = await getIdGoogle() ?? '';
+    // Replace this with the actual user ID retrieval logic
+    final String idGoogle = await getIdGoogle() ?? '';
 
-  // Determine payment method based on selectedPaymentMethod
-  String metodePembayaran = '';
-  if (selectedPaymentMethod == 1) {
-    metodePembayaran = 'Dompet Digital';
-  } else if (selectedPaymentMethod == 2) {
-    metodePembayaran = 'Bank';
-  } else if (selectedPaymentMethod == 3) {
-    metodePembayaran = 'COD';
-  }
-
-  try {
-    // Prepare data to be sent to the API
-    final Map<String, dynamic> dataPemesanan = {
-      'id_layanan': widget.idLayanan,
-      'id_user': await fetchUserId(idGoogle),
-      'id_google': idGoogle,
-      'tanggal_pemesanan': dateNow(),
-      'waktu_pemesanan': widget.jam,
-      'status_pemesanan': 'Menunggu Konfirmasi',
-      'metode_pembayaran': metodePembayaran,
-      if (_image != null)
-        // Convert the image to a MultipartFile
-        // and assign it to the 'bukti_pembayaran' key
-        // in the dataPemesanan map
-        'bukti_pembayaran': await MultipartFile.fromFile(_image!.path, filename: 'bukti_pembayaran.jpg'),
-      // 'bukti_pembayaran': await MultipartFile.fromFile(_image!.path, filename: 'bukti_pembayaran.jpg'),
-    };
-
-    // Send data to the API
-    final response = await Dio().post(
-      url.toString(),
-      data: FormData.fromMap(dataPemesanan),
-    );
-
-    // Check the response status
-    if (response.statusCode! >= 200 && response.statusCode! <= 208) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => PembayaranSuksesPage()),
-      );
-      // tampilkan semua data yang dikirimkan
-      print('Berhasil mengirim data: ${response.data}');
-    } else {
-      // If failed, print an error message or take appropriate action
-      print('Gagal mengirim data: ${dataPemesanan}');
-      print('Gagal mengirim data: ${response.data}');
-      print('Gagal mengirim data: ${response.statusCode}');
+    // Determine payment method based on selectedPaymentMethod
+    String metodePembayaran = '';
+    if (selectedPaymentMethod == 1) {
+      metodePembayaran = 'Dompet Digital';
+    } else if (selectedPaymentMethod == 2) {
+      metodePembayaran = 'Bank';
+    } else if (selectedPaymentMethod == 3) {
+      metodePembayaran = 'COD';
     }
-  } catch (e) {
-    print('Error: $e');
-  }
-}
 
+    try {
+      // Prepare data to be sent to the API
+      final Map<String, dynamic> dataPemesanan = {
+        'id_layanan': widget.idLayanan,
+        'id_user': await fetchUserId(idGoogle),
+        'id_google': idGoogle,
+        'tanggal_pemesanan': dateNow(),
+        'waktu_pemesanan': widget.jam,
+        'status_pemesanan': 'Menunggu Konfirmasi',
+        'metode_pembayaran': metodePembayaran,
+        if (_image != null)
+          // Convert the image to a MultipartFile
+          // and assign it to the 'bukti_pembayaran' key
+          // in the dataPemesanan map
+          'bukti_pembayaran': await MultipartFile.fromFile(_image!.path,
+              filename: 'bukti_pembayaran.jpg'),
+        // 'bukti_pembayaran': await MultipartFile.fromFile(_image!.path, filename: 'bukti_pembayaran.jpg'),
+      };
+
+      // Send data to the API
+      final response = await Dio().post(
+        url.toString(),
+        data: FormData.fromMap(dataPemesanan),
+      );
+
+      // Check the response status
+      if (response.statusCode! >= 200 && response.statusCode! <= 208) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => PembayaranSuksesPage()),
+        );
+        // tampilkan semua data yang dikirimkan
+        print('Berhasil mengirim data: ${response.data}');
+      } else {
+        // If failed, print an error message or take appropriate action
+        print('Gagal mengirim data: ${dataPemesanan}');
+        print('Gagal mengirim data: ${response.data}');
+        print('Gagal mengirim data: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -451,22 +451,30 @@ class _PembayaranPageState extends State<PembayaranPage> {
                             getImage();
                           },
                           child: Container(
-                            width:
-                                double.infinity, // Menggunakan lebar maksimal
+                            width: double.infinity,
                             height: 35,
                             decoration: BoxDecoration(
-                              color: Colors
-                                  .white, // Ganti dengan warna yang diinginkan
+                              color: Colors.white,
                               borderRadius: BorderRadius.circular(10),
                               border: Border.all(
                                 color: AppColors.primaryColor,
                                 width: 2.0,
                               ),
                             ),
-                            child: Center(
-                              child: Text(
-                                'Upload Bukti Pembayaran',
-                                style: TextStyle(color: AppColors.primaryColor),
+                            child: Material(
+                              color: Colors.transparent,
+                              child: InkWell(
+                                onTap: () {
+                                  getImage();
+                                },
+                                borderRadius: BorderRadius.circular(10),
+                                child: Center(
+                                  child: Text(
+                                    'Upload Bukti Pembayaran',
+                                    style: TextStyle(
+                                        color: AppColors.primaryColor),
+                                  ),
+                                ),
                               ),
                             ),
                           ),
@@ -479,20 +487,29 @@ class _PembayaranPageState extends State<PembayaranPage> {
               GestureDetector(
                 onTap: () {
                   kirimDataPemesanan();
-
                   // Panggil fungsi untuk mengambil gambar
                 },
                 child: Container(
-                  width: double.infinity, // Menggunakan lebar maksimal
+                  width: double.infinity,
                   height: 35,
                   decoration: BoxDecoration(
-                    color: Colors.blue, // Ganti dengan warna yang diinginkan
+                    color: AppColors.primaryColor,
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: Center(
-                    child: Text(
-                      'Selesai',
-                      style: TextStyle(color: Colors.white),
+                  child: Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      onTap: () {
+                        kirimDataPemesanan();
+                        // Panggil fungsi untuk mengambil gambar
+                      },
+                      borderRadius: BorderRadius.circular(10),
+                      child: Center(
+                        child: Text(
+                          'Selesai',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
                     ),
                   ),
                 ),

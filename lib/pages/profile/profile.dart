@@ -1,5 +1,7 @@
-import 'package:ahli_gigi/pages/dashboard/dashboard.dart';
-import 'package:ahli_gigi/pages/profile/widget/user_profile.dart';
+// import 'package:ahli_gigi/pages/dashboard/dashboard.dart';
+import 'package:ahli_gigi/pages/profile/components/bantuan.dart';
+import 'package:ahli_gigi/pages/profile/components/tentang.dart';
+// import 'package:ahli_gigi/pages/profile/widget/user_profile.dart';
 import 'package:ahli_gigi/pages/login/login.dart';
 import 'package:ahli_gigi/pages/profile/components/info_akun.dart';
 import 'package:ahli_gigi/settings/constants/warna_apps.dart';
@@ -29,6 +31,7 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.backGroundColor,
       appBar: AppBar(
         title: Text(
           'Profil',
@@ -43,9 +46,22 @@ class _ProfileState extends State<Profile> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            UserProfile(
-              user: FirebaseAuth.instance.currentUser,
-              onPressed: () => _showFullscreenImage(context),
+            // UserProfile(
+            //   user: FirebaseAuth.instance.currentUser,
+            //   onPressed: () => _showFullscreenImage(context),
+            // ),
+            // SizedBox(
+            //   height: 20,
+            // ),
+            SizedBox(
+              height: 15,
+            ),
+            Container(
+              child: Image.asset(
+                'assets/img/logo-gigi.png',
+                height: 100,
+                width: 100,
+              ),
             ),
             SizedBox(
               height: 20,
@@ -55,10 +71,10 @@ class _ProfileState extends State<Profile> {
               padding: const EdgeInsets.only(left: 10, right: 10),
               child: InkWell(
                 onTap: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => InfoAkun()),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => InfoAkun()),
+                  );
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -106,64 +122,64 @@ class _ProfileState extends State<Profile> {
               ),
             ),
 
-            SizedBox(
-              height: 10,
-            ),
+            // SizedBox(
+            //   height: 10,
+            // ),
             // -------ALAMAT-------
-            Padding(
-              padding: const EdgeInsets.only(left: 10, right: 10),
-              child: InkWell(
-                onTap: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => InfoAkun()),
-                  // );
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.2),
-                        spreadRadius: 1,
-                        blurRadius: 3,
-                        offset: Offset(0, 2),
-                      ),
-                    ],
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Icon(
-                          Icons.location_on_rounded,
-                          size: 40,
-                          color: AppColors.primaryColor,
-                        ),
-                      ),
-                      Text(
-                        'Alamat',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
-                      ),
-                      Spacer(),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Image.asset(
-                          'assets/icons/arrow-right.png',
-                          width: 15,
-                          height: 15,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.only(left: 10, right: 10),
+            //   child: InkWell(
+            //     onTap: () {
+            //       // Navigator.push(
+            //       //   context,
+            //       //   MaterialPageRoute(builder: (context) => InfoAkun()),
+            //       // );
+            //     },
+            //     child: Container(
+            //       decoration: BoxDecoration(
+            //         color: Colors.white,
+            //         boxShadow: [
+            //           BoxShadow(
+            //             color: Colors.grey.withOpacity(0.2),
+            //             spreadRadius: 1,
+            //             blurRadius: 3,
+            //             offset: Offset(0, 2),
+            //           ),
+            //         ],
+            //         borderRadius: BorderRadius.circular(15),
+            //       ),
+            //       child: Row(
+            //         children: [
+            //           Padding(
+            //             padding: const EdgeInsets.all(8.0),
+            //             child: Icon(
+            //               Icons.location_on_rounded,
+            //               size: 40,
+            //               color: AppColors.primaryColor,
+            //             ),
+            //           ),
+            //           Text(
+            //             'Alamat',
+            //             style: TextStyle(
+            //               fontSize: 14,
+            //               fontWeight: FontWeight.bold,
+            //               color: Colors.black,
+            //             ),
+            //           ),
+            //           Spacer(),
+            //           Padding(
+            //             padding: const EdgeInsets.all(8.0),
+            //             child: Image.asset(
+            //               'assets/icons/arrow-right.png',
+            //               width: 15,
+            //               height: 15,
+            //             ),
+            //           ),
+            //         ],
+            //       ),
+            //     ),
+            //   ),
+            // ),
             SizedBox(
               height: 10,
             ),
@@ -172,10 +188,10 @@ class _ProfileState extends State<Profile> {
               padding: const EdgeInsets.only(left: 10, right: 10),
               child: InkWell(
                 onTap: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => InfoAkun()),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Tentang()),
+                  );
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -230,10 +246,10 @@ class _ProfileState extends State<Profile> {
               padding: const EdgeInsets.only(left: 10, right: 10),
               child: InkWell(
                 onTap: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(builder: (context) => InfoAkun()),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => BantuanPage()),
+                  );
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -281,7 +297,16 @@ class _ProfileState extends State<Profile> {
               ),
             ),
             SizedBox(
-              height: 10,
+              height: 15,
+            ),
+            const Divider(
+              thickness: 1,
+              indent: 150,
+              endIndent: 150,
+              color: Colors.black,
+            ),
+            SizedBox(
+              height: 15,
             ),
             // -------BANTUAN-------
             Padding(
@@ -349,35 +374,35 @@ class _ProfileState extends State<Profile> {
 }
 
 // Function to show fullscreen image
-void _showFullscreenImage(BuildContext context) {
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return Dialog(
-        child: Container(
-          height: 300,
-          width: 300,
-          child: SizedBox(
-            width: 150.0,
-            height: 150.0,
-            child: FirebaseAuth.instance.currentUser?.photoURL != null
-                ? Image.network(
-                    FirebaseAuth.instance.currentUser!.photoURL!,
-                    fit: BoxFit.cover,
-                  )
-                : Image.asset(
-                    'assets/img/empty-user.png',
-                    fit: BoxFit.cover,
-                  ),
-          ),
-        ),
-      );
-    },
-  );
-}
+// void _showFullscreenImage(BuildContext context) {
+//   showDialog(
+//     context: context,
+//     builder: (BuildContext context) {
+//       return Dialog(
+//         child: Container(
+//           height: 300,
+//           width: 300,
+//           child: SizedBox(
+//             width: 150.0,
+//             height: 150.0,
+//             child: FirebaseAuth.instance.currentUser?.photoURL != null
+//                 ? Image.network(
+//                     FirebaseAuth.instance.currentUser!.photoURL!,
+//                     fit: BoxFit.cover,
+//                   )
+//                 : Image.asset(
+//                     'assets/img/empty-user.png',
+//                     fit: BoxFit.cover,
+//                   ),
+//           ),
+//         ),
+//       );
+//     },
+//   );
+// }
 
-void main() {
-  runApp(MaterialApp(
-    home: Profile(),
-  ));
-}
+// void main() {
+//   runApp(MaterialApp(
+//     home: Profile(),
+//   ));
+// }

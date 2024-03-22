@@ -1,7 +1,7 @@
-import 'package:ahli_gigi/pages/dashboard/dashboard.dart';
+// import 'package:ahli_gigi/pages/dashboard/dashboard.dart';
 import 'package:ahli_gigi/settings/constants/warna_apps.dart';
 import 'package:flutter/material.dart';
-import 'widget/categories_card.dart';
+// import 'widget/categories_card.dart';
 import 'package:ahli_gigi/pages/navbar/navbar.dart';
 
 class Categories extends StatelessWidget {
@@ -10,6 +10,7 @@ class Categories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.backGroundColor,
       appBar: AppBar(
         title: Text(
           'Kategori',

@@ -1,22 +1,23 @@
 import 'package:ahli_gigi/config/api_config.dart';
-import 'package:ahli_gigi/pages/categories/categories.dart';
+// import 'package:ahli_gigi/pages/categories/categories.dart';
 import 'package:ahli_gigi/pages/dashboard/widget/daftar_layanan.dart';
 import 'package:ahli_gigi/pages/dashboard/widget/user_profile.dart';
 import 'package:ahli_gigi/pages/details_page/DetailsPage.dart';
 import 'package:ahli_gigi/pages/navbar/navbar.dart';
 import 'package:ahli_gigi/settings/constants/warna_apps.dart';
 // import 'package:ahli_gigi/pages/navbar/navbar.dart';
-import 'package:ahli_gigi/pages/profile/profile.dart';
+// import 'package:ahli_gigi/pages/profile/profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ahli_gigi/pages/dashboard/widget/popular_card.dart';
 import 'package:ahli_gigi/pages/dashboard/widget/service_card.dart';
 import 'package:ahli_gigi/pages/layanan/layananPage.dart';
-import 'package:ahli_gigi/pages/login/login.dart';
+// import 'package:ahli_gigi/pages/login/login.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:lottie/lottie.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -67,16 +68,20 @@ class _DashboardState extends State<Dashboard> {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Padding(
-                      padding: EdgeInsets.only(
-                          top: 50.0), // Ganti nilai sesuai kebutuhan
-                      child: Center(
-                        child: CircularProgressIndicator(
-                          valueColor:
-                              AlwaysStoppedAnimation<Color>(Colors.blue),
-                        ),
+                    // Expanded(
+                    // Menggunakan Expanded di sekitar widget Lottie.asset
+                    const SizedBox(
+                      height: 267,
+                    ),
+                    Center(
+                      child: Lottie.asset(
+                        'assets/lottie/LoadingAnimation.json',
+                        repeat: true,
+                        width: 150,
+                        height: 150,
                       ),
                     ),
+                    Text('Loading...'),
                   ],
                 );
               } else if (snapshot.hasError) {
@@ -89,49 +94,57 @@ class _DashboardState extends State<Dashboard> {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    const SizedBox(
+                      height: 5,
+                    ),
                     UserProfile(
                       user: user,
                     ),
                     // Bagian atas dengan foto profil dan username
                     // Konten dashboard lainnya dapat ditambahkan di sini
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      child: Container(
-                        height: 40.0,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          border: Border.all(
-                            color: AppColors.primaryColor,
-                            width: 1,
-                          ),
-                          borderRadius: BorderRadius.circular(15.0),
-                          boxShadow: [
-                            BoxShadow(
-                              color: AppColors.primaryColor.withOpacity(0.2),
-                              spreadRadius: 2,
-                              blurRadius: 5,
-                              offset: Offset(0, 2),
-                            ),
-                          ],
-                        ),
-                        child: TextField(
-                          decoration: InputDecoration(
-                            hintText: 'Cari...',
-                            prefixIcon: Icon(Icons.search),
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide.none,
-                            ),
-                            contentPadding: EdgeInsets.symmetric(
-                                vertical: 8.0), // Atur padding vertikal
-                          ),
-                        ),
-                      ),
-                    ),
-
+                    // Padding(
+                    //   padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    //   child: Container(
+                    //     height: 40.0,
+                    //     decoration: BoxDecoration(
+                    //       color: Colors.white,
+                    //       border: Border.all(
+                    //         color: AppColors.primaryColor,
+                    //         width: 1,
+                    //       ),
+                    //       borderRadius: BorderRadius.circular(15.0),
+                    //       boxShadow: [
+                    //         BoxShadow(
+                    //           color: AppColors.primaryColor.withOpacity(0.2),
+                    //           spreadRadius: 2,
+                    //           blurRadius: 5,
+                    //           offset: Offset(0, 2),
+                    //         ),
+                    //       ],
+                    //     ),
+                    //     child: TextField(
+                    //       decoration: InputDecoration(
+                    //         hintText: 'Cari...',
+                    //         prefixIcon: Icon(Icons.search),
+                    //         border: OutlineInputBorder(
+                    //           borderSide: BorderSide.none,
+                    //         ),
+                    //         contentPadding: EdgeInsets.symmetric(
+                    //             vertical: 8.0), // Atur padding vertikal
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                     // Layanan dan More
+                    const Divider(
+                      thickness: 0.8,
+                      indent: 18,
+                      endIndent: 18,
+                      color: AppColors.primaryText,
+                    ),
                     Padding(
                       padding: const EdgeInsets.only(
-                          top: 16.0, left: 16.0, right: 16.0),
+                          top: 10.0, left: 16.0, right: 16.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -213,26 +226,26 @@ class _DashboardState extends State<Dashboard> {
                             style: TextStyle(
                                 fontSize: 19, fontWeight: FontWeight.bold),
                           ),
-                          InkWell(
-                            onTap: () {
-                              // Tambahkan logika untuk navigasi ke halaman lain di sini
-                              // Misalnya, Navigator.push ke halaman baru.
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        NavBar(initialPageIndex: 3)),
-                              );
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 0.0),
-                              child: const Text(
-                                'More',
-                                style:
-                                    TextStyle(fontSize: 13, color: Colors.blue),
-                              ),
-                            ),
-                          ),
+                          // InkWell(
+                          //   onTap: () {
+                          //     // Tambahkan logika untuk navigasi ke halaman lain di sini
+                          //     // Misalnya, Navigator.push ke halaman baru.
+                          //     Navigator.pushReplacement(
+                          //       context,
+                          //       MaterialPageRoute(
+                          //           builder: (context) =>
+                          //               NavBar(initialPageIndex: 3)),
+                          //     );
+                          //   },
+                          //   child: Padding(
+                          //     padding: const EdgeInsets.only(right: 0.0),
+                          //     child: const Text(
+                          //       'More',
+                          //       style:
+                          //           TextStyle(fontSize: 13, color: Colors.blue),
+                          //     ),
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),
@@ -260,7 +273,7 @@ class _DashboardState extends State<Dashboard> {
                             return ListView.builder(
                               scrollDirection: Axis.horizontal,
                               itemCount: ulasanList.length > 2
-                                  ? 4
+                                  ? 6
                                   : ulasanList
                                       .length, // Apabila Lebih dari 2 maka tampilkan 4
                               itemBuilder: (context, index) {
@@ -304,7 +317,8 @@ class _DashboardState extends State<Dashboard> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => Layanan(),
+                                  builder: (context) =>
+                                      NavBar(initialPageIndex: 3),
                                 ),
                               );
                             },
