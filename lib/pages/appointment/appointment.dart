@@ -53,11 +53,11 @@ class _AppointmentPageState extends State<AppointmentPage> {
               thickness: 0.5,
               color: Colors.black,
             ),
-            Row(
+            const Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 26.0, top: 10),
-                  child: const Text(
+                  padding: EdgeInsets.only(left: 26.0, top: 10),
+                  child: Text(
                     'Waktu yang Tersedia :',
                     style: TextStyle(
                       fontSize: 20,
@@ -68,7 +68,7 @@ class _AppointmentPageState extends State<AppointmentPage> {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Padding(
@@ -114,8 +114,8 @@ class _AppointmentPageState extends State<AppointmentPage> {
                               context: context,
                               builder: (BuildContext context) {
                                 return AlertDialog(
-                                  title: Text("Peringatan!"),
-                                  content: Text(
+                                  title: const Text("Peringatan!"),
+                                  content: const Text(
                                       "Silakan pilih waktu yang tersedia."),
                                   actions: [
                                     TextButton(
@@ -130,7 +130,7 @@ class _AppointmentPageState extends State<AppointmentPage> {
                             );
                           }
                         },
-                        child: Text(
+                        child: const Text(
                           'Pilih Pembayaran',
                           style: TextStyle(
                             fontSize: 14,
@@ -138,7 +138,7 @@ class _AppointmentPageState extends State<AppointmentPage> {
                           ),
                         ),
                         style: ElevatedButton.styleFrom(
-                          primary: AppColors.primaryColor,
+                          backgroundColor: AppColors.primaryColor,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
@@ -155,6 +155,7 @@ class _AppointmentPageState extends State<AppointmentPage> {
     );
   }
 
+  // WIDGET DEFAULT (Tidak ada kondisi)
   // Widget buildTimeContainer(int value, String jam) {
   //   return InkWell(
   //     onTap: () {
@@ -205,14 +206,14 @@ class _AppointmentPageState extends State<AppointmentPage> {
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
-                title: Text("Peringatan!"),
-                content: Text("Waktu sudah lewat."),
+                title: const Text("Peringatan!"),
+                content: const Text("Waktu sudah lewat."),
                 actions: [
                   TextButton(
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
-                    child: Text("OK"),
+                    child: const Text("OK"),
                   ),
                 ],
               );
@@ -230,7 +231,7 @@ class _AppointmentPageState extends State<AppointmentPage> {
         ),
         child: Text(
           jam.substring(0, 5),
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
           ),

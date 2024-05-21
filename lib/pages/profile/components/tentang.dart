@@ -171,7 +171,8 @@ Anggota :
 - 20210120071 - Royfansyah M Razavi
 
 Dosen Pengampu :
-Muhammad Hatta, M.Kom.""",
+Muhammad Hatta, M.Kom.
+Mohamad Firdaus, M.Kom.""",
                       style: Theme.of(context)
                           .textTheme
                           .bodyMedium!
